@@ -1,0 +1,22 @@
+{
+  "name": "net.caffeineinject.flutter-unity-plugin",
+  "displayName": "Flutter Unity Plugin",
+  "description": "Export unity for Flutter & UaaL",
+  "version": "0.1.0",
+  "unity": "2019.4",
+  "license": "MIT",
+  "author": {
+    "email": "takumi10194617@gmail.com",
+    "name": "Takumi Ito"
+  },
+  "dependencies": {
+    "com.unity.textmeshpro": "3.0.4"
+  },
+  "samples": [
+    {
+      "displayName": "Example",
+      "description": "Example",
+      "path": "Samples~/Example"
+    }
+  ]
+}
