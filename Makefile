@@ -5,12 +5,13 @@ setup:
 	cd ios && pod install
 
 .PHONY:
-pod:
-	flutter pub get
-	cd ios && pod install
-
-.PHONY:
-run:
+build-ios:
 	flutter pub get
 	cd ios && pod install
 	flutter build ios --release
+
+.PHONY:
+build-android:
+	flutter pub get
+	flutter pub run flutter_unity:unity_export_transmogrify
+	flutter build android --release

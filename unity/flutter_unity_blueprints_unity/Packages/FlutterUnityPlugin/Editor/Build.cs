@@ -7,13 +7,13 @@ using UnityEngine;
 
 public class Build : Editor
 {
-    private static readonly string ProjectPath = Path.GetFullPath(Path.Combine(UnityEngine.Application.dataPath, ".."));
+    private static readonly string ProjectPath = Path.GetFullPath(Path.Combine(Application.dataPath, ".."));
 
     private static readonly string IOSExportPath =
         Path.GetFullPath(Path.Combine(ProjectPath, "../../ios/UnityProject"));
     
     private static readonly string AndroidExportPath =
-        Path.GetFullPath(Path.Combine(ProjectPath, "../../android/UnityProject"));
+        Path.GetFullPath(Path.Combine(ProjectPath, "../../android/unityExport"));
 
     [MenuItem("Build/Export iOS", false, 1)]
     public static void BuildIOSForRelease()

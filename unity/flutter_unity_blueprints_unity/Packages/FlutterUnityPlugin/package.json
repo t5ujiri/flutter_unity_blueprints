@@ -9,9 +9,6 @@
     "email": "takumi10194617@gmail.com",
     "name": "Takumi Ito"
   },
-  "dependencies": {
-    "com.unity.textmeshpro": "3.0.4"
-  },
   "samples": [
     {
       "displayName": "Example",
