@@ -28,7 +28,7 @@ dependencies:
   flutter_unity:
     git:
       url: git@github.com:gatari/flutter-unity.git
-      ref: 1.0.0-nullsafety.1
+      ref: 1.0.0-nullsafety.2
 
   # For Architecture
   flutter_hooks: ^0.16.0-nullsafety.0

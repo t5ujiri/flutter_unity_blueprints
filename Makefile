@@ -11,6 +11,10 @@ build-ios:
 	flutter build ios --release
 
 .PHONY:
+android-unity-transmogrify:
+	flutter pub run flutter_unity:unity_export_transmogrify
+
+.PHONY:
 build-android:
 	flutter pub get
 	flutter pub run flutter_unity:unity_export_transmogrify

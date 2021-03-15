@@ -85,18 +85,18 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "1.0.0-nullsafety.1"
-      resolved-ref: "5d558571004a371dd8ab5574d69cc85e61410cb8"
+      ref: "1.0.0-nullsafety.2"
+      resolved-ref: "0f77588cc2d69e92b7f893db251c3e5146e98a12"
       url: "git@github.com:gatari/flutter-unity.git"
     source: git
-    version: "1.0.0+1"
+    version: "1.0.0-nullsafety.2"
   freezed_annotation:
     dependency: transitive
     description:
       name: freezed_annotation
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.14.0"
+    version: "0.14.1"
   hooks_riverpod:
     dependency: "direct main"
     description:
