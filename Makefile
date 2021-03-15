@@ -1,6 +1,7 @@
 .PHONY:
 setup:
 	flutter channel beta
+	flutter upgrade
 	flutter pub get
 	cd ios && pod install
 
