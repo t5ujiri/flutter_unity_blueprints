@@ -1,5 +1,6 @@
 .PHONY: setup
 setup:
+	./script/import_unity_grpc_libraries.sh
 	flutter channel stable
 	flutter upgrade
 	flutter pub get
