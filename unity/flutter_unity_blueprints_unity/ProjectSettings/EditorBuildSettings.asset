@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Samples/Flutter Unity Plugin/0.1.0/Example/Scenes/FlutterUnitySampleScene.unity
-    guid: 1f6a594ab996243909a43d03bc159e14
+    path: Assets/Scenes/SampleScene.unity
+    guid: f588f86b038e1455cbc25b99abd97925
   m_configObjects: {}
