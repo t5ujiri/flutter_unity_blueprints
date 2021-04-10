@@ -54,7 +54,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.render-pipelines.core": {
-      "version": "10.3.2",
+      "version": "10.4.0",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -63,13 +63,13 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.render-pipelines.universal": {
-      "version": "10.3.2",
+      "version": "10.4.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {
         "com.unity.mathematics": "1.1.0",
-        "com.unity.render-pipelines.core": "10.3.2",
-        "com.unity.shadergraph": "10.3.2"
+        "com.unity.render-pipelines.core": "10.4.0",
+        "com.unity.shadergraph": "10.4.0"
       },
       "url": "https://packages.unity.com"
     },
@@ -81,11 +81,11 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.shadergraph": {
-      "version": "10.3.2",
+      "version": "10.4.0",
       "depth": 1,
       "source": "registry",
       "dependencies": {
-        "com.unity.render-pipelines.core": "10.3.2",
+        "com.unity.render-pipelines.core": "10.4.0",
         "com.unity.searcher": "4.3.1"
       },
       "url": "https://packages.unity.com"
@@ -111,7 +111,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.timeline": {
-      "version": "1.4.6",
+      "version": "1.4.7",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -141,10 +141,11 @@
       "hash": "1fc3e76e0d588abf8f75d7c90f4a61659230541e"
     },
     "net.caffeineinject.flutter-unity-plugin": {
-      "version": "file:FlutterUnityPlugin",
+      "version": "https://github.com/t5ujiri/flutter-unity.git?path=example/unity/flutter_unity_example_unity/Packages/FlutterUnityPlugin",
       "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
+      "source": "git",
+      "dependencies": {},
+      "hash": "e7a0605b4c9e07ef77e88cd77a4043de3c2bece3"
     },
     "nuget.mono-cecil": {
       "version": "0.1.6-preview",

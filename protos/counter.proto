@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+import 'google/protobuf/empty.proto';
+
+message CounterIncrementResponse {
+  int32 count = 1;
+}
+
+service CounterService {
+  rpc Increment(google.protobuf.Empty) returns (CounterIncrementResponse);
+}
