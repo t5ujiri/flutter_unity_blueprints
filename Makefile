@@ -1,6 +1,5 @@
 .PHONY: setup
 setup:
-	./script/import_unity_grpc_libraries.sh
 	flutter channel stable
 	flutter upgrade
 	flutter pub get
@@ -8,7 +7,7 @@ setup:
 
 .PHONY: import_grpc_unity_plugins
 import_grpc_unity_plugins:
-	./script/import_unity_grpc_libraries.sh
+	./scripts/import_unity_grpc_libraries.sh
 
 .PHONY: freezed
 freezed:
