@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package pbunity;
+
+import 'google/protobuf/empty.proto';
+
+service SceneService {
+  rpc LoadScene(LoadSceneRequest) returns (LoadSceneResponse);
+  rpc UnloadScene(UnloadSceneRequest) returns (google.protobuf.Empty);
+}
+
+message LoadSceneRequest {
+  string scene_name = 1;
+  map<string, string> options = 2;
+}
+
+message UnloadSceneRequest {
+  string scene_name = 1;
+}
+
+message LoadSceneResponse {
+  int64 port = 1;
+}
+
+message Vector3 {
+  float x = 1;
+  float y = 2;
+  float z = 3;
+}
+
+message Vector4 {
+  float x = 1;
+  float y = 2;
+  float z = 3;
+  float w = 4;
+}

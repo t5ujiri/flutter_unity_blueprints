@@ -1,3 +1,5 @@
+Unity=~/Unity/2020.3.14f1/Unity.app/Contents/MacOS/Unity
+
 .PHONY: setup
 setup:
 	flutter channel stable
@@ -25,18 +27,14 @@ protoc:
 	protoc -I=protos --dart_out=grpc:lib/gen/protos \
  		./protos/*.proto ./protos/google/protobuf/*.proto
 
-.PHONY: build-ios
-build-ios:
-	flutter pub get
-	cd ios && pod install
-	flutter build ios --release
-
 .PHONY: android-unity-transmogrify
 android-unity-transmogrify:
 	flutter pub run flutter_unity:unity_export_transmogrify
 
-.PHONY:
-build-android:
-	flutter pub get
-	flutter pub run flutter_unity:unity_export_transmogrify
-	flutter build android --release
+.PHONY: build_unity_ios
+build_unity_ios:
+	${Unity} -quit -batchmode -executeMethod FlutterUnityPlugin.Editor.Build.BuildIOSForRelease
+
+.PHONY: build_unity_android
+build_unity_android:
+	${Unity} -quit -batchmode -executeMethod FlutterUnityPlugin.Editor.Build.BuildAndroid
