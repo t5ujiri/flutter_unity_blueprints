@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_unity/flutter_unity.dart';
 import 'package:flutter_unity_blueprints/gen/protos/counter.pbgrpc.dart';
@@ -12,7 +14,7 @@ class CounterUnityAppView extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final unityController = ref.watch(unityControllerProvider);
+    final initialized = ref.watch(isUnityInitialized);
     final sceneServiceClient = ref.watch(sceneServiceClientProvider);
 
     return Scaffold(
@@ -21,11 +23,18 @@ class CounterUnityAppView extends HookConsumerWidget {
           UnityView(
             onCreated: (controller) {
               controller.resume();
-              ref.read(unityControllerProvider.notifier).controller =
-                  controller;
+            },
+            onMessage: (controller, message) {
+              var payload = jsonDecode(message);
+              var eventName = payload?['data']?['eventType'];
+              if (eventName != null &&
+                  eventName is String &&
+                  eventName == "UNITY_INITIALIZED") {
+                ref.read(isUnityInitialized.notifier).isInitialized = true;
+              }
             },
           ),
-          unityController != null
+          initialized
               ? FutureBuilder(
                   future: sceneServiceClient
                       .loadScene(LoadSceneRequest(sceneName: "Counter")),
@@ -61,19 +70,18 @@ class CounterUnityAppView extends HookConsumerWidget {
   }
 }
 
-class UnityViewModel extends StateNotifier<UnityViewController?> {
-  UnityViewModel(UnityViewController? state) : super(state);
+class UnityViewModel extends StateNotifier<bool> {
+  UnityViewModel(bool state) : super(false);
 
-  UnityViewController? get controller => state;
+  bool get isInitialized => state;
 
-  set controller(UnityViewController? controller) {
-    state = controller;
+  set isInitialized(bool isInitialized) {
+    state = isInitialized;
   }
 }
 
-final unityControllerProvider =
-    StateNotifierProvider<UnityViewModel, UnityViewController?>(
-        (ref) => new UnityViewModel(null));
+final isUnityInitialized = StateNotifierProvider<UnityViewModel, bool>(
+    (ref) => new UnityViewModel(false));
 
 final sceneServiceClientProvider = Provider.autoDispose((ref) {
   final channel = ClientChannel('localhost',
