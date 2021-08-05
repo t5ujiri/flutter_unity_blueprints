@@ -26,10 +26,10 @@ class CounterUnityAppView extends HookConsumerWidget {
             },
             onMessage: (controller, message) {
               var payload = jsonDecode(message);
-              var eventName = payload?['data']?['eventType'];
+              var eventName = payload?['eventName'];
               if (eventName != null &&
-                  eventName is String &&
                   eventName == "UNITY_INITIALIZED") {
+                print("unity initialized!");
                 ref.read(isUnityInitialized.notifier).isInitialized = true;
               }
             },
