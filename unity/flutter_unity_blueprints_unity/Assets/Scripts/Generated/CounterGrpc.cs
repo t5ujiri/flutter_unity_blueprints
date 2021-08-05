@@ -42,14 +42,13 @@ public static partial class CounterService
   }
 
   static readonly grpc::Marshaller<global::Google.Protobuf.WellKnownTypes.Empty> __Marshaller_google_protobuf_Empty = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Google.Protobuf.WellKnownTypes.Empty.Parser));
-  static readonly grpc::Marshaller<global::CounterIncrementResponse> __Marshaller_CounterIncrementResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::CounterIncrementResponse.Parser));
 
-  static readonly grpc::Method<global::Google.Protobuf.WellKnownTypes.Empty, global::CounterIncrementResponse> __Method_Increment = new grpc::Method<global::Google.Protobuf.WellKnownTypes.Empty, global::CounterIncrementResponse>(
+  static readonly grpc::Method<global::Google.Protobuf.WellKnownTypes.Empty, global::Google.Protobuf.WellKnownTypes.Empty> __Method_Increment = new grpc::Method<global::Google.Protobuf.WellKnownTypes.Empty, global::Google.Protobuf.WellKnownTypes.Empty>(
       grpc::MethodType.Unary,
       __ServiceName,
       "Increment",
       __Marshaller_google_protobuf_Empty,
-      __Marshaller_CounterIncrementResponse);
+      __Marshaller_google_protobuf_Empty);
 
   /// <summary>Service descriptor</summary>
   public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -61,7 +60,7 @@ public static partial class CounterService
   [grpc::BindServiceMethod(typeof(CounterService), "BindService")]
   public abstract partial class CounterServiceBase
   {
-    public virtual global::System.Threading.Tasks.Task<global::CounterIncrementResponse> Increment(global::Google.Protobuf.WellKnownTypes.Empty request, grpc::ServerCallContext context)
+    public virtual global::System.Threading.Tasks.Task<global::Google.Protobuf.WellKnownTypes.Empty> Increment(global::Google.Protobuf.WellKnownTypes.Empty request, grpc::ServerCallContext context)
     {
       throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
     }
@@ -91,19 +90,19 @@ public static partial class CounterService
     {
     }
 
-    public virtual global::CounterIncrementResponse Increment(global::Google.Protobuf.WellKnownTypes.Empty request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+    public virtual global::Google.Protobuf.WellKnownTypes.Empty Increment(global::Google.Protobuf.WellKnownTypes.Empty request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
     {
       return Increment(request, new grpc::CallOptions(headers, deadline, cancellationToken));
     }
-    public virtual global::CounterIncrementResponse Increment(global::Google.Protobuf.WellKnownTypes.Empty request, grpc::CallOptions options)
+    public virtual global::Google.Protobuf.WellKnownTypes.Empty Increment(global::Google.Protobuf.WellKnownTypes.Empty request, grpc::CallOptions options)
     {
       return CallInvoker.BlockingUnaryCall(__Method_Increment, null, options, request);
     }
-    public virtual grpc::AsyncUnaryCall<global::CounterIncrementResponse> IncrementAsync(global::Google.Protobuf.WellKnownTypes.Empty request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+    public virtual grpc::AsyncUnaryCall<global::Google.Protobuf.WellKnownTypes.Empty> IncrementAsync(global::Google.Protobuf.WellKnownTypes.Empty request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
     {
       return IncrementAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
     }
-    public virtual grpc::AsyncUnaryCall<global::CounterIncrementResponse> IncrementAsync(global::Google.Protobuf.WellKnownTypes.Empty request, grpc::CallOptions options)
+    public virtual grpc::AsyncUnaryCall<global::Google.Protobuf.WellKnownTypes.Empty> IncrementAsync(global::Google.Protobuf.WellKnownTypes.Empty request, grpc::CallOptions options)
     {
       return CallInvoker.AsyncUnaryCall(__Method_Increment, null, options, request);
     }
@@ -128,7 +127,7 @@ public static partial class CounterService
   /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
   public static void BindService(grpc::ServiceBinderBase serviceBinder, CounterServiceBase serviceImpl)
   {
-    serviceBinder.AddMethod(__Method_Increment, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Google.Protobuf.WellKnownTypes.Empty, global::CounterIncrementResponse>(serviceImpl.Increment));
+    serviceBinder.AddMethod(__Method_Increment, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Google.Protobuf.WellKnownTypes.Empty, global::Google.Protobuf.WellKnownTypes.Empty>(serviceImpl.Increment));
   }
 
 }

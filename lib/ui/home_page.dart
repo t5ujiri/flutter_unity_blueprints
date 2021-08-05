@@ -1,52 +1,61 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_unity/flutter_unity.dart';
-import 'package:flutter_unity_blueprints/gen/protos/google/protobuf/empty.pb.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_unity_blueprints/ui/counter_controller_view.dart';
+import 'package:flutter_unity_blueprints/ui/counter_unity_app_view.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'unity_view_model.dart';
-
-class HomePage extends ConsumerWidget {
+class HomePage extends HookConsumerWidget {
   @override
-  Widget build(BuildContext context, watch) {
-    var state = watch(unityViewModelProvider.state);
+  Widget build(BuildContext context, WidgetRef ref) {
+    var pageController = usePageController();
+    var index = ref.watch(homePageViewControllerProvider);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(state.port.toString()),
-      ),
-      body: Stack(
+      appBar: AppBar(),
+      body: PageView(
+        onPageChanged: (index) {
+          ref.watch(homePageViewControllerProvider.notifier).index = index;
+        },
+        controller: pageController,
         children: [
-          UnityView(
-            onCreated: ((controller) {
-              controller.resume();
-            }),
-            onMessage: (controller, m) {
-              var message = jsonDecode(m);
-
-              // handle server started event
-              if (message['eventName'] == 'serverStarted') {
-                var port = message['port']!;
-
-                context.read(unityViewModelProvider).initClientWithPort(port);
-
-                print('Client connected to localhost:port $port');
-              }
-            },
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Center(
+              child: Text(
+                'Flutter Unity Blueprints',
+                style: Theme.of(context).textTheme.headline2,
+              ),
+            ),
+          ),
+          CounterUnityAppView(
+            child: CounterControllerView(),
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () async {
-          var response = await context
-              .read(unityViewModelProvider)
-              .counterServiceClient
-              ?.increment(Empty());
-          print(response?.count);
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: index,
+        onTap: (index) {
+          pageController.jumpToPage(index);
         },
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.apps), label: "Flutter"),
+          BottomNavigationBarItem(icon: Icon(Icons.timer), label: "Counter"),
+        ],
       ),
     );
+  }
+}
+
+final homePageViewControllerProvider =
+    StateNotifierProvider<HomePageViewController, int>(
+        (ref) => HomePageViewController(0));
+
+class HomePageViewController extends StateNotifier<int> {
+  HomePageViewController(state) : super(0);
+
+  int get index => state;
+
+  set index(int i) {
+    state = i;
   }
 }
