@@ -29,6 +29,7 @@ class CounterPage extends HookConsumerWidget {
           final current = ref.read(counterStateSubject).value.count;
           ref.read(counterStateSubject).add(CounterState(count: current + 1));
         },
+        child: Icon(Icons.add),
       ),
     );
   }
