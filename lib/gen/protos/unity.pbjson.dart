@@ -8,48 +8,29 @@
 import 'dart:core' as $core;
 import 'dart:convert' as $convert;
 import 'dart:typed_data' as $typed_data;
-@$core.Deprecated('Use loadSceneRequestDescriptor instead')
-const LoadSceneRequest$json = const {
-  '1': 'LoadSceneRequest',
+@$core.Deprecated('Use appStateDescriptor instead')
+const AppState$json = const {
+  '1': 'AppState',
   '2': const [
-    const {'1': 'scene_name', '3': 1, '4': 1, '5': 9, '10': 'sceneName'},
-    const {'1': 'options', '3': 2, '4': 3, '5': 11, '6': '.pbunity.LoadSceneRequest.OptionsEntry', '10': 'options'},
+    const {'1': 'counter_state', '3': 2, '4': 1, '5': 11, '6': '.pbunity.CounterState', '9': 0, '10': 'counterState'},
   ],
-  '3': const [LoadSceneRequest_OptionsEntry$json],
-};
-
-@$core.Deprecated('Use loadSceneRequestDescriptor instead')
-const LoadSceneRequest_OptionsEntry$json = const {
-  '1': 'OptionsEntry',
-  '2': const [
-    const {'1': 'key', '3': 1, '4': 1, '5': 9, '10': 'key'},
-    const {'1': 'value', '3': 2, '4': 1, '5': 9, '10': 'value'},
-  ],
-  '7': const {'7': true},
-};
-
-/// Descriptor for `LoadSceneRequest`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List loadSceneRequestDescriptor = $convert.base64Decode('ChBMb2FkU2NlbmVSZXF1ZXN0Eh0KCnNjZW5lX25hbWUYASABKAlSCXNjZW5lTmFtZRJACgdvcHRpb25zGAIgAygLMiYucGJ1bml0eS5Mb2FkU2NlbmVSZXF1ZXN0Lk9wdGlvbnNFbnRyeVIHb3B0aW9ucxo6CgxPcHRpb25zRW50cnkSEAoDa2V5GAEgASgJUgNrZXkSFAoFdmFsdWUYAiABKAlSBXZhbHVlOgI4AQ==');
-@$core.Deprecated('Use unloadSceneRequestDescriptor instead')
-const UnloadSceneRequest$json = const {
-  '1': 'UnloadSceneRequest',
-  '2': const [
-    const {'1': 'scene_name', '3': 1, '4': 1, '5': 9, '10': 'sceneName'},
+  '8': const [
+    const {'1': 'state'},
   ],
 };
 
-/// Descriptor for `UnloadSceneRequest`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List unloadSceneRequestDescriptor = $convert.base64Decode('ChJVbmxvYWRTY2VuZVJlcXVlc3QSHQoKc2NlbmVfbmFtZRgBIAEoCVIJc2NlbmVOYW1l');
-@$core.Deprecated('Use loadSceneResponseDescriptor instead')
-const LoadSceneResponse$json = const {
-  '1': 'LoadSceneResponse',
+/// Descriptor for `AppState`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List appStateDescriptor = $convert.base64Decode('CghBcHBTdGF0ZRI8Cg1jb3VudGVyX3N0YXRlGAIgASgLMhUucGJ1bml0eS5Db3VudGVyU3RhdGVIAFIMY291bnRlclN0YXRlQgcKBXN0YXRl');
+@$core.Deprecated('Use counterStateDescriptor instead')
+const CounterState$json = const {
+  '1': 'CounterState',
   '2': const [
-    const {'1': 'port', '3': 1, '4': 1, '5': 3, '10': 'port'},
+    const {'1': 'count', '3': 1, '4': 1, '5': 3, '10': 'count'},
   ],
 };
 
-/// Descriptor for `LoadSceneResponse`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List loadSceneResponseDescriptor = $convert.base64Decode('ChFMb2FkU2NlbmVSZXNwb25zZRISCgRwb3J0GAEgASgDUgRwb3J0');
+/// Descriptor for `CounterState`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List counterStateDescriptor = $convert.base64Decode('CgxDb3VudGVyU3RhdGUSFAoFY291bnQYASABKANSBWNvdW50');
 @$core.Deprecated('Use vector3Descriptor instead')
 const Vector3$json = const {
   '1': 'Vector3',

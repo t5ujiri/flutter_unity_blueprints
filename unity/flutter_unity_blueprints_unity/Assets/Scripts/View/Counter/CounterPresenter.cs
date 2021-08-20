@@ -18,5 +18,11 @@ namespace FlutterUnityBlueprints.View.Counter
             _count++;
             _textMesh.text = _count.ToString();
         }
+
+        public void SetCount(int count)
+        {
+            _count = count;
+            _textMesh.text = _count.ToString();
+        }
     }
 }

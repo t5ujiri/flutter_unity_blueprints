@@ -1,6 +1,6 @@
+using FlutterUnityBlueprints.View.System;
 using MessagePipe;
 using Pbunity;
-using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
@@ -11,11 +11,9 @@ namespace FlutterUnityBlueprints.Application.System
         protected override void Configure(IContainerBuilder builder)
         {
             var option = builder.RegisterMessagePipe();
-            builder.RegisterMessageBroker<SceneInitializedEvent>(option);
-            builder.RegisterEntryPoint<SystemApp>().WithParameter(Constants.SceneServicePort);
-            builder.Register<SceneService.SceneServiceBase, SceneServiceImpl>(Lifetime.Singleton)
-                .WithParameter(Constants.PortMap);
-            builder.RegisterComponentInHierarchy<Canvas>();
+            builder.RegisterMessageBroker<CounterState>(option);
+            builder.RegisterEntryPoint<SystemApp>().WithParameter(50000);
+            builder.RegisterComponentInHierarchy<SystemPanel>();
         }
     }
 }
