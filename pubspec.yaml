@@ -31,6 +31,8 @@ dependencies:
       ref: 1.1.0
   grpc: ^3.0.0
   protobuf: ^2.0.0
+  rxdart:
+  fixnum:
 
   # For Architecture
   flutter_hooks: ^0.18.0

@@ -10,153 +10,113 @@ import 'dart:core' as $core;
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-class LoadSceneRequest extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'LoadSceneRequest', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'pbunity'), createEmptyInstance: create)
-    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'sceneName')
-    ..m<$core.String, $core.String>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'options', entryClassName: 'LoadSceneRequest.OptionsEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OS, packageName: const $pb.PackageName('pbunity'))
+enum AppState_State {
+  counterState, 
+  notSet
+}
+
+class AppState extends $pb.GeneratedMessage {
+  static const $core.Map<$core.int, AppState_State> _AppState_StateByTag = {
+    2 : AppState_State.counterState,
+    0 : AppState_State.notSet
+  };
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'AppState', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'pbunity'), createEmptyInstance: create)
+    ..oo(0, [2])
+    ..aOM<CounterState>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'counterState', subBuilder: CounterState.create)
     ..hasRequiredFields = false
   ;
 
-  LoadSceneRequest._() : super();
-  factory LoadSceneRequest({
-    $core.String? sceneName,
-    $core.Map<$core.String, $core.String>? options,
+  AppState._() : super();
+  factory AppState({
+    CounterState? counterState,
   }) {
     final _result = create();
-    if (sceneName != null) {
-      _result.sceneName = sceneName;
-    }
-    if (options != null) {
-      _result.options.addAll(options);
+    if (counterState != null) {
+      _result.counterState = counterState;
     }
     return _result;
   }
-  factory LoadSceneRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory LoadSceneRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  factory AppState.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory AppState.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  LoadSceneRequest clone() => LoadSceneRequest()..mergeFromMessage(this);
+  AppState clone() => AppState()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  LoadSceneRequest copyWith(void Function(LoadSceneRequest) updates) => super.copyWith((message) => updates(message as LoadSceneRequest)) as LoadSceneRequest; // ignore: deprecated_member_use
+  AppState copyWith(void Function(AppState) updates) => super.copyWith((message) => updates(message as AppState)) as AppState; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static LoadSceneRequest create() => LoadSceneRequest._();
-  LoadSceneRequest createEmptyInstance() => create();
-  static $pb.PbList<LoadSceneRequest> createRepeated() => $pb.PbList<LoadSceneRequest>();
+  static AppState create() => AppState._();
+  AppState createEmptyInstance() => create();
+  static $pb.PbList<AppState> createRepeated() => $pb.PbList<AppState>();
   @$core.pragma('dart2js:noInline')
-  static LoadSceneRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<LoadSceneRequest>(create);
-  static LoadSceneRequest? _defaultInstance;
+  static AppState getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<AppState>(create);
+  static AppState? _defaultInstance;
 
-  @$pb.TagNumber(1)
-  $core.String get sceneName => $_getSZ(0);
-  @$pb.TagNumber(1)
-  set sceneName($core.String v) { $_setString(0, v); }
-  @$pb.TagNumber(1)
-  $core.bool hasSceneName() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearSceneName() => clearField(1);
+  AppState_State whichState() => _AppState_StateByTag[$_whichOneof(0)]!;
+  void clearState() => clearField($_whichOneof(0));
 
   @$pb.TagNumber(2)
-  $core.Map<$core.String, $core.String> get options => $_getMap(1);
+  CounterState get counterState => $_getN(0);
+  @$pb.TagNumber(2)
+  set counterState(CounterState v) { setField(2, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasCounterState() => $_has(0);
+  @$pb.TagNumber(2)
+  void clearCounterState() => clearField(2);
+  @$pb.TagNumber(2)
+  CounterState ensureCounterState() => $_ensure(0);
 }
 
-class UnloadSceneRequest extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'UnloadSceneRequest', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'pbunity'), createEmptyInstance: create)
-    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'sceneName')
+class CounterState extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'CounterState', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'pbunity'), createEmptyInstance: create)
+    ..aInt64(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'count')
     ..hasRequiredFields = false
   ;
 
-  UnloadSceneRequest._() : super();
-  factory UnloadSceneRequest({
-    $core.String? sceneName,
+  CounterState._() : super();
+  factory CounterState({
+    $fixnum.Int64? count,
   }) {
     final _result = create();
-    if (sceneName != null) {
-      _result.sceneName = sceneName;
+    if (count != null) {
+      _result.count = count;
     }
     return _result;
   }
-  factory UnloadSceneRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory UnloadSceneRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  factory CounterState.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory CounterState.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  UnloadSceneRequest clone() => UnloadSceneRequest()..mergeFromMessage(this);
+  CounterState clone() => CounterState()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  UnloadSceneRequest copyWith(void Function(UnloadSceneRequest) updates) => super.copyWith((message) => updates(message as UnloadSceneRequest)) as UnloadSceneRequest; // ignore: deprecated_member_use
+  CounterState copyWith(void Function(CounterState) updates) => super.copyWith((message) => updates(message as CounterState)) as CounterState; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static UnloadSceneRequest create() => UnloadSceneRequest._();
-  UnloadSceneRequest createEmptyInstance() => create();
-  static $pb.PbList<UnloadSceneRequest> createRepeated() => $pb.PbList<UnloadSceneRequest>();
+  static CounterState create() => CounterState._();
+  CounterState createEmptyInstance() => create();
+  static $pb.PbList<CounterState> createRepeated() => $pb.PbList<CounterState>();
   @$core.pragma('dart2js:noInline')
-  static UnloadSceneRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UnloadSceneRequest>(create);
-  static UnloadSceneRequest? _defaultInstance;
+  static CounterState getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<CounterState>(create);
+  static CounterState? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get sceneName => $_getSZ(0);
+  $fixnum.Int64 get count => $_getI64(0);
   @$pb.TagNumber(1)
-  set sceneName($core.String v) { $_setString(0, v); }
+  set count($fixnum.Int64 v) { $_setInt64(0, v); }
   @$pb.TagNumber(1)
-  $core.bool hasSceneName() => $_has(0);
+  $core.bool hasCount() => $_has(0);
   @$pb.TagNumber(1)
-  void clearSceneName() => clearField(1);
-}
-
-class LoadSceneResponse extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'LoadSceneResponse', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'pbunity'), createEmptyInstance: create)
-    ..aInt64(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'port')
-    ..hasRequiredFields = false
-  ;
-
-  LoadSceneResponse._() : super();
-  factory LoadSceneResponse({
-    $fixnum.Int64? port,
-  }) {
-    final _result = create();
-    if (port != null) {
-      _result.port = port;
-    }
-    return _result;
-  }
-  factory LoadSceneResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory LoadSceneResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
-  LoadSceneResponse clone() => LoadSceneResponse()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  LoadSceneResponse copyWith(void Function(LoadSceneResponse) updates) => super.copyWith((message) => updates(message as LoadSceneResponse)) as LoadSceneResponse; // ignore: deprecated_member_use
-  $pb.BuilderInfo get info_ => _i;
-  @$core.pragma('dart2js:noInline')
-  static LoadSceneResponse create() => LoadSceneResponse._();
-  LoadSceneResponse createEmptyInstance() => create();
-  static $pb.PbList<LoadSceneResponse> createRepeated() => $pb.PbList<LoadSceneResponse>();
-  @$core.pragma('dart2js:noInline')
-  static LoadSceneResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<LoadSceneResponse>(create);
-  static LoadSceneResponse? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  $fixnum.Int64 get port => $_getI64(0);
-  @$pb.TagNumber(1)
-  set port($fixnum.Int64 v) { $_setInt64(0, v); }
-  @$pb.TagNumber(1)
-  $core.bool hasPort() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearPort() => clearField(1);
+  void clearCount() => clearField(1);
 }
 
 class Vector3 extends $pb.GeneratedMessage {

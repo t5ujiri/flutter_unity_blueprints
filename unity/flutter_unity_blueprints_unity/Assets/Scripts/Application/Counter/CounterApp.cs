@@ -1,41 +1,37 @@
 using System;
+using System.Threading;
 using Cysharp.Threading.Tasks;
-using FlutterUnityBlueprints.Application.System;
-using Grpc.Core;
 using MessagePipe;
+using Pbunity;
 using VContainer.Unity;
 
 namespace FlutterUnityBlueprints.Application.Counter
 {
-    public class CounterApp : IStartable, IDisposable
+    public class CounterApp : IAsyncStartable, IDisposable
     {
-        private Server _server;
-        private readonly CounterService.CounterServiceBase _counterService;
-        private readonly int _port;
+        private readonly IAsyncSubscriber<CounterState> _counterStateSubscriber;
+        private readonly ICounterPresenter _counterPresenter;
+        private IDisposable _disposable;
 
-        public CounterApp(CounterService.CounterServiceBase counterService, int port)
+        public CounterApp(IAsyncSubscriber<CounterState> counterStateSubscriber, ICounterPresenter counterPresenter)
         {
-            _counterService = counterService;
-            _port = port;
+            _counterStateSubscriber = counterStateSubscriber;
+            _counterPresenter = counterPresenter;
         }
 
-        public void Start()
+        public async UniTask StartAsync(CancellationToken cancellation)
         {
-            _server = new Server
-            {
-                Services =
-                {
-                    CounterService.BindService(_counterService)
-                }
-            };
+            _disposable = _counterStateSubscriber.Subscribe(OnCounterStateChanged);
+        }
 
-            _server.Ports.Add(new ServerPort("localhost", _port, ServerCredentials.Insecure));
-            _server.Start();
+        private async UniTask OnCounterStateChanged(CounterState state, CancellationToken ctx = default)
+        {
+            _counterPresenter.SetCount(Convert.ToInt32(state.Count));
         }
 
         public void Dispose()
         {
-            _server?.KillAsync().AsUniTask().Forget();
+            _disposable.Dispose();
         }
     }
 }

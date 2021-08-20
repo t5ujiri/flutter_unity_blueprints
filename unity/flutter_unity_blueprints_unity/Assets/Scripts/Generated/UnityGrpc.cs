@@ -8,9 +8,9 @@
 using grpc = global::Grpc.Core;
 
 namespace Pbunity {
-  public static partial class SceneService
+  public static partial class UnityService
   {
-    static readonly string __ServiceName = "pbunity.SceneService";
+    static readonly string __ServiceName = "pbunity.UnityService";
 
     static void __Helper_SerializeMessage(global::Google.Protobuf.IMessage message, grpc::SerializationContext context)
     {
@@ -42,24 +42,15 @@ namespace Pbunity {
       return parser.ParseFrom(context.PayloadAsNewBuffer());
     }
 
-    static readonly grpc::Marshaller<global::Pbunity.LoadSceneRequest> __Marshaller_pbunity_LoadSceneRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Pbunity.LoadSceneRequest.Parser));
-    static readonly grpc::Marshaller<global::Pbunity.LoadSceneResponse> __Marshaller_pbunity_LoadSceneResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Pbunity.LoadSceneResponse.Parser));
-    static readonly grpc::Marshaller<global::Pbunity.UnloadSceneRequest> __Marshaller_pbunity_UnloadSceneRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Pbunity.UnloadSceneRequest.Parser));
     static readonly grpc::Marshaller<global::Google.Protobuf.WellKnownTypes.Empty> __Marshaller_google_protobuf_Empty = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Google.Protobuf.WellKnownTypes.Empty.Parser));
+    static readonly grpc::Marshaller<global::Pbunity.AppState> __Marshaller_pbunity_AppState = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Pbunity.AppState.Parser));
 
-    static readonly grpc::Method<global::Pbunity.LoadSceneRequest, global::Pbunity.LoadSceneResponse> __Method_LoadScene = new grpc::Method<global::Pbunity.LoadSceneRequest, global::Pbunity.LoadSceneResponse>(
-        grpc::MethodType.Unary,
+    static readonly grpc::Method<global::Google.Protobuf.WellKnownTypes.Empty, global::Pbunity.AppState> __Method_Subscribe = new grpc::Method<global::Google.Protobuf.WellKnownTypes.Empty, global::Pbunity.AppState>(
+        grpc::MethodType.ServerStreaming,
         __ServiceName,
-        "LoadScene",
-        __Marshaller_pbunity_LoadSceneRequest,
-        __Marshaller_pbunity_LoadSceneResponse);
-
-    static readonly grpc::Method<global::Pbunity.UnloadSceneRequest, global::Google.Protobuf.WellKnownTypes.Empty> __Method_UnloadScene = new grpc::Method<global::Pbunity.UnloadSceneRequest, global::Google.Protobuf.WellKnownTypes.Empty>(
-        grpc::MethodType.Unary,
-        __ServiceName,
-        "UnloadScene",
-        __Marshaller_pbunity_UnloadSceneRequest,
-        __Marshaller_google_protobuf_Empty);
+        "Subscribe",
+        __Marshaller_google_protobuf_Empty,
+        __Marshaller_pbunity_AppState);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -67,101 +58,70 @@ namespace Pbunity {
       get { return global::Pbunity.UnityReflection.Descriptor.Services[0]; }
     }
 
-    /// <summary>Base class for server-side implementations of SceneService</summary>
-    [grpc::BindServiceMethod(typeof(SceneService), "BindService")]
-    public abstract partial class SceneServiceBase
+    /// <summary>Base class for server-side implementations of UnityService</summary>
+    [grpc::BindServiceMethod(typeof(UnityService), "BindService")]
+    public abstract partial class UnityServiceBase
     {
-      public virtual global::System.Threading.Tasks.Task<global::Pbunity.LoadSceneResponse> LoadScene(global::Pbunity.LoadSceneRequest request, grpc::ServerCallContext context)
-      {
-        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
-      }
-
-      public virtual global::System.Threading.Tasks.Task<global::Google.Protobuf.WellKnownTypes.Empty> UnloadScene(global::Pbunity.UnloadSceneRequest request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task Subscribe(global::Google.Protobuf.WellKnownTypes.Empty request, grpc::IServerStreamWriter<global::Pbunity.AppState> responseStream, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
 
     }
 
-    /// <summary>Client for SceneService</summary>
-    public partial class SceneServiceClient : grpc::ClientBase<SceneServiceClient>
+    /// <summary>Client for UnityService</summary>
+    public partial class UnityServiceClient : grpc::ClientBase<UnityServiceClient>
     {
-      /// <summary>Creates a new client for SceneService</summary>
+      /// <summary>Creates a new client for UnityService</summary>
       /// <param name="channel">The channel to use to make remote calls.</param>
-      public SceneServiceClient(grpc::ChannelBase channel) : base(channel)
+      public UnityServiceClient(grpc::ChannelBase channel) : base(channel)
       {
       }
-      /// <summary>Creates a new client for SceneService that uses a custom <c>CallInvoker</c>.</summary>
+      /// <summary>Creates a new client for UnityService that uses a custom <c>CallInvoker</c>.</summary>
       /// <param name="callInvoker">The callInvoker to use to make remote calls.</param>
-      public SceneServiceClient(grpc::CallInvoker callInvoker) : base(callInvoker)
+      public UnityServiceClient(grpc::CallInvoker callInvoker) : base(callInvoker)
       {
       }
       /// <summary>Protected parameterless constructor to allow creation of test doubles.</summary>
-      protected SceneServiceClient() : base()
+      protected UnityServiceClient() : base()
       {
       }
       /// <summary>Protected constructor to allow creation of configured clients.</summary>
       /// <param name="configuration">The client configuration.</param>
-      protected SceneServiceClient(ClientBaseConfiguration configuration) : base(configuration)
+      protected UnityServiceClient(ClientBaseConfiguration configuration) : base(configuration)
       {
       }
 
-      public virtual global::Pbunity.LoadSceneResponse LoadScene(global::Pbunity.LoadSceneRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncServerStreamingCall<global::Pbunity.AppState> Subscribe(global::Google.Protobuf.WellKnownTypes.Empty request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
-        return LoadScene(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+        return Subscribe(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual global::Pbunity.LoadSceneResponse LoadScene(global::Pbunity.LoadSceneRequest request, grpc::CallOptions options)
+      public virtual grpc::AsyncServerStreamingCall<global::Pbunity.AppState> Subscribe(global::Google.Protobuf.WellKnownTypes.Empty request, grpc::CallOptions options)
       {
-        return CallInvoker.BlockingUnaryCall(__Method_LoadScene, null, options, request);
-      }
-      public virtual grpc::AsyncUnaryCall<global::Pbunity.LoadSceneResponse> LoadSceneAsync(global::Pbunity.LoadSceneRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return LoadSceneAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      public virtual grpc::AsyncUnaryCall<global::Pbunity.LoadSceneResponse> LoadSceneAsync(global::Pbunity.LoadSceneRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.AsyncUnaryCall(__Method_LoadScene, null, options, request);
-      }
-      public virtual global::Google.Protobuf.WellKnownTypes.Empty UnloadScene(global::Pbunity.UnloadSceneRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return UnloadScene(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      public virtual global::Google.Protobuf.WellKnownTypes.Empty UnloadScene(global::Pbunity.UnloadSceneRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.BlockingUnaryCall(__Method_UnloadScene, null, options, request);
-      }
-      public virtual grpc::AsyncUnaryCall<global::Google.Protobuf.WellKnownTypes.Empty> UnloadSceneAsync(global::Pbunity.UnloadSceneRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return UnloadSceneAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      public virtual grpc::AsyncUnaryCall<global::Google.Protobuf.WellKnownTypes.Empty> UnloadSceneAsync(global::Pbunity.UnloadSceneRequest request, grpc::CallOptions options)
-      {
-        return CallInvoker.AsyncUnaryCall(__Method_UnloadScene, null, options, request);
+        return CallInvoker.AsyncServerStreamingCall(__Method_Subscribe, null, options, request);
       }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
-      protected override SceneServiceClient NewInstance(ClientBaseConfiguration configuration)
+      protected override UnityServiceClient NewInstance(ClientBaseConfiguration configuration)
       {
-        return new SceneServiceClient(configuration);
+        return new UnityServiceClient(configuration);
       }
     }
 
     /// <summary>Creates service definition that can be registered with a server</summary>
     /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
-    public static grpc::ServerServiceDefinition BindService(SceneServiceBase serviceImpl)
+    public static grpc::ServerServiceDefinition BindService(UnityServiceBase serviceImpl)
     {
       return grpc::ServerServiceDefinition.CreateBuilder()
-          .AddMethod(__Method_LoadScene, serviceImpl.LoadScene)
-          .AddMethod(__Method_UnloadScene, serviceImpl.UnloadScene).Build();
+          .AddMethod(__Method_Subscribe, serviceImpl.Subscribe).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the  service binding logic.
     /// Note: this method is part of an experimental API that can change or be removed without any prior notice.</summary>
     /// <param name="serviceBinder">Service methods will be bound by calling <c>AddMethod</c> on this object.</param>
     /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
-    public static void BindService(grpc::ServiceBinderBase serviceBinder, SceneServiceBase serviceImpl)
+    public static void BindService(grpc::ServiceBinderBase serviceBinder, UnityServiceBase serviceImpl)
     {
-      serviceBinder.AddMethod(__Method_LoadScene, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Pbunity.LoadSceneRequest, global::Pbunity.LoadSceneResponse>(serviceImpl.LoadScene));
-      serviceBinder.AddMethod(__Method_UnloadScene, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Pbunity.UnloadSceneRequest, global::Google.Protobuf.WellKnownTypes.Empty>(serviceImpl.UnloadScene));
+      serviceBinder.AddMethod(__Method_Subscribe, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Google.Protobuf.WellKnownTypes.Empty, global::Pbunity.AppState>(serviceImpl.Subscribe));
     }
 
   }
