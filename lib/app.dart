@@ -11,8 +11,9 @@ class App extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     useMemoized(() async {
-      final server =
-          Server([UnityServiceImpl(ref.read)]);
+      final server = Server([
+        ref.read(unityService),
+      ]);
       await server.serve(address: 'localhost', port: 50000);
     });
 

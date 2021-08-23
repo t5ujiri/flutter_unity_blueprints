@@ -10,17 +10,23 @@ namespace FlutterUnityBlueprints.Application.Stub
 {
     public class StubServer : UnityService.UnityServiceBase
     {
-        public override async Task Subscribe(Empty request, IServerStreamWriter<AppState> responseStream,
-            ServerCallContext context)
+        public override async Task Sync(IAsyncStreamReader<AppRequest> requestStream,
+            IServerStreamWriter<AppResponse> responseStream, ServerCallContext context)
         {
             await UniTask.SwitchToMainThread();
-            await Observable.Interval(TimeSpan.FromSeconds(3)).Select(i => new AppState()
+            await Observable.Interval(TimeSpan.FromSeconds(3)).Take(10).ForEachAsync(async state =>
             {
-                CounterState = new CounterState()
+                await responseStream.WriteAsync(new AppResponse()
                 {
-                    Count = i
-                }
-            }).Take(10).ForEachAsync(state => { responseStream.WriteAsync(state); }).ToUniTask();
+                    JumperResponse = new JumperResponse()
+                    {
+                        Controller = new JumperResponse.Types.JumperController()
+                        {
+                            TriggerJump = Timestamp.FromDateTime(DateTime.Now.ToUniversalTime()),
+                        }
+                    }
+                });
+            }).ToUniTask(cancellationToken: context.CancellationToken);
         }
     }
 }
