@@ -3,19 +3,39 @@ syntax = "proto3";
 package pbunity;
 
 import 'google/protobuf/empty.proto';
+import 'google/protobuf/timestamp.proto';
 
 service UnityService {
-  rpc Subscribe(google.protobuf.Empty) returns (stream AppState);
+  rpc Sync(stream AppRequest) returns (stream AppResponse);
 }
 
-message AppState {
+message AppResponse {
   oneof state {
-    CounterState counter_state = 2;
+    CounterResponse counter_response = 1;
+    JumperResponse jumper_response = 2;
   }
 }
 
-message CounterState {
+message AppRequest {
+  oneof request {
+    JumperRequest jumper_request = 1;
+  }
+}
+
+message CounterResponse {
   int64 count = 1;
+}
+
+message JumperResponse {
+  message JumperController {
+    google.protobuf.Timestamp trigger_jump = 1;
+  }
+  JumperController controller = 1;
+}
+
+message JumperRequest {
+  bool can_jump = 1;
+  Vector3 position = 2;
 }
 
 message Vector3 {

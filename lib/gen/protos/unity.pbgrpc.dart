@@ -10,26 +10,24 @@ import 'dart:async' as $async;
 import 'dart:core' as $core;
 
 import 'package:grpc/service_api.dart' as $grpc;
-import 'google/protobuf/empty.pb.dart' as $0;
-import 'unity.pb.dart' as $1;
+import 'unity.pb.dart' as $0;
 export 'unity.pb.dart';
 
 class UnityServiceClient extends $grpc.Client {
-  static final _$subscribe = $grpc.ClientMethod<$0.Empty, $1.AppState>(
-      '/pbunity.UnityService/Subscribe',
-      ($0.Empty value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $1.AppState.fromBuffer(value));
+  static final _$sync = $grpc.ClientMethod<$0.AppRequest, $0.AppResponse>(
+      '/pbunity.UnityService/Sync',
+      ($0.AppRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $0.AppResponse.fromBuffer(value));
 
   UnityServiceClient($grpc.ClientChannel channel,
       {$grpc.CallOptions? options,
       $core.Iterable<$grpc.ClientInterceptor>? interceptors})
       : super(channel, options: options, interceptors: interceptors);
 
-  $grpc.ResponseStream<$1.AppState> subscribe($0.Empty request,
+  $grpc.ResponseStream<$0.AppResponse> sync(
+      $async.Stream<$0.AppRequest> request,
       {$grpc.CallOptions? options}) {
-    return $createStreamingCall(
-        _$subscribe, $async.Stream.fromIterable([request]),
-        options: options);
+    return $createStreamingCall(_$sync, request, options: options);
   }
 }
 
@@ -37,20 +35,15 @@ abstract class UnityServiceBase extends $grpc.Service {
   $core.String get $name => 'pbunity.UnityService';
 
   UnityServiceBase() {
-    $addMethod($grpc.ServiceMethod<$0.Empty, $1.AppState>(
-        'Subscribe',
-        subscribe_Pre,
-        false,
+    $addMethod($grpc.ServiceMethod<$0.AppRequest, $0.AppResponse>(
+        'Sync',
+        sync,
         true,
-        ($core.List<$core.int> value) => $0.Empty.fromBuffer(value),
-        ($1.AppState value) => value.writeToBuffer()));
+        true,
+        ($core.List<$core.int> value) => $0.AppRequest.fromBuffer(value),
+        ($0.AppResponse value) => value.writeToBuffer()));
   }
 
-  $async.Stream<$1.AppState> subscribe_Pre(
-      $grpc.ServiceCall call, $async.Future<$0.Empty> request) async* {
-    yield* subscribe(call, await request);
-  }
-
-  $async.Stream<$1.AppState> subscribe(
-      $grpc.ServiceCall call, $0.Empty request);
+  $async.Stream<$0.AppResponse> sync(
+      $grpc.ServiceCall call, $async.Stream<$0.AppRequest> request);
 }

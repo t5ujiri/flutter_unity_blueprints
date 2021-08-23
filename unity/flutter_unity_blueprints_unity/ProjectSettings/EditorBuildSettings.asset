@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Counter.unity
     guid: f588f86b038e1455cbc25b99abd97925
+  - enabled: 0
+    path: Assets/Scenes/Test.unity
+    guid: a318223b6b67c4d0f8cfb12240954b20
+  - enabled: 1
+    path: Assets/Scenes/Jumper.unity
+    guid: 37f011fddcdd44233a8361274f99a24c
   m_configObjects: {}

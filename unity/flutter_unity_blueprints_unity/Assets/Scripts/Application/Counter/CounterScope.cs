@@ -9,8 +9,7 @@ namespace FlutterUnityBlueprints.Application.Counter
     {
         protected override void Configure(IContainerBuilder builder)
         {
-            builder.RegisterEntryPoint<CounterApp>();
-            builder.Register<CounterPresenter>(Lifetime.Scoped).AsImplementedInterfaces();
+            builder.RegisterEntryPoint<CounterPresenter>(Lifetime.Scoped);
             builder.RegisterComponentInHierarchy<TMP_Text>();
         }
     }

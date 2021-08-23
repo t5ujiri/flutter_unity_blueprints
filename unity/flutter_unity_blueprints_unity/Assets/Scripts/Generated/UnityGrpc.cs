@@ -42,15 +42,15 @@ namespace Pbunity {
       return parser.ParseFrom(context.PayloadAsNewBuffer());
     }
 
-    static readonly grpc::Marshaller<global::Google.Protobuf.WellKnownTypes.Empty> __Marshaller_google_protobuf_Empty = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Google.Protobuf.WellKnownTypes.Empty.Parser));
-    static readonly grpc::Marshaller<global::Pbunity.AppState> __Marshaller_pbunity_AppState = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Pbunity.AppState.Parser));
+    static readonly grpc::Marshaller<global::Pbunity.AppRequest> __Marshaller_pbunity_AppRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Pbunity.AppRequest.Parser));
+    static readonly grpc::Marshaller<global::Pbunity.AppResponse> __Marshaller_pbunity_AppResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Pbunity.AppResponse.Parser));
 
-    static readonly grpc::Method<global::Google.Protobuf.WellKnownTypes.Empty, global::Pbunity.AppState> __Method_Subscribe = new grpc::Method<global::Google.Protobuf.WellKnownTypes.Empty, global::Pbunity.AppState>(
-        grpc::MethodType.ServerStreaming,
+    static readonly grpc::Method<global::Pbunity.AppRequest, global::Pbunity.AppResponse> __Method_Sync = new grpc::Method<global::Pbunity.AppRequest, global::Pbunity.AppResponse>(
+        grpc::MethodType.DuplexStreaming,
         __ServiceName,
-        "Subscribe",
-        __Marshaller_google_protobuf_Empty,
-        __Marshaller_pbunity_AppState);
+        "Sync",
+        __Marshaller_pbunity_AppRequest,
+        __Marshaller_pbunity_AppResponse);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -62,7 +62,7 @@ namespace Pbunity {
     [grpc::BindServiceMethod(typeof(UnityService), "BindService")]
     public abstract partial class UnityServiceBase
     {
-      public virtual global::System.Threading.Tasks.Task Subscribe(global::Google.Protobuf.WellKnownTypes.Empty request, grpc::IServerStreamWriter<global::Pbunity.AppState> responseStream, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task Sync(grpc::IAsyncStreamReader<global::Pbunity.AppRequest> requestStream, grpc::IServerStreamWriter<global::Pbunity.AppResponse> responseStream, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -92,13 +92,13 @@ namespace Pbunity {
       {
       }
 
-      public virtual grpc::AsyncServerStreamingCall<global::Pbunity.AppState> Subscribe(global::Google.Protobuf.WellKnownTypes.Empty request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncDuplexStreamingCall<global::Pbunity.AppRequest, global::Pbunity.AppResponse> Sync(grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
-        return Subscribe(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+        return Sync(new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual grpc::AsyncServerStreamingCall<global::Pbunity.AppState> Subscribe(global::Google.Protobuf.WellKnownTypes.Empty request, grpc::CallOptions options)
+      public virtual grpc::AsyncDuplexStreamingCall<global::Pbunity.AppRequest, global::Pbunity.AppResponse> Sync(grpc::CallOptions options)
       {
-        return CallInvoker.AsyncServerStreamingCall(__Method_Subscribe, null, options, request);
+        return CallInvoker.AsyncDuplexStreamingCall(__Method_Sync, null, options);
       }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       protected override UnityServiceClient NewInstance(ClientBaseConfiguration configuration)
@@ -112,7 +112,7 @@ namespace Pbunity {
     public static grpc::ServerServiceDefinition BindService(UnityServiceBase serviceImpl)
     {
       return grpc::ServerServiceDefinition.CreateBuilder()
-          .AddMethod(__Method_Subscribe, serviceImpl.Subscribe).Build();
+          .AddMethod(__Method_Sync, serviceImpl.Sync).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the  service binding logic.
@@ -121,7 +121,7 @@ namespace Pbunity {
     /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
     public static void BindService(grpc::ServiceBinderBase serviceBinder, UnityServiceBase serviceImpl)
     {
-      serviceBinder.AddMethod(__Method_Subscribe, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Google.Protobuf.WellKnownTypes.Empty, global::Pbunity.AppState>(serviceImpl.Subscribe));
+      serviceBinder.AddMethod(__Method_Sync, serviceImpl == null ? null : new grpc::DuplexStreamingServerMethod<global::Pbunity.AppRequest, global::Pbunity.AppResponse>(serviceImpl.Sync));
     }
 
   }
