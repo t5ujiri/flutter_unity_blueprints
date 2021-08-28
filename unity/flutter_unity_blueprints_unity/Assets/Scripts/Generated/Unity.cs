@@ -25,29 +25,32 @@ namespace Pbunity {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "Cgt1bml0eS5wcm90bxIHcGJ1bml0eRobZ29vZ2xlL3Byb3RvYnVmL2VtcHR5",
-            "LnByb3RvGh9nb29nbGUvcHJvdG9idWYvdGltZXN0YW1wLnByb3RvIoABCgtB",
-            "cHBSZXNwb25zZRI0ChBjb3VudGVyX3Jlc3BvbnNlGAEgASgLMhgucGJ1bml0",
-            "eS5Db3VudGVyUmVzcG9uc2VIABIyCg9qdW1wZXJfcmVzcG9uc2UYAiABKAsy",
-            "Fy5wYnVuaXR5Lkp1bXBlclJlc3BvbnNlSABCBwoFc3RhdGUiSQoKQXBwUmVx",
-            "dWVzdBIwCg5qdW1wZXJfcmVxdWVzdBgBIAEoCzIWLnBidW5pdHkuSnVtcGVy",
-            "UmVxdWVzdEgAQgkKB3JlcXVlc3QiIAoPQ291bnRlclJlc3BvbnNlEg0KBWNv",
-            "dW50GAEgASgDIpQBCg5KdW1wZXJSZXNwb25zZRI8Cgpjb250cm9sbGVyGAEg",
-            "ASgLMigucGJ1bml0eS5KdW1wZXJSZXNwb25zZS5KdW1wZXJDb250cm9sbGVy",
-            "GkQKEEp1bXBlckNvbnRyb2xsZXISMAoMdHJpZ2dlcl9qdW1wGAEgASgLMhou",
-            "Z29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCJFCg1KdW1wZXJSZXF1ZXN0EhAK",
-            "CGNhbl9qdW1wGAEgASgIEiIKCHBvc2l0aW9uGAIgASgLMhAucGJ1bml0eS5W",
-            "ZWN0b3IzIioKB1ZlY3RvcjMSCQoBeBgBIAEoAhIJCgF5GAIgASgCEgkKAXoY",
-            "AyABKAIiNQoHVmVjdG9yNBIJCgF4GAEgASgCEgkKAXkYAiABKAISCQoBehgD",
-            "IAEoAhIJCgF3GAQgASgCMkUKDFVuaXR5U2VydmljZRI1CgRTeW5jEhMucGJ1",
-            "bml0eS5BcHBSZXF1ZXN0GhQucGJ1bml0eS5BcHBSZXNwb25zZSgBMAFiBnBy",
-            "b3RvMw=="));
+            "LnByb3RvGh9nb29nbGUvcHJvdG9idWYvdGltZXN0YW1wLnByb3RvIrcBCgtB",
+            "cHBSZXNwb25zZRI1ChFsb2FkX2FwcF9yZXNwb25zZRgBIAEoCzIYLnBidW5p",
+            "dHkuTG9hZEFwcFJlc3BvbnNlSAASNAoQY291bnRlcl9yZXNwb25zZRgCIAEo",
+            "CzIYLnBidW5pdHkuQ291bnRlclJlc3BvbnNlSAASMgoPanVtcGVyX3Jlc3Bv",
+            "bnNlGAMgASgLMhcucGJ1bml0eS5KdW1wZXJSZXNwb25zZUgAQgcKBXN0YXRl",
+            "IiMKD0xvYWRBcHBSZXNwb25zZRIQCghhcHBfbmFtZRgBIAEoCSIgCg9Db3Vu",
+            "dGVyUmVzcG9uc2USDQoFY291bnQYASABKAMilAEKDkp1bXBlclJlc3BvbnNl",
+            "EjwKCmNvbnRyb2xsZXIYASABKAsyKC5wYnVuaXR5Lkp1bXBlclJlc3BvbnNl",
+            "Lkp1bXBlckNvbnRyb2xsZXIaRAoQSnVtcGVyQ29udHJvbGxlchIwCgx0cmln",
+            "Z2VyX2p1bXAYASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIkkK",
+            "CkFwcFJlcXVlc3QSMAoOanVtcGVyX3JlcXVlc3QYASABKAsyFi5wYnVuaXR5",
+            "Lkp1bXBlclJlcXVlc3RIAEIJCgdyZXF1ZXN0IkUKDUp1bXBlclJlcXVlc3QS",
+            "EAoIY2FuX2p1bXAYASABKAgSIgoIcG9zaXRpb24YAiABKAsyEC5wYnVuaXR5",
+            "LlZlY3RvcjMiKgoHVmVjdG9yMxIJCgF4GAEgASgCEgkKAXkYAiABKAISCQoB",
+            "ehgDIAEoAiI1CgdWZWN0b3I0EgkKAXgYASABKAISCQoBeRgCIAEoAhIJCgF6",
+            "GAMgASgCEgkKAXcYBCABKAIyRQoMVW5pdHlTZXJ2aWNlEjUKBFN5bmMSEy5w",
+            "YnVuaXR5LkFwcFJlcXVlc3QaFC5wYnVuaXR5LkFwcFJlc3BvbnNlKAEwAWIG",
+            "cHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.WellKnownTypes.EmptyReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Pbunity.AppResponse), global::Pbunity.AppResponse.Parser, new[]{ "CounterResponse", "JumperResponse" }, new[]{ "State" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Pbunity.AppRequest), global::Pbunity.AppRequest.Parser, new[]{ "JumperRequest" }, new[]{ "Request" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Pbunity.AppResponse), global::Pbunity.AppResponse.Parser, new[]{ "LoadAppResponse", "CounterResponse", "JumperResponse" }, new[]{ "State" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Pbunity.LoadAppResponse), global::Pbunity.LoadAppResponse.Parser, new[]{ "AppName" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pbunity.CounterResponse), global::Pbunity.CounterResponse.Parser, new[]{ "Count" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pbunity.JumperResponse), global::Pbunity.JumperResponse.Parser, new[]{ "Controller" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::Pbunity.JumperResponse.Types.JumperController), global::Pbunity.JumperResponse.Types.JumperController.Parser, new[]{ "TriggerJump" }, null, null, null, null)}),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Pbunity.AppRequest), global::Pbunity.AppRequest.Parser, new[]{ "JumperRequest" }, new[]{ "Request" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pbunity.JumperRequest), global::Pbunity.JumperRequest.Parser, new[]{ "CanJump", "Position" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pbunity.Vector3), global::Pbunity.Vector3.Parser, new[]{ "X", "Y", "Z" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Pbunity.Vector4), global::Pbunity.Vector4.Parser, new[]{ "X", "Y", "Z", "W" }, null, null, null, null)
@@ -92,6 +95,9 @@ namespace Pbunity {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public AppResponse(AppResponse other) : this() {
       switch (other.StateCase) {
+        case StateOneofCase.LoadAppResponse:
+          LoadAppResponse = other.LoadAppResponse.Clone();
+          break;
         case StateOneofCase.CounterResponse:
           CounterResponse = other.CounterResponse.Clone();
           break;
@@ -109,8 +115,20 @@ namespace Pbunity {
       return new AppResponse(this);
     }
 
+    /// <summary>Field number for the "load_app_response" field.</summary>
+    public const int LoadAppResponseFieldNumber = 1;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Pbunity.LoadAppResponse LoadAppResponse {
+      get { return stateCase_ == StateOneofCase.LoadAppResponse ? (global::Pbunity.LoadAppResponse) state_ : null; }
+      set {
+        state_ = value;
+        stateCase_ = value == null ? StateOneofCase.None : StateOneofCase.LoadAppResponse;
+      }
+    }
+
     /// <summary>Field number for the "counter_response" field.</summary>
-    public const int CounterResponseFieldNumber = 1;
+    public const int CounterResponseFieldNumber = 2;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Pbunity.CounterResponse CounterResponse {
@@ -122,7 +140,7 @@ namespace Pbunity {
     }
 
     /// <summary>Field number for the "jumper_response" field.</summary>
-    public const int JumperResponseFieldNumber = 2;
+    public const int JumperResponseFieldNumber = 3;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::Pbunity.JumperResponse JumperResponse {
@@ -137,8 +155,9 @@ namespace Pbunity {
     /// <summary>Enum of possible cases for the "state" oneof.</summary>
     public enum StateOneofCase {
       None = 0,
-      CounterResponse = 1,
-      JumperResponse = 2,
+      LoadAppResponse = 1,
+      CounterResponse = 2,
+      JumperResponse = 3,
     }
     private StateOneofCase stateCase_ = StateOneofCase.None;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -169,6 +188,7 @@ namespace Pbunity {
       if (ReferenceEquals(other, this)) {
         return true;
       }
+      if (!object.Equals(LoadAppResponse, other.LoadAppResponse)) return false;
       if (!object.Equals(CounterResponse, other.CounterResponse)) return false;
       if (!object.Equals(JumperResponse, other.JumperResponse)) return false;
       if (StateCase != other.StateCase) return false;
@@ -179,6 +199,7 @@ namespace Pbunity {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
+      if (stateCase_ == StateOneofCase.LoadAppResponse) hash ^= LoadAppResponse.GetHashCode();
       if (stateCase_ == StateOneofCase.CounterResponse) hash ^= CounterResponse.GetHashCode();
       if (stateCase_ == StateOneofCase.JumperResponse) hash ^= JumperResponse.GetHashCode();
       hash ^= (int) stateCase_;
@@ -200,12 +221,16 @@ namespace Pbunity {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (stateCase_ == StateOneofCase.CounterResponse) {
+      if (stateCase_ == StateOneofCase.LoadAppResponse) {
         output.WriteRawTag(10);
+        output.WriteMessage(LoadAppResponse);
+      }
+      if (stateCase_ == StateOneofCase.CounterResponse) {
+        output.WriteRawTag(18);
         output.WriteMessage(CounterResponse);
       }
       if (stateCase_ == StateOneofCase.JumperResponse) {
-        output.WriteRawTag(18);
+        output.WriteRawTag(26);
         output.WriteMessage(JumperResponse);
       }
       if (_unknownFields != null) {
@@ -218,12 +243,16 @@ namespace Pbunity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (stateCase_ == StateOneofCase.CounterResponse) {
+      if (stateCase_ == StateOneofCase.LoadAppResponse) {
         output.WriteRawTag(10);
+        output.WriteMessage(LoadAppResponse);
+      }
+      if (stateCase_ == StateOneofCase.CounterResponse) {
+        output.WriteRawTag(18);
         output.WriteMessage(CounterResponse);
       }
       if (stateCase_ == StateOneofCase.JumperResponse) {
-        output.WriteRawTag(18);
+        output.WriteRawTag(26);
         output.WriteMessage(JumperResponse);
       }
       if (_unknownFields != null) {
@@ -236,6 +265,9 @@ namespace Pbunity {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
+      if (stateCase_ == StateOneofCase.LoadAppResponse) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(LoadAppResponse);
+      }
       if (stateCase_ == StateOneofCase.CounterResponse) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(CounterResponse);
       }
@@ -255,6 +287,12 @@ namespace Pbunity {
         return;
       }
       switch (other.StateCase) {
+        case StateOneofCase.LoadAppResponse:
+          if (LoadAppResponse == null) {
+            LoadAppResponse = new global::Pbunity.LoadAppResponse();
+          }
+          LoadAppResponse.MergeFrom(other.LoadAppResponse);
+          break;
         case StateOneofCase.CounterResponse:
           if (CounterResponse == null) {
             CounterResponse = new global::Pbunity.CounterResponse();
@@ -285,6 +323,15 @@ namespace Pbunity {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
+            global::Pbunity.LoadAppResponse subBuilder = new global::Pbunity.LoadAppResponse();
+            if (stateCase_ == StateOneofCase.LoadAppResponse) {
+              subBuilder.MergeFrom(LoadAppResponse);
+            }
+            input.ReadMessage(subBuilder);
+            LoadAppResponse = subBuilder;
+            break;
+          }
+          case 18: {
             global::Pbunity.CounterResponse subBuilder = new global::Pbunity.CounterResponse();
             if (stateCase_ == StateOneofCase.CounterResponse) {
               subBuilder.MergeFrom(CounterResponse);
@@ -293,7 +340,7 @@ namespace Pbunity {
             CounterResponse = subBuilder;
             break;
           }
-          case 18: {
+          case 26: {
             global::Pbunity.JumperResponse subBuilder = new global::Pbunity.JumperResponse();
             if (stateCase_ == StateOneofCase.JumperResponse) {
               subBuilder.MergeFrom(JumperResponse);
@@ -318,6 +365,15 @@ namespace Pbunity {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 10: {
+            global::Pbunity.LoadAppResponse subBuilder = new global::Pbunity.LoadAppResponse();
+            if (stateCase_ == StateOneofCase.LoadAppResponse) {
+              subBuilder.MergeFrom(LoadAppResponse);
+            }
+            input.ReadMessage(subBuilder);
+            LoadAppResponse = subBuilder;
+            break;
+          }
+          case 18: {
             global::Pbunity.CounterResponse subBuilder = new global::Pbunity.CounterResponse();
             if (stateCase_ == StateOneofCase.CounterResponse) {
               subBuilder.MergeFrom(CounterResponse);
@@ -326,7 +382,7 @@ namespace Pbunity {
             CounterResponse = subBuilder;
             break;
           }
-          case 18: {
+          case 26: {
             global::Pbunity.JumperResponse subBuilder = new global::Pbunity.JumperResponse();
             if (stateCase_ == StateOneofCase.JumperResponse) {
               subBuilder.MergeFrom(JumperResponse);
@@ -342,16 +398,16 @@ namespace Pbunity {
 
   }
 
-  public sealed partial class AppRequest : pb::IMessage<AppRequest>
+  public sealed partial class LoadAppResponse : pb::IMessage<LoadAppResponse>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<AppRequest> _parser = new pb::MessageParser<AppRequest>(() => new AppRequest());
+    private static readonly pb::MessageParser<LoadAppResponse> _parser = new pb::MessageParser<LoadAppResponse>(() => new LoadAppResponse());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<AppRequest> Parser { get { return _parser; } }
+    public static pb::MessageParser<LoadAppResponse> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -367,7 +423,7 @@ namespace Pbunity {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AppRequest() {
+    public LoadAppResponse() {
       OnConstruction();
     }
 
@@ -375,71 +431,45 @@ namespace Pbunity {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AppRequest(AppRequest other) : this() {
-      switch (other.RequestCase) {
-        case RequestOneofCase.JumperRequest:
-          JumperRequest = other.JumperRequest.Clone();
-          break;
-      }
-
+    public LoadAppResponse(LoadAppResponse other) : this() {
+      appName_ = other.appName_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public AppRequest Clone() {
-      return new AppRequest(this);
+    public LoadAppResponse Clone() {
+      return new LoadAppResponse(this);
     }
 
-    /// <summary>Field number for the "jumper_request" field.</summary>
-    public const int JumperRequestFieldNumber = 1;
+    /// <summary>Field number for the "app_name" field.</summary>
+    public const int AppNameFieldNumber = 1;
+    private string appName_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Pbunity.JumperRequest JumperRequest {
-      get { return requestCase_ == RequestOneofCase.JumperRequest ? (global::Pbunity.JumperRequest) request_ : null; }
+    public string AppName {
+      get { return appName_; }
       set {
-        request_ = value;
-        requestCase_ = value == null ? RequestOneofCase.None : RequestOneofCase.JumperRequest;
+        appName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
-    }
-
-    private object request_;
-    /// <summary>Enum of possible cases for the "request" oneof.</summary>
-    public enum RequestOneofCase {
-      None = 0,
-      JumperRequest = 1,
-    }
-    private RequestOneofCase requestCase_ = RequestOneofCase.None;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public RequestOneofCase RequestCase {
-      get { return requestCase_; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void ClearRequest() {
-      requestCase_ = RequestOneofCase.None;
-      request_ = null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
-      return Equals(other as AppRequest);
+      return Equals(other as LoadAppResponse);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(AppRequest other) {
+    public bool Equals(LoadAppResponse other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (!object.Equals(JumperRequest, other.JumperRequest)) return false;
-      if (RequestCase != other.RequestCase) return false;
+      if (AppName != other.AppName) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -447,8 +477,7 @@ namespace Pbunity {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (requestCase_ == RequestOneofCase.JumperRequest) hash ^= JumperRequest.GetHashCode();
-      hash ^= (int) requestCase_;
+      if (AppName.Length != 0) hash ^= AppName.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -467,9 +496,9 @@ namespace Pbunity {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (requestCase_ == RequestOneofCase.JumperRequest) {
+      if (AppName.Length != 0) {
         output.WriteRawTag(10);
-        output.WriteMessage(JumperRequest);
+        output.WriteString(AppName);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -481,9 +510,9 @@ namespace Pbunity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (requestCase_ == RequestOneofCase.JumperRequest) {
+      if (AppName.Length != 0) {
         output.WriteRawTag(10);
-        output.WriteMessage(JumperRequest);
+        output.WriteString(AppName);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -495,8 +524,8 @@ namespace Pbunity {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (requestCase_ == RequestOneofCase.JumperRequest) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(JumperRequest);
+      if (AppName.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(AppName);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -506,19 +535,13 @@ namespace Pbunity {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(AppRequest other) {
+    public void MergeFrom(LoadAppResponse other) {
       if (other == null) {
         return;
       }
-      switch (other.RequestCase) {
-        case RequestOneofCase.JumperRequest:
-          if (JumperRequest == null) {
-            JumperRequest = new global::Pbunity.JumperRequest();
-          }
-          JumperRequest.MergeFrom(other.JumperRequest);
-          break;
+      if (other.AppName.Length != 0) {
+        AppName = other.AppName;
       }
-
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -535,12 +558,7 @@ namespace Pbunity {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            global::Pbunity.JumperRequest subBuilder = new global::Pbunity.JumperRequest();
-            if (requestCase_ == RequestOneofCase.JumperRequest) {
-              subBuilder.MergeFrom(JumperRequest);
-            }
-            input.ReadMessage(subBuilder);
-            JumperRequest = subBuilder;
+            AppName = input.ReadString();
             break;
           }
         }
@@ -559,12 +577,7 @@ namespace Pbunity {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 10: {
-            global::Pbunity.JumperRequest subBuilder = new global::Pbunity.JumperRequest();
-            if (requestCase_ == RequestOneofCase.JumperRequest) {
-              subBuilder.MergeFrom(JumperRequest);
-            }
-            input.ReadMessage(subBuilder);
-            JumperRequest = subBuilder;
+            AppName = input.ReadString();
             break;
           }
         }
@@ -1167,6 +1180,238 @@ namespace Pbunity {
 
   }
 
+  public sealed partial class AppRequest : pb::IMessage<AppRequest>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<AppRequest> _parser = new pb::MessageParser<AppRequest>(() => new AppRequest());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<AppRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Pbunity.UnityReflection.Descriptor.MessageTypes[4]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public AppRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public AppRequest(AppRequest other) : this() {
+      switch (other.RequestCase) {
+        case RequestOneofCase.JumperRequest:
+          JumperRequest = other.JumperRequest.Clone();
+          break;
+      }
+
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public AppRequest Clone() {
+      return new AppRequest(this);
+    }
+
+    /// <summary>Field number for the "jumper_request" field.</summary>
+    public const int JumperRequestFieldNumber = 1;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Pbunity.JumperRequest JumperRequest {
+      get { return requestCase_ == RequestOneofCase.JumperRequest ? (global::Pbunity.JumperRequest) request_ : null; }
+      set {
+        request_ = value;
+        requestCase_ = value == null ? RequestOneofCase.None : RequestOneofCase.JumperRequest;
+      }
+    }
+
+    private object request_;
+    /// <summary>Enum of possible cases for the "request" oneof.</summary>
+    public enum RequestOneofCase {
+      None = 0,
+      JumperRequest = 1,
+    }
+    private RequestOneofCase requestCase_ = RequestOneofCase.None;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public RequestOneofCase RequestCase {
+      get { return requestCase_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearRequest() {
+      requestCase_ = RequestOneofCase.None;
+      request_ = null;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as AppRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(AppRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(JumperRequest, other.JumperRequest)) return false;
+      if (RequestCase != other.RequestCase) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (requestCase_ == RequestOneofCase.JumperRequest) hash ^= JumperRequest.GetHashCode();
+      hash ^= (int) requestCase_;
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (requestCase_ == RequestOneofCase.JumperRequest) {
+        output.WriteRawTag(10);
+        output.WriteMessage(JumperRequest);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (requestCase_ == RequestOneofCase.JumperRequest) {
+        output.WriteRawTag(10);
+        output.WriteMessage(JumperRequest);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (requestCase_ == RequestOneofCase.JumperRequest) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(JumperRequest);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(AppRequest other) {
+      if (other == null) {
+        return;
+      }
+      switch (other.RequestCase) {
+        case RequestOneofCase.JumperRequest:
+          if (JumperRequest == null) {
+            JumperRequest = new global::Pbunity.JumperRequest();
+          }
+          JumperRequest.MergeFrom(other.JumperRequest);
+          break;
+      }
+
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            global::Pbunity.JumperRequest subBuilder = new global::Pbunity.JumperRequest();
+            if (requestCase_ == RequestOneofCase.JumperRequest) {
+              subBuilder.MergeFrom(JumperRequest);
+            }
+            input.ReadMessage(subBuilder);
+            JumperRequest = subBuilder;
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            global::Pbunity.JumperRequest subBuilder = new global::Pbunity.JumperRequest();
+            if (requestCase_ == RequestOneofCase.JumperRequest) {
+              subBuilder.MergeFrom(JumperRequest);
+            }
+            input.ReadMessage(subBuilder);
+            JumperRequest = subBuilder;
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
   public sealed partial class JumperRequest : pb::IMessage<JumperRequest>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1181,7 +1426,7 @@ namespace Pbunity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Pbunity.UnityReflection.Descriptor.MessageTypes[4]; }
+      get { return global::Pbunity.UnityReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1416,7 +1661,7 @@ namespace Pbunity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Pbunity.UnityReflection.Descriptor.MessageTypes[5]; }
+      get { return global::Pbunity.UnityReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1679,7 +1924,7 @@ namespace Pbunity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Pbunity.UnityReflection.Descriptor.MessageTypes[6]; }
+      get { return global::Pbunity.UnityReflection.Descriptor.MessageTypes[7]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

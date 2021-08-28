@@ -16,9 +16,10 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$CounterStateTearOff {
   const _$CounterStateTearOff();
 
-  _CounterState call({required int count}) {
+  _CounterState call({required int count, UnityViewController? controller}) {
     return _CounterState(
       count: count,
+      controller: controller,
     );
   }
 }
@@ -29,6 +30,7 @@ const $CounterState = _$CounterStateTearOff();
 /// @nodoc
 mixin _$CounterState {
   int get count => throw _privateConstructorUsedError;
+  UnityViewController? get controller => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CounterStateCopyWith<CounterState> get copyWith =>
@@ -40,7 +42,7 @@ abstract class $CounterStateCopyWith<$Res> {
   factory $CounterStateCopyWith(
           CounterState value, $Res Function(CounterState) then) =
       _$CounterStateCopyWithImpl<$Res>;
-  $Res call({int count});
+  $Res call({int count, UnityViewController? controller});
 }
 
 /// @nodoc
@@ -54,12 +56,17 @@ class _$CounterStateCopyWithImpl<$Res> implements $CounterStateCopyWith<$Res> {
   @override
   $Res call({
     Object? count = freezed,
+    Object? controller = freezed,
   }) {
     return _then(_value.copyWith(
       count: count == freezed
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
+      controller: controller == freezed
+          ? _value.controller
+          : controller // ignore: cast_nullable_to_non_nullable
+              as UnityViewController?,
     ));
   }
 }
@@ -71,7 +78,7 @@ abstract class _$CounterStateCopyWith<$Res>
           _CounterState value, $Res Function(_CounterState) then) =
       __$CounterStateCopyWithImpl<$Res>;
   @override
-  $Res call({int count});
+  $Res call({int count, UnityViewController? controller});
 }
 
 /// @nodoc
@@ -87,12 +94,17 @@ class __$CounterStateCopyWithImpl<$Res> extends _$CounterStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? count = freezed,
+    Object? controller = freezed,
   }) {
     return _then(_CounterState(
       count: count == freezed
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
+      controller: controller == freezed
+          ? _value.controller
+          : controller // ignore: cast_nullable_to_non_nullable
+              as UnityViewController?,
     ));
   }
 }
@@ -100,14 +112,16 @@ class __$CounterStateCopyWithImpl<$Res> extends _$CounterStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_CounterState implements _CounterState {
-  _$_CounterState({required this.count});
+  _$_CounterState({required this.count, this.controller});
 
   @override
   final int count;
+  @override
+  final UnityViewController? controller;
 
   @override
   String toString() {
-    return 'CounterState(count: $count)';
+    return 'CounterState(count: $count, controller: $controller)';
   }
 
   @override
@@ -115,12 +129,17 @@ class _$_CounterState implements _CounterState {
     return identical(this, other) ||
         (other is _CounterState &&
             (identical(other.count, count) ||
-                const DeepCollectionEquality().equals(other.count, count)));
+                const DeepCollectionEquality().equals(other.count, count)) &&
+            (identical(other.controller, controller) ||
+                const DeepCollectionEquality()
+                    .equals(other.controller, controller)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(count);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(count) ^
+      const DeepCollectionEquality().hash(controller);
 
   @JsonKey(ignore: true)
   @override
@@ -129,10 +148,13 @@ class _$_CounterState implements _CounterState {
 }
 
 abstract class _CounterState implements CounterState {
-  factory _CounterState({required int count}) = _$_CounterState;
+  factory _CounterState({required int count, UnityViewController? controller}) =
+      _$_CounterState;
 
   @override
   int get count => throw _privateConstructorUsedError;
+  @override
+  UnityViewController? get controller => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$CounterStateCopyWith<_CounterState> get copyWith =>

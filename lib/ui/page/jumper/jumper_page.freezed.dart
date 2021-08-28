@@ -16,10 +16,14 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$JumperStateTearOff {
   const _$JumperStateTearOff();
 
-  _JumperState call({required bool canJump, required double height}) {
+  _JumperState call(
+      {required bool canJump,
+      required double height,
+      UnityViewController? controller}) {
     return _JumperState(
       canJump: canJump,
       height: height,
+      controller: controller,
     );
   }
 }
@@ -31,6 +35,7 @@ const $JumperState = _$JumperStateTearOff();
 mixin _$JumperState {
   bool get canJump => throw _privateConstructorUsedError;
   double get height => throw _privateConstructorUsedError;
+  UnityViewController? get controller => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $JumperStateCopyWith<JumperState> get copyWith =>
@@ -42,7 +47,7 @@ abstract class $JumperStateCopyWith<$Res> {
   factory $JumperStateCopyWith(
           JumperState value, $Res Function(JumperState) then) =
       _$JumperStateCopyWithImpl<$Res>;
-  $Res call({bool canJump, double height});
+  $Res call({bool canJump, double height, UnityViewController? controller});
 }
 
 /// @nodoc
@@ -57,6 +62,7 @@ class _$JumperStateCopyWithImpl<$Res> implements $JumperStateCopyWith<$Res> {
   $Res call({
     Object? canJump = freezed,
     Object? height = freezed,
+    Object? controller = freezed,
   }) {
     return _then(_value.copyWith(
       canJump: canJump == freezed
@@ -67,6 +73,10 @@ class _$JumperStateCopyWithImpl<$Res> implements $JumperStateCopyWith<$Res> {
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
               as double,
+      controller: controller == freezed
+          ? _value.controller
+          : controller // ignore: cast_nullable_to_non_nullable
+              as UnityViewController?,
     ));
   }
 }
@@ -78,7 +88,7 @@ abstract class _$JumperStateCopyWith<$Res>
           _JumperState value, $Res Function(_JumperState) then) =
       __$JumperStateCopyWithImpl<$Res>;
   @override
-  $Res call({bool canJump, double height});
+  $Res call({bool canJump, double height, UnityViewController? controller});
 }
 
 /// @nodoc
@@ -95,6 +105,7 @@ class __$JumperStateCopyWithImpl<$Res> extends _$JumperStateCopyWithImpl<$Res>
   $Res call({
     Object? canJump = freezed,
     Object? height = freezed,
+    Object? controller = freezed,
   }) {
     return _then(_JumperState(
       canJump: canJump == freezed
@@ -105,6 +116,10 @@ class __$JumperStateCopyWithImpl<$Res> extends _$JumperStateCopyWithImpl<$Res>
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
               as double,
+      controller: controller == freezed
+          ? _value.controller
+          : controller // ignore: cast_nullable_to_non_nullable
+              as UnityViewController?,
     ));
   }
 }
@@ -112,16 +127,19 @@ class __$JumperStateCopyWithImpl<$Res> extends _$JumperStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_JumperState implements _JumperState {
-  _$_JumperState({required this.canJump, required this.height});
+  _$_JumperState(
+      {required this.canJump, required this.height, this.controller});
 
   @override
   final bool canJump;
   @override
   final double height;
+  @override
+  final UnityViewController? controller;
 
   @override
   String toString() {
-    return 'JumperState(canJump: $canJump, height: $height)';
+    return 'JumperState(canJump: $canJump, height: $height, controller: $controller)';
   }
 
   @override
@@ -132,14 +150,18 @@ class _$_JumperState implements _JumperState {
                 const DeepCollectionEquality()
                     .equals(other.canJump, canJump)) &&
             (identical(other.height, height) ||
-                const DeepCollectionEquality().equals(other.height, height)));
+                const DeepCollectionEquality().equals(other.height, height)) &&
+            (identical(other.controller, controller) ||
+                const DeepCollectionEquality()
+                    .equals(other.controller, controller)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(canJump) ^
-      const DeepCollectionEquality().hash(height);
+      const DeepCollectionEquality().hash(height) ^
+      const DeepCollectionEquality().hash(controller);
 
   @JsonKey(ignore: true)
   @override
@@ -148,13 +170,17 @@ class _$_JumperState implements _JumperState {
 }
 
 abstract class _JumperState implements JumperState {
-  factory _JumperState({required bool canJump, required double height}) =
-      _$_JumperState;
+  factory _JumperState(
+      {required bool canJump,
+      required double height,
+      UnityViewController? controller}) = _$_JumperState;
 
   @override
   bool get canJump => throw _privateConstructorUsedError;
   @override
   double get height => throw _privateConstructorUsedError;
+  @override
+  UnityViewController? get controller => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$JumperStateCopyWith<_JumperState> get copyWith =>

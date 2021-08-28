@@ -20,11 +20,10 @@ protoc:
 	rm -f unity/flutter_unity_blueprints_unity/Assets/Scripts/Generated/*.cs*
 	rm -f lib/gen/protos/*.dart
 	protoc -I=protos \
-		--grpc_out=unity/flutter_unity_blueprints_unity/Assets/Scripts/Generated \
 		--csharp_out=unity/flutter_unity_blueprints_unity/Assets/Scripts/Generated \
-		--plugin=protoc-gen-grpc=$${HOME}/Grpc.Tools/tools/macosx_x64/grpc_csharp_plugin \
 		./protos/*.proto
-	protoc -I=protos --dart_out=grpc:lib/gen/protos \
+	protoc -I=protos \
+		--dart_out=lib/gen/protos \
  		./protos/*.proto ./protos/google/protobuf/*.proto
 
 .PHONY: android-unity-transmogrify

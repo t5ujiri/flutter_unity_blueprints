@@ -7,7 +7,10 @@ mkdir tmp
 # download & extract to unity plugins dir
 curl -o ./tmp/grpc_unity_package.zip ${url}
 unzip ./tmp/grpc_unity_package.zip -d ./tmp
-cp -rf ./tmp/Plugins/* ./unity/${unity_project_name}/Assets/Plugins
+cp -rf ./tmp/Plugins/Google.Protobuf ./unity/${unity_project_name}/Assets/Plugins
+cp -rf ./tmp/Plugins/System.Buffers ./unity/${unity_project_name}/Assets/Plugins
+cp -rf ./tmp/Plugins/System.Memory ./unity/${unity_project_name}/Assets/Plugins
+cp -rf ./tmp/Plugins/System.Runtime.CompilerServices.Unsafe ./unity/${unity_project_name}/Assets/Plugins
 
 # delete working dir
 rm -rf ./tmp

@@ -2,7 +2,7 @@ import 'package:fixnum/fixnum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_unity/flutter_unity.dart';
-import 'package:flutter_unity_blueprints/data/local/unity_service_provider.dart';
+import 'package:flutter_unity_blueprints/data/repository/unity_repository.dart';
 import 'package:flutter_unity_blueprints/gen/protos/unity.pb.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -12,10 +12,6 @@ part 'counter_page.freezed.dart';
 class CounterPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    useMemoized((){
-      ref.read(counterViewModel.notifier).reset();
-    });
-
     return Scaffold(
       appBar: AppBar(),
       body: Stack(
@@ -23,7 +19,11 @@ class CounterPage extends HookConsumerWidget {
           UnityView(
             onCreated: (controller) {
               controller.resume();
+              ref.read(counterViewModel.notifier).controller = controller;
+              ref.read(counterViewModel.notifier).loadCounterApp(controller);
+              ref.read(counterViewModel.notifier).reset();
             },
+            onMessage: (controller, message) {},
           ),
         ],
       ),
@@ -39,7 +39,10 @@ class CounterPage extends HookConsumerWidget {
 
 @freezed
 class CounterState with _$CounterState {
-  factory CounterState({required int count}) = _CounterState;
+  factory CounterState({
+    required int count,
+    UnityViewController? controller,
+  }) = _CounterState;
 }
 
 class CounterViewModel extends StateNotifier<CounterState> {
@@ -47,26 +50,33 @@ class CounterViewModel extends StateNotifier<CounterState> {
 
   CounterViewModel(CounterState state, this.ref) : super(state);
 
-  // set count(int count) {
-  //   state = state.copyWith(count: count);
-  // }
+  UnityViewController? get controller => state.controller;
 
-  increment() {
-    state = state.copyWith(count: state.count + 1);
-    var counterResponse = CounterResponse()..count = Int64(state.count);
-    ref
-        .read(unityResponseSubject)
-        .add(AppResponse()..counterResponse = counterResponse);
+  set controller(UnityViewController? controller) {
+    state = state.copyWith(controller: controller);
   }
 
-  set response(CounterResponse counterResponse) {}
+  loadCounterApp(UnityViewController controller) {
+    ref.read(unityRepository).sendResponse(controller,
+        AppResponse()..loadAppResponse = LoadAppResponse(appName: 'Counter'));
+  }
 
-  void reset() {
-    state = state.copyWith(count: 0);
-    var counterResponse = CounterResponse()..count = Int64(state.count);
-    ref
-        .read(unityResponseSubject)
-        .add(AppResponse()..counterResponse = counterResponse);
+  increment() {
+    if (state.controller != null) {
+      state = state.copyWith(count: state.count + 1);
+      var counterResponse = CounterResponse()..count = Int64(state.count);
+      ref.read(unityRepository).sendResponse(
+          state.controller!, AppResponse()..counterResponse = counterResponse);
+    }
+  }
+
+  reset() {
+    if (state.controller != null) {
+      state = state.copyWith(count: 0);
+      var counterResponse = CounterResponse()..count = Int64(state.count);
+      ref.read(unityRepository).sendResponse(
+          state.controller!, AppResponse()..counterResponse = counterResponse);
+    }
   }
 }
 

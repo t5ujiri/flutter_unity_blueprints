@@ -5,14 +5,16 @@
 // @dart = 2.12
 // ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields
 
+import 'dart:async' as $async;
 import 'dart:core' as $core;
 
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'google/protobuf/timestamp.pb.dart' as $1;
+import 'google/protobuf/timestamp.pb.dart' as $0;
 
 enum AppResponse_State {
+  loadAppResponse, 
   counterResponse, 
   jumperResponse, 
   notSet
@@ -20,23 +22,29 @@ enum AppResponse_State {
 
 class AppResponse extends $pb.GeneratedMessage {
   static const $core.Map<$core.int, AppResponse_State> _AppResponse_StateByTag = {
-    1 : AppResponse_State.counterResponse,
-    2 : AppResponse_State.jumperResponse,
+    1 : AppResponse_State.loadAppResponse,
+    2 : AppResponse_State.counterResponse,
+    3 : AppResponse_State.jumperResponse,
     0 : AppResponse_State.notSet
   };
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'AppResponse', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'pbunity'), createEmptyInstance: create)
-    ..oo(0, [1, 2])
-    ..aOM<CounterResponse>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'counterResponse', subBuilder: CounterResponse.create)
-    ..aOM<JumperResponse>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'jumperResponse', subBuilder: JumperResponse.create)
+    ..oo(0, [1, 2, 3])
+    ..aOM<LoadAppResponse>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'loadAppResponse', subBuilder: LoadAppResponse.create)
+    ..aOM<CounterResponse>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'counterResponse', subBuilder: CounterResponse.create)
+    ..aOM<JumperResponse>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'jumperResponse', subBuilder: JumperResponse.create)
     ..hasRequiredFields = false
   ;
 
   AppResponse._() : super();
   factory AppResponse({
+    LoadAppResponse? loadAppResponse,
     CounterResponse? counterResponse,
     JumperResponse? jumperResponse,
   }) {
     final _result = create();
+    if (loadAppResponse != null) {
+      _result.loadAppResponse = loadAppResponse;
+    }
     if (counterResponse != null) {
       _result.counterResponse = counterResponse;
     }
@@ -70,26 +78,229 @@ class AppResponse extends $pb.GeneratedMessage {
   void clearState() => clearField($_whichOneof(0));
 
   @$pb.TagNumber(1)
-  CounterResponse get counterResponse => $_getN(0);
+  LoadAppResponse get loadAppResponse => $_getN(0);
   @$pb.TagNumber(1)
-  set counterResponse(CounterResponse v) { setField(1, v); }
+  set loadAppResponse(LoadAppResponse v) { setField(1, v); }
   @$pb.TagNumber(1)
-  $core.bool hasCounterResponse() => $_has(0);
+  $core.bool hasLoadAppResponse() => $_has(0);
   @$pb.TagNumber(1)
-  void clearCounterResponse() => clearField(1);
+  void clearLoadAppResponse() => clearField(1);
   @$pb.TagNumber(1)
-  CounterResponse ensureCounterResponse() => $_ensure(0);
+  LoadAppResponse ensureLoadAppResponse() => $_ensure(0);
 
   @$pb.TagNumber(2)
-  JumperResponse get jumperResponse => $_getN(1);
+  CounterResponse get counterResponse => $_getN(1);
   @$pb.TagNumber(2)
-  set jumperResponse(JumperResponse v) { setField(2, v); }
+  set counterResponse(CounterResponse v) { setField(2, v); }
   @$pb.TagNumber(2)
-  $core.bool hasJumperResponse() => $_has(1);
+  $core.bool hasCounterResponse() => $_has(1);
   @$pb.TagNumber(2)
-  void clearJumperResponse() => clearField(2);
+  void clearCounterResponse() => clearField(2);
   @$pb.TagNumber(2)
-  JumperResponse ensureJumperResponse() => $_ensure(1);
+  CounterResponse ensureCounterResponse() => $_ensure(1);
+
+  @$pb.TagNumber(3)
+  JumperResponse get jumperResponse => $_getN(2);
+  @$pb.TagNumber(3)
+  set jumperResponse(JumperResponse v) { setField(3, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasJumperResponse() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearJumperResponse() => clearField(3);
+  @$pb.TagNumber(3)
+  JumperResponse ensureJumperResponse() => $_ensure(2);
+}
+
+class LoadAppResponse extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'LoadAppResponse', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'pbunity'), createEmptyInstance: create)
+    ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'appName')
+    ..hasRequiredFields = false
+  ;
+
+  LoadAppResponse._() : super();
+  factory LoadAppResponse({
+    $core.String? appName,
+  }) {
+    final _result = create();
+    if (appName != null) {
+      _result.appName = appName;
+    }
+    return _result;
+  }
+  factory LoadAppResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory LoadAppResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  LoadAppResponse clone() => LoadAppResponse()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  LoadAppResponse copyWith(void Function(LoadAppResponse) updates) => super.copyWith((message) => updates(message as LoadAppResponse)) as LoadAppResponse; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static LoadAppResponse create() => LoadAppResponse._();
+  LoadAppResponse createEmptyInstance() => create();
+  static $pb.PbList<LoadAppResponse> createRepeated() => $pb.PbList<LoadAppResponse>();
+  @$core.pragma('dart2js:noInline')
+  static LoadAppResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<LoadAppResponse>(create);
+  static LoadAppResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get appName => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set appName($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasAppName() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearAppName() => clearField(1);
+}
+
+class CounterResponse extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'CounterResponse', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'pbunity'), createEmptyInstance: create)
+    ..aInt64(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'count')
+    ..hasRequiredFields = false
+  ;
+
+  CounterResponse._() : super();
+  factory CounterResponse({
+    $fixnum.Int64? count,
+  }) {
+    final _result = create();
+    if (count != null) {
+      _result.count = count;
+    }
+    return _result;
+  }
+  factory CounterResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory CounterResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  CounterResponse clone() => CounterResponse()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  CounterResponse copyWith(void Function(CounterResponse) updates) => super.copyWith((message) => updates(message as CounterResponse)) as CounterResponse; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static CounterResponse create() => CounterResponse._();
+  CounterResponse createEmptyInstance() => create();
+  static $pb.PbList<CounterResponse> createRepeated() => $pb.PbList<CounterResponse>();
+  @$core.pragma('dart2js:noInline')
+  static CounterResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<CounterResponse>(create);
+  static CounterResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $fixnum.Int64 get count => $_getI64(0);
+  @$pb.TagNumber(1)
+  set count($fixnum.Int64 v) { $_setInt64(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasCount() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearCount() => clearField(1);
+}
+
+class JumperResponse_JumperController extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'JumperResponse.JumperController', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'pbunity'), createEmptyInstance: create)
+    ..aOM<$0.Timestamp>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'triggerJump', subBuilder: $0.Timestamp.create)
+    ..hasRequiredFields = false
+  ;
+
+  JumperResponse_JumperController._() : super();
+  factory JumperResponse_JumperController({
+    $0.Timestamp? triggerJump,
+  }) {
+    final _result = create();
+    if (triggerJump != null) {
+      _result.triggerJump = triggerJump;
+    }
+    return _result;
+  }
+  factory JumperResponse_JumperController.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory JumperResponse_JumperController.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  JumperResponse_JumperController clone() => JumperResponse_JumperController()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  JumperResponse_JumperController copyWith(void Function(JumperResponse_JumperController) updates) => super.copyWith((message) => updates(message as JumperResponse_JumperController)) as JumperResponse_JumperController; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static JumperResponse_JumperController create() => JumperResponse_JumperController._();
+  JumperResponse_JumperController createEmptyInstance() => create();
+  static $pb.PbList<JumperResponse_JumperController> createRepeated() => $pb.PbList<JumperResponse_JumperController>();
+  @$core.pragma('dart2js:noInline')
+  static JumperResponse_JumperController getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<JumperResponse_JumperController>(create);
+  static JumperResponse_JumperController? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $0.Timestamp get triggerJump => $_getN(0);
+  @$pb.TagNumber(1)
+  set triggerJump($0.Timestamp v) { setField(1, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasTriggerJump() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearTriggerJump() => clearField(1);
+  @$pb.TagNumber(1)
+  $0.Timestamp ensureTriggerJump() => $_ensure(0);
+}
+
+class JumperResponse extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'JumperResponse', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'pbunity'), createEmptyInstance: create)
+    ..aOM<JumperResponse_JumperController>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'controller', subBuilder: JumperResponse_JumperController.create)
+    ..hasRequiredFields = false
+  ;
+
+  JumperResponse._() : super();
+  factory JumperResponse({
+    JumperResponse_JumperController? controller,
+  }) {
+    final _result = create();
+    if (controller != null) {
+      _result.controller = controller;
+    }
+    return _result;
+  }
+  factory JumperResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory JumperResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  JumperResponse clone() => JumperResponse()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  JumperResponse copyWith(void Function(JumperResponse) updates) => super.copyWith((message) => updates(message as JumperResponse)) as JumperResponse; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static JumperResponse create() => JumperResponse._();
+  JumperResponse createEmptyInstance() => create();
+  static $pb.PbList<JumperResponse> createRepeated() => $pb.PbList<JumperResponse>();
+  @$core.pragma('dart2js:noInline')
+  static JumperResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<JumperResponse>(create);
+  static JumperResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  JumperResponse_JumperController get controller => $_getN(0);
+  @$pb.TagNumber(1)
+  set controller(JumperResponse_JumperController v) { setField(1, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasController() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearController() => clearField(1);
+  @$pb.TagNumber(1)
+  JumperResponse_JumperController ensureController() => $_ensure(0);
 }
 
 enum AppRequest_Request {
@@ -152,151 +363,6 @@ class AppRequest extends $pb.GeneratedMessage {
   void clearJumperRequest() => clearField(1);
   @$pb.TagNumber(1)
   JumperRequest ensureJumperRequest() => $_ensure(0);
-}
-
-class CounterResponse extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'CounterResponse', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'pbunity'), createEmptyInstance: create)
-    ..aInt64(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'count')
-    ..hasRequiredFields = false
-  ;
-
-  CounterResponse._() : super();
-  factory CounterResponse({
-    $fixnum.Int64? count,
-  }) {
-    final _result = create();
-    if (count != null) {
-      _result.count = count;
-    }
-    return _result;
-  }
-  factory CounterResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory CounterResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
-  CounterResponse clone() => CounterResponse()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  CounterResponse copyWith(void Function(CounterResponse) updates) => super.copyWith((message) => updates(message as CounterResponse)) as CounterResponse; // ignore: deprecated_member_use
-  $pb.BuilderInfo get info_ => _i;
-  @$core.pragma('dart2js:noInline')
-  static CounterResponse create() => CounterResponse._();
-  CounterResponse createEmptyInstance() => create();
-  static $pb.PbList<CounterResponse> createRepeated() => $pb.PbList<CounterResponse>();
-  @$core.pragma('dart2js:noInline')
-  static CounterResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<CounterResponse>(create);
-  static CounterResponse? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  $fixnum.Int64 get count => $_getI64(0);
-  @$pb.TagNumber(1)
-  set count($fixnum.Int64 v) { $_setInt64(0, v); }
-  @$pb.TagNumber(1)
-  $core.bool hasCount() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearCount() => clearField(1);
-}
-
-class JumperResponse_JumperController extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'JumperResponse.JumperController', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'pbunity'), createEmptyInstance: create)
-    ..aOM<$1.Timestamp>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'triggerJump', subBuilder: $1.Timestamp.create)
-    ..hasRequiredFields = false
-  ;
-
-  JumperResponse_JumperController._() : super();
-  factory JumperResponse_JumperController({
-    $1.Timestamp? triggerJump,
-  }) {
-    final _result = create();
-    if (triggerJump != null) {
-      _result.triggerJump = triggerJump;
-    }
-    return _result;
-  }
-  factory JumperResponse_JumperController.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory JumperResponse_JumperController.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
-  JumperResponse_JumperController clone() => JumperResponse_JumperController()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  JumperResponse_JumperController copyWith(void Function(JumperResponse_JumperController) updates) => super.copyWith((message) => updates(message as JumperResponse_JumperController)) as JumperResponse_JumperController; // ignore: deprecated_member_use
-  $pb.BuilderInfo get info_ => _i;
-  @$core.pragma('dart2js:noInline')
-  static JumperResponse_JumperController create() => JumperResponse_JumperController._();
-  JumperResponse_JumperController createEmptyInstance() => create();
-  static $pb.PbList<JumperResponse_JumperController> createRepeated() => $pb.PbList<JumperResponse_JumperController>();
-  @$core.pragma('dart2js:noInline')
-  static JumperResponse_JumperController getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<JumperResponse_JumperController>(create);
-  static JumperResponse_JumperController? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  $1.Timestamp get triggerJump => $_getN(0);
-  @$pb.TagNumber(1)
-  set triggerJump($1.Timestamp v) { setField(1, v); }
-  @$pb.TagNumber(1)
-  $core.bool hasTriggerJump() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearTriggerJump() => clearField(1);
-  @$pb.TagNumber(1)
-  $1.Timestamp ensureTriggerJump() => $_ensure(0);
-}
-
-class JumperResponse extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'JumperResponse', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'pbunity'), createEmptyInstance: create)
-    ..aOM<JumperResponse_JumperController>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'controller', subBuilder: JumperResponse_JumperController.create)
-    ..hasRequiredFields = false
-  ;
-
-  JumperResponse._() : super();
-  factory JumperResponse({
-    JumperResponse_JumperController? controller,
-  }) {
-    final _result = create();
-    if (controller != null) {
-      _result.controller = controller;
-    }
-    return _result;
-  }
-  factory JumperResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory JumperResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
-  JumperResponse clone() => JumperResponse()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  JumperResponse copyWith(void Function(JumperResponse) updates) => super.copyWith((message) => updates(message as JumperResponse)) as JumperResponse; // ignore: deprecated_member_use
-  $pb.BuilderInfo get info_ => _i;
-  @$core.pragma('dart2js:noInline')
-  static JumperResponse create() => JumperResponse._();
-  JumperResponse createEmptyInstance() => create();
-  static $pb.PbList<JumperResponse> createRepeated() => $pb.PbList<JumperResponse>();
-  @$core.pragma('dart2js:noInline')
-  static JumperResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<JumperResponse>(create);
-  static JumperResponse? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  JumperResponse_JumperController get controller => $_getN(0);
-  @$pb.TagNumber(1)
-  set controller(JumperResponse_JumperController v) { setField(1, v); }
-  @$pb.TagNumber(1)
-  $core.bool hasController() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearController() => clearField(1);
-  @$pb.TagNumber(1)
-  JumperResponse_JumperController ensureController() => $_ensure(0);
 }
 
 class JumperRequest extends $pb.GeneratedMessage {
@@ -524,5 +590,15 @@ class Vector4 extends $pb.GeneratedMessage {
   $core.bool hasW() => $_has(3);
   @$pb.TagNumber(4)
   void clearW() => clearField(4);
+}
+
+class UnityServiceApi {
+  $pb.RpcClient _client;
+  UnityServiceApi(this._client);
+
+  $async.Future<AppResponse> sync($pb.ClientContext? ctx, AppRequest request) {
+    var emptyResponse = AppResponse();
+    return _client.invoke<AppResponse>(ctx, 'UnityService', 'Sync', request, emptyResponse);
+  }
 }
 

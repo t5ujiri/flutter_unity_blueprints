@@ -1,8 +1,13 @@
 using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using Grpc.Core;
-using UnityEngine.SceneManagement;
+using FlutterUnityPlugin.Runtime;
+using Google.Protobuf;
+using Google.Protobuf.WellKnownTypes;
+using Pbunity;
+using UniRx;
+using UnityEngine;
+using UnityEngine.UI;
 using VContainer;
 using VContainer.Unity;
 
@@ -13,35 +18,114 @@ namespace FlutterUnityBlueprints.Application.Stub
         protected override void Configure(IContainerBuilder builder)
         {
             builder.RegisterEntryPoint<StubApp>();
-        }
-
-        public void LoadSystem()
-        {
-            if (!SceneManager.GetSceneByName("Scene").isLoaded)
-                SceneManager.LoadScene("System", LoadSceneMode.Additive);
+            builder.RegisterComponentInHierarchy<Button>();
         }
     }
 
     public class StubApp : IAsyncStartable, IDisposable
     {
-        private Server _server;
+        private readonly Button _button;
+
+        public StubApp(Button button)
+        {
+            _button = button;
+        }
 
         public async UniTask StartAsync(CancellationToken cancellation)
         {
-            _server = new Server()
+            await _button.OnClickAsync(cancellation);   
+            TestLoadJumper();
+            await UniTask.Delay(2000);
+            await Observable.Interval(TimeSpan.FromSeconds(3)).Take(3).ForEachAsync(TestJumper)
+                .ToUniTask(cancellationToken: cancellation);      
+            await UniTask.Delay(2000);
+            TestLoadCounter();
+            await UniTask.Delay(2000);  
+            await Observable.Interval(TimeSpan.FromSeconds(3)).Take(3).ForEachAsync(TestCounter)
+                .ToUniTask(cancellationToken: cancellation);
+            await UniTask.Delay(2000);
+        }
+
+        private void TestLoadCounter()
+        {
+            var appResponse = new AppResponse()
             {
-                Services = { Pbunity.UnityService.BindService(new StubServer()) },
-                Ports =
+                LoadAppResponse = new LoadAppResponse()
                 {
-                    new ServerPort("localhost", 50000, ServerCredentials.Insecure)
+                    AppName = "Counter"
                 }
             };
-            _server.Start();
+
+            var message = new Message()
+            {
+                id = -1,
+                data = Convert.ToBase64String(appResponse.ToByteArray())
+            };
+
+            FlutterMessageReceiver.Instance.OnReceive(message.ToJson());
+        }
+
+        private void TestCounter(long count)
+        {
+            var appResponse = new AppResponse()
+            {
+                CounterResponse = new CounterResponse()
+                {
+                    Count = count
+                }
+            };
+
+            var message = new Message()
+            {
+                id = -1,
+                data = Convert.ToBase64String(appResponse.ToByteArray())
+            };
+
+            FlutterMessageReceiver.Instance.OnReceive(message.ToJson());
+        }
+
+        private void TestLoadJumper()
+        {
+            var appResponse = new AppResponse()
+            {
+                LoadAppResponse = new LoadAppResponse()
+                {
+                    AppName = "Jumper"
+                }
+            };
+
+            var message = new Message()
+            {
+                id = -1,
+                data = Convert.ToBase64String(appResponse.ToByteArray())
+            };
+
+            FlutterMessageReceiver.Instance.OnReceive(message.ToJson());
+        }
+
+        private void TestJumper(long _)
+        {
+            var appResponse = new AppResponse()
+            {
+                JumperResponse = new JumperResponse()
+                {
+                    Controller = new JumperResponse.Types.JumperController()
+                        { TriggerJump = Timestamp.FromDateTime(DateTime.Now.ToUniversalTime()), }
+                }
+            };
+
+            var message = new Message()
+            {
+                id = -1,
+                data = Convert.ToBase64String(appResponse.ToByteArray())
+            };
+            Debug.Log(message.ToJson());
+
+            FlutterMessageReceiver.Instance.OnReceive(message.ToJson());
         }
 
         public void Dispose()
         {
-            _server.ShutdownAsync().AsUniTask().Forget();
         }
     }
 }

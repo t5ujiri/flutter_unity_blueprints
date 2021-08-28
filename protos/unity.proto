@@ -11,15 +11,14 @@ service UnityService {
 
 message AppResponse {
   oneof state {
-    CounterResponse counter_response = 1;
-    JumperResponse jumper_response = 2;
+    LoadAppResponse load_app_response = 1;
+    CounterResponse counter_response = 2;
+    JumperResponse jumper_response = 3;
   }
 }
 
-message AppRequest {
-  oneof request {
-    JumperRequest jumper_request = 1;
-  }
+message LoadAppResponse {
+  string app_name = 1;
 }
 
 message CounterResponse {
@@ -31,6 +30,12 @@ message JumperResponse {
     google.protobuf.Timestamp trigger_jump = 1;
   }
   JumperController controller = 1;
+}
+
+message AppRequest {
+  oneof request {
+    JumperRequest jumper_request = 1;
+  }
 }
 
 message JumperRequest {
