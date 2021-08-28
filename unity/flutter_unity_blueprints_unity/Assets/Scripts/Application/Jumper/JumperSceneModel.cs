@@ -52,7 +52,7 @@ namespace FlutterUnityBlueprints.Application.Jumper
 
             CanJump.Subscribe(b =>
             {
-                _flutterRepository.SendRequest(new AppRequest()
+                FlutterRepository.SendRequest(new AppRequest()
                 {
                     JumperRequest = new JumperRequest()
                     {
@@ -75,7 +75,7 @@ namespace FlutterUnityBlueprints.Application.Jumper
                 })
                 .Subscribe(p =>
                 {
-                    _flutterRepository.SendRequest(new AppRequest()
+                    FlutterRepository.SendRequest(new AppRequest()
                     {
                         JumperRequest = new JumperRequest()
                         {
