@@ -1,22 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_unity_blueprints/ui/page/home/home_page.dart';
-import 'package:grpc/grpc.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-import 'data/local/unity_service_provider.dart';
 
 class App extends HookConsumerWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    useMemoized(() async {
-      final server = Server([
-        ref.read(unityService),
-      ]);
-      await server.serve(address: 'localhost', port: 50000);
-    });
-
     return MaterialApp(
       title: 'Flutter Unity Blueprint',
       theme: ThemeData(

@@ -1,38 +1,41 @@
 using System;
-using System.Threading;
-using Cysharp.Threading.Tasks;
-using Cysharp.Threading.Tasks.Linq;
-using FlutterUnityBlueprints.Application;
 using FlutterUnityBlueprints.Application.Counter;
-using Pbunity;
 using TMPro;
 using UniRx;
+using UnityEngine;
 using VContainer.Unity;
 
 namespace FlutterUnityBlueprints.View.Counter
 {
-    public class CounterPresenter : IAsyncStartable, IDisposable
+    public class CounterPresenter : IStartable, IDisposable
     {
         private int _count;
         private readonly TMP_Text _textMesh;
-        private readonly ISceneModel<object, CounterResponse> _sceneModel;
+        private readonly CounterSceneModel _sceneModel;
         private readonly CompositeDisposable _compositeDisposable = new CompositeDisposable();
 
-        public CounterPresenter(TMP_Text textMesh, ISceneModel<object, CounterResponse> sceneModel)
+        public CounterPresenter(TMP_Text textMesh,
+            CounterSceneModel sceneModel1)
         {
             _textMesh = textMesh;
-            _sceneModel = sceneModel;
+            _sceneModel = sceneModel1;
         }
 
-        public void SetCount(int count)
+        private void SetCount(int count)
         {
             _count = count;
             _textMesh.text = _count.ToString();
         }
 
-        public async UniTask StartAsync(CancellationToken cancellation)
+        public void Start()
         {
-            _sceneModel.State.Subscribe(s => { SetCount((int)s.Count); }).AddTo(_compositeDisposable);
+            _sceneModel.State
+                .Subscribe(s =>
+                {
+                    Debug.Log("Update count");
+                    SetCount(s);
+                })
+                .AddTo(_compositeDisposable);
         }
 
         public void Dispose()

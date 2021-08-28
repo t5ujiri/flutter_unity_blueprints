@@ -8,12 +8,15 @@
 import 'dart:core' as $core;
 import 'dart:convert' as $convert;
 import 'dart:typed_data' as $typed_data;
+import 'google/protobuf/timestamp.pbjson.dart' as $0;
+
 @$core.Deprecated('Use appResponseDescriptor instead')
 const AppResponse$json = const {
   '1': 'AppResponse',
   '2': const [
-    const {'1': 'counter_response', '3': 1, '4': 1, '5': 11, '6': '.pbunity.CounterResponse', '9': 0, '10': 'counterResponse'},
-    const {'1': 'jumper_response', '3': 2, '4': 1, '5': 11, '6': '.pbunity.JumperResponse', '9': 0, '10': 'jumperResponse'},
+    const {'1': 'load_app_response', '3': 1, '4': 1, '5': 11, '6': '.pbunity.LoadAppResponse', '9': 0, '10': 'loadAppResponse'},
+    const {'1': 'counter_response', '3': 2, '4': 1, '5': 11, '6': '.pbunity.CounterResponse', '9': 0, '10': 'counterResponse'},
+    const {'1': 'jumper_response', '3': 3, '4': 1, '5': 11, '6': '.pbunity.JumperResponse', '9': 0, '10': 'jumperResponse'},
   ],
   '8': const [
     const {'1': 'state'},
@@ -21,20 +24,17 @@ const AppResponse$json = const {
 };
 
 /// Descriptor for `AppResponse`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List appResponseDescriptor = $convert.base64Decode('CgtBcHBSZXNwb25zZRJFChBjb3VudGVyX3Jlc3BvbnNlGAEgASgLMhgucGJ1bml0eS5Db3VudGVyUmVzcG9uc2VIAFIPY291bnRlclJlc3BvbnNlEkIKD2p1bXBlcl9yZXNwb25zZRgCIAEoCzIXLnBidW5pdHkuSnVtcGVyUmVzcG9uc2VIAFIOanVtcGVyUmVzcG9uc2VCBwoFc3RhdGU=');
-@$core.Deprecated('Use appRequestDescriptor instead')
-const AppRequest$json = const {
-  '1': 'AppRequest',
+final $typed_data.Uint8List appResponseDescriptor = $convert.base64Decode('CgtBcHBSZXNwb25zZRJGChFsb2FkX2FwcF9yZXNwb25zZRgBIAEoCzIYLnBidW5pdHkuTG9hZEFwcFJlc3BvbnNlSABSD2xvYWRBcHBSZXNwb25zZRJFChBjb3VudGVyX3Jlc3BvbnNlGAIgASgLMhgucGJ1bml0eS5Db3VudGVyUmVzcG9uc2VIAFIPY291bnRlclJlc3BvbnNlEkIKD2p1bXBlcl9yZXNwb25zZRgDIAEoCzIXLnBidW5pdHkuSnVtcGVyUmVzcG9uc2VIAFIOanVtcGVyUmVzcG9uc2VCBwoFc3RhdGU=');
+@$core.Deprecated('Use loadAppResponseDescriptor instead')
+const LoadAppResponse$json = const {
+  '1': 'LoadAppResponse',
   '2': const [
-    const {'1': 'jumper_request', '3': 1, '4': 1, '5': 11, '6': '.pbunity.JumperRequest', '9': 0, '10': 'jumperRequest'},
-  ],
-  '8': const [
-    const {'1': 'request'},
+    const {'1': 'app_name', '3': 1, '4': 1, '5': 9, '10': 'appName'},
   ],
 };
 
-/// Descriptor for `AppRequest`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List appRequestDescriptor = $convert.base64Decode('CgpBcHBSZXF1ZXN0Ej8KDmp1bXBlcl9yZXF1ZXN0GAEgASgLMhYucGJ1bml0eS5KdW1wZXJSZXF1ZXN0SABSDWp1bXBlclJlcXVlc3RCCQoHcmVxdWVzdA==');
+/// Descriptor for `LoadAppResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List loadAppResponseDescriptor = $convert.base64Decode('Cg9Mb2FkQXBwUmVzcG9uc2USGQoIYXBwX25hbWUYASABKAlSB2FwcE5hbWU=');
 @$core.Deprecated('Use counterResponseDescriptor instead')
 const CounterResponse$json = const {
   '1': 'CounterResponse',
@@ -64,6 +64,19 @@ const JumperResponse_JumperController$json = const {
 
 /// Descriptor for `JumperResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List jumperResponseDescriptor = $convert.base64Decode('Cg5KdW1wZXJSZXNwb25zZRJICgpjb250cm9sbGVyGAEgASgLMigucGJ1bml0eS5KdW1wZXJSZXNwb25zZS5KdW1wZXJDb250cm9sbGVyUgpjb250cm9sbGVyGlEKEEp1bXBlckNvbnRyb2xsZXISPQoMdHJpZ2dlcl9qdW1wGAEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcFILdHJpZ2dlckp1bXA=');
+@$core.Deprecated('Use appRequestDescriptor instead')
+const AppRequest$json = const {
+  '1': 'AppRequest',
+  '2': const [
+    const {'1': 'jumper_request', '3': 1, '4': 1, '5': 11, '6': '.pbunity.JumperRequest', '9': 0, '10': 'jumperRequest'},
+  ],
+  '8': const [
+    const {'1': 'request'},
+  ],
+};
+
+/// Descriptor for `AppRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List appRequestDescriptor = $convert.base64Decode('CgpBcHBSZXF1ZXN0Ej8KDmp1bXBlcl9yZXF1ZXN0GAEgASgLMhYucGJ1bml0eS5KdW1wZXJSZXF1ZXN0SABSDWp1bXBlclJlcXVlc3RCCQoHcmVxdWVzdA==');
 @$core.Deprecated('Use jumperRequestDescriptor instead')
 const JumperRequest$json = const {
   '1': 'JumperRequest',
@@ -100,3 +113,25 @@ const Vector4$json = const {
 
 /// Descriptor for `Vector4`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List vector4Descriptor = $convert.base64Decode('CgdWZWN0b3I0EgwKAXgYASABKAJSAXgSDAoBeRgCIAEoAlIBeRIMCgF6GAMgASgCUgF6EgwKAXcYBCABKAJSAXc=');
+const $core.Map<$core.String, $core.dynamic> UnityServiceBase$json = const {
+  '1': 'UnityService',
+  '2': const [
+    const {'1': 'Sync', '2': '.pbunity.AppRequest', '3': '.pbunity.AppResponse', '5': true, '6': true},
+  ],
+};
+
+@$core.Deprecated('Use unityServiceDescriptor instead')
+const $core.Map<$core.String, $core.Map<$core.String, $core.dynamic>> UnityServiceBase$messageJson = const {
+  '.pbunity.AppRequest': AppRequest$json,
+  '.pbunity.JumperRequest': JumperRequest$json,
+  '.pbunity.Vector3': Vector3$json,
+  '.pbunity.AppResponse': AppResponse$json,
+  '.pbunity.LoadAppResponse': LoadAppResponse$json,
+  '.pbunity.CounterResponse': CounterResponse$json,
+  '.pbunity.JumperResponse': JumperResponse$json,
+  '.pbunity.JumperResponse.JumperController': JumperResponse_JumperController$json,
+  '.google.protobuf.Timestamp': $0.Timestamp$json,
+};
+
+/// Descriptor for `UnityService`. Decode as a `google.protobuf.ServiceDescriptorProto`.
+final $typed_data.Uint8List unityServiceDescriptor = $convert.base64Decode('CgxVbml0eVNlcnZpY2USNQoEU3luYxITLnBidW5pdHkuQXBwUmVxdWVzdBoULnBidW5pdHkuQXBwUmVzcG9uc2UoATAB');

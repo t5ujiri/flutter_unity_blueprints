@@ -1,6 +1,8 @@
 using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using Cysharp.Threading.Tasks.Linq;
+using FlutterUnityBlueprints.Data.Repository;
 using MessagePipe;
 using Pbunity;
 using UniRx;
@@ -8,35 +10,29 @@ using VContainer.Unity;
 
 namespace FlutterUnityBlueprints.Application.Counter
 {
-    public class CounterSceneModel : IStartable, IDisposable, ISceneModel<object, CounterResponse>
+    public class CounterSceneModel : IStartable, IDisposable
     {
-        private readonly ReactiveProperty<CounterResponse> _state =
-            new ReactiveProperty<CounterResponse>();
+        private readonly IntReactiveProperty _state =
+            new IntReactiveProperty();
 
-        private readonly IAsyncSubscriber<CounterResponse> _counterResponseStream;
         private readonly CompositeDisposable _compositeDisposable = new CompositeDisposable();
+        private readonly FlutterRepository _flutterRepository;
 
-        public CounterSceneModel(IAsyncSubscriber<CounterResponse> counterResponseStream)
+        public CounterSceneModel(FlutterRepository flutterRepository)
         {
-            _counterResponseStream = counterResponseStream;
+            _flutterRepository = flutterRepository;
         }
 
-        public UniTask Request(object newState)
-        {
-            throw new NotImplementedException();
-        }
-
-        public CounterResponse Value => _state.Value;
-        public IReadOnlyReactiveProperty<CounterResponse> State => _state;
+        public IReadOnlyReactiveProperty<int> State => _state;
 
         public void Start()
         {
-            _counterResponseStream.Subscribe(Handler);
-        }
-
-        private async UniTask Handler(CounterResponse s, CancellationToken ct)
-        {
-            _state.Value = s;
+            _flutterRepository.CounterResponseStream
+                .Subscribe(r =>
+                {
+                    if (r == default) return;
+                    _state.Value = (int)r.Count;
+                }).AddTo(_compositeDisposable);
         }
 
         public void Dispose()

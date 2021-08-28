@@ -1,162 +1,69 @@
 using System;
-using System.Collections.Concurrent;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using Cysharp.Threading.Tasks.Linq;
+using FlutterUnityBlueprints.Data.Repository;
 using FlutterUnityBlueprints.View.System;
-using Grpc.Core;
-using Grpc.Core.Utils;
-using MessagePipe;
-using Pbunity;
-using UniRx;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using VContainer.Unity;
-using Channel = Grpc.Core.Channel;
 using Object = UnityEngine.Object;
 
 namespace FlutterUnityBlueprints.Application.System
 {
-    public class SystemApp : IAsyncStartable, IDisposable
+    public class SystemApp : IStartable, IDisposable
     {
-        private readonly int _port;
-        private readonly IAsyncPublisher<CounterResponse> _counterResponseStream;
-        private readonly IAsyncSubscriber<JumperRequest> _jumperRequestStream;
-        private readonly IAsyncPublisher<JumperResponse> _jumperResponseStream;
         private readonly SystemPanel _systemPanel;
-        private Channel _channel;
-        private UnityService.UnityServiceClient _client;
+        private readonly FlutterRepository _flutterRepository;
+        private readonly CancellationTokenSource _cts = new CancellationTokenSource();
 
-        public SystemApp(int port, SystemPanel systemPanel,
-            IAsyncSubscriber<JumperRequest> jumperRequestStream, IAsyncPublisher<JumperResponse> jumperResponseStream,
-            IAsyncPublisher<CounterResponse> counterResponseStream)
+        public SystemApp(SystemPanel systemPanel,
+            FlutterRepository flutterRepository)
         {
-            _port = port;
             _systemPanel = systemPanel;
-            _jumperRequestStream = jumperRequestStream;
-            _jumperResponseStream = jumperResponseStream;
-            _counterResponseStream = counterResponseStream;
+            _flutterRepository = flutterRepository;
         }
 
         public void Dispose()
         {
-            _channel.ShutdownAsync().AsUniTask().Forget();
+            _cts?.Dispose();
         }
 
-        public async UniTask StartAsync(CancellationToken cancellation)
+        public void Start()
         {
-            _channel = new Channel("localhost", _port, ChannelCredentials.Insecure);
-            _client = new UnityService.UnityServiceClient(_channel);
-
-            await Connect(cancellation);
-
-            UnityEngine.Application.focusChanged += OnApplicationOnfocusChanged;
-
-            while (!cancellation.IsCancellationRequested)
+            _flutterRepository.LoadAppStream.ForEachAwaitWithCancellationAsync(async (r, ct) =>
             {
-                var state = _channel.State;
-                if (!await _channel.TryWaitForStateChangedAsync(state).ConfigureAwait(false)) continue;
-                Debug.Log(state);
-                if (state != ChannelState.Shutdown) continue;
-                await Reconnect(cancellation);
-            }
-        }
+                if (r == default) return;
 
-        private async void OnApplicationOnfocusChanged(bool b)
-        {
-            if (!b)
-            {
-                return;
-            }
-
-            if (_channel.State != ChannelState.Shutdown) return;
-            await Reconnect();
-        }
-
-        private async UniTask Reconnect(CancellationToken cancellationToken = default)
-        {
-            _client = new UnityService.UnityServiceClient(_channel);
-            await Connect(cancellationToken);
-        }
-
-        private async UniTask Connect(CancellationToken cancellation = default)
-        {
-            try
-            {
-                using var response = _client.Sync(cancellationToken: cancellation);
-
-                var disposables = new CompositeDisposable();
-                var queue = new ConcurrentQueue<AppRequest>();
-
-                _jumperRequestStream.Subscribe(async (s, ct) =>
+                switch (r.AppName)
                 {
-                    queue.Enqueue(new AppRequest()
+                    case "Counter":
                     {
-                        JumperRequest = s
-                    });
-                }).AddTo(disposables);
-
-                UniTask.Run(async () =>
-                {
-                    while (!cancellation.IsCancellationRequested)
-                    {
-                        if (queue.TryDequeue(out var s))
-                        {
-                            await response.RequestStream.WriteAsync(s);
-                        }
-                    }
-                }, cancellationToken: cancellation);
-
-                await response.ResponseStream.ForEachAsync(async appState =>
-                {
-                    await NotifyAppState(appState, cancellation);
-                });
-
-                disposables.Dispose();
-            }
-            catch (RpcException rpcException)
-            {
-                if (rpcException.Status.StatusCode == StatusCode.OK) return;
-                throw;
-            }
-        }
-
-        private async UniTask NotifyAppState(AppResponse appState, CancellationToken cancellation = default)
-        {
-            await UniTask.SwitchToMainThread();
-            switch (appState.StateCase)
-            {
-                // ensure counter scene then emit state
-                case AppResponse.StateOneofCase.CounterResponse:
-                    if (!SceneManager.GetSceneByName("Counter").isLoaded)
-                    {
+                        if (SceneManager.GetSceneByName("Counter").isLoaded) return;
                         await UnloadAllAdditiveScenes();
                         using var scope = LifetimeScope.EnqueueParent(Object.FindObjectOfType<SystemScope>());
                         await SceneManager.LoadSceneAsync("Counter", LoadSceneMode.Additive);
                         _systemPanel.gameObject.SetActive(false);
                         Debug.Log("Counter scene loaded");
+                        break;
                     }
-
-                    await _counterResponseStream.PublishAsync(appState.CounterResponse, cancellation);
-                    break;
-                case AppResponse.StateOneofCase.JumperResponse:
-                    if (!SceneManager.GetSceneByName("Jumper").isLoaded)
+                    case "Jumper":
                     {
+                        if (SceneManager.GetSceneByName("Jumper").isLoaded) return;
                         await UnloadAllAdditiveScenes();
                         using var scope = LifetimeScope.EnqueueParent(Object.FindObjectOfType<SystemScope>());
                         await SceneManager.LoadSceneAsync("Jumper", LoadSceneMode.Additive);
                         _systemPanel.gameObject.SetActive(false);
                         Debug.Log("Jumper scene loaded");
+                        break;
                     }
-
-                    await _jumperResponseStream.PublishAsync(appState.JumperResponse, cancellation);
-                    break;
-                case AppResponse.StateOneofCase.None:
-                default:
-                    await UnloadAllAdditiveScenes();
-                    Debug.Log("all scene unloaded");
-
-                    break;
-            }
+                    default:
+                    {
+                        await UnloadAllAdditiveScenes();
+                        break;
+                    }
+                }
+            }, _cts.Token).Forget();
         }
 
         private async UniTask UnloadAllAdditiveScenes()
@@ -165,7 +72,7 @@ namespace FlutterUnityBlueprints.Application.System
             for (var i = 0; i < SceneManager.sceneCount; i++)
             {
                 var scene = SceneManager.GetSceneAt(i);
-                if (scene.name != "System")
+                if (scene.name != "System" && scene.name != "Test")
                 {
                     await SceneManager.UnloadSceneAsync(scene);
                 }
