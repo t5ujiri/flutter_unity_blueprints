@@ -33,17 +33,17 @@ namespace FlutterUnityBlueprints.Application.Stub
 
         public async UniTask StartAsync(CancellationToken cancellation)
         {
-            await _button.OnClickAsync(cancellation);   
+            await _button.OnClickAsync(cancellation);
             TestLoadJumper();
-            await UniTask.Delay(2000);
+            await UniTask.Delay(2000, cancellationToken: cancellation);
             await Observable.Interval(TimeSpan.FromSeconds(3)).Take(3).ForEachAsync(TestJumper)
-                .ToUniTask(cancellationToken: cancellation);      
-            await UniTask.Delay(2000);
+                .ToUniTask(cancellationToken: cancellation);
+            await UniTask.Delay(2000, cancellationToken: cancellation);
             TestLoadCounter();
-            await UniTask.Delay(2000);  
+            await UniTask.Delay(2000, cancellationToken: cancellation);
             await Observable.Interval(TimeSpan.FromSeconds(3)).Take(3).ForEachAsync(TestCounter)
                 .ToUniTask(cancellationToken: cancellation);
-            await UniTask.Delay(2000);
+            await UniTask.Delay(2000, cancellationToken: cancellation);
         }
 
         private void TestLoadCounter()
