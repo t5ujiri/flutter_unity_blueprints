@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package fub.unity;
+
+import 'unity/domain.proto';
+import 'google/protobuf/timestamp.proto';
+
+message JumperAction {
+}
+
+message JumperState {
+  // domain
+  bool can_jump = 1;
+  Vector3 position = 2;
+
+  // application
+  google.protobuf.Timestamp trigger_jump = 3;
+}

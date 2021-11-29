@@ -10,7 +10,6 @@ namespace FlutterUnityBlueprints.Application.Jumper
         {
             builder.RegisterEntryPoint<JumperPresenter>(Lifetime.Scoped);
             builder.RegisterComponentInHierarchy<JumpingCube>();
-            builder.RegisterEntryPoint<JumperSceneModel>().AsSelf();
         }
     }
 }

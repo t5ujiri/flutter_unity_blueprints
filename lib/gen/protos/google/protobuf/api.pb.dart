@@ -9,20 +9,20 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'type.pb.dart' as $4;
-import 'source_context.pb.dart' as $2;
+import 'type.pb.dart' as $6;
+import 'source_context.pb.dart' as $4;
 
-import 'type.pbenum.dart' as $4;
+import 'type.pbenum.dart' as $6;
 
 class Api extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Api', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'google.protobuf'), createEmptyInstance: create)
     ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
     ..pc<Method>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'methods', $pb.PbFieldType.PM, subBuilder: Method.create)
-    ..pc<$4.Option>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'options', $pb.PbFieldType.PM, subBuilder: $4.Option.create)
+    ..pc<$6.Option>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'options', $pb.PbFieldType.PM, subBuilder: $6.Option.create)
     ..aOS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'version')
-    ..aOM<$2.SourceContext>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'sourceContext', subBuilder: $2.SourceContext.create)
+    ..aOM<$4.SourceContext>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'sourceContext', subBuilder: $4.SourceContext.create)
     ..pc<Mixin>(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mixins', $pb.PbFieldType.PM, subBuilder: Mixin.create)
-    ..e<$4.Syntax>(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'syntax', $pb.PbFieldType.OE, defaultOrMaker: $4.Syntax.SYNTAX_PROTO2, valueOf: $4.Syntax.valueOf, enumValues: $4.Syntax.values)
+    ..e<$6.Syntax>(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'syntax', $pb.PbFieldType.OE, defaultOrMaker: $6.Syntax.SYNTAX_PROTO2, valueOf: $6.Syntax.valueOf, enumValues: $6.Syntax.values)
     ..hasRequiredFields = false
   ;
 
@@ -30,11 +30,11 @@ class Api extends $pb.GeneratedMessage {
   factory Api({
     $core.String? name,
     $core.Iterable<Method>? methods,
-    $core.Iterable<$4.Option>? options,
+    $core.Iterable<$6.Option>? options,
     $core.String? version,
-    $2.SourceContext? sourceContext,
+    $4.SourceContext? sourceContext,
     $core.Iterable<Mixin>? mixins,
-    $4.Syntax? syntax,
+    $6.Syntax? syntax,
   }) {
     final _result = create();
     if (name != null) {
@@ -94,7 +94,7 @@ class Api extends $pb.GeneratedMessage {
   $core.List<Method> get methods => $_getList(1);
 
   @$pb.TagNumber(3)
-  $core.List<$4.Option> get options => $_getList(2);
+  $core.List<$6.Option> get options => $_getList(2);
 
   @$pb.TagNumber(4)
   $core.String get version => $_getSZ(3);
@@ -106,23 +106,23 @@ class Api extends $pb.GeneratedMessage {
   void clearVersion() => clearField(4);
 
   @$pb.TagNumber(5)
-  $2.SourceContext get sourceContext => $_getN(4);
+  $4.SourceContext get sourceContext => $_getN(4);
   @$pb.TagNumber(5)
-  set sourceContext($2.SourceContext v) { setField(5, v); }
+  set sourceContext($4.SourceContext v) { setField(5, v); }
   @$pb.TagNumber(5)
   $core.bool hasSourceContext() => $_has(4);
   @$pb.TagNumber(5)
   void clearSourceContext() => clearField(5);
   @$pb.TagNumber(5)
-  $2.SourceContext ensureSourceContext() => $_ensure(4);
+  $4.SourceContext ensureSourceContext() => $_ensure(4);
 
   @$pb.TagNumber(6)
   $core.List<Mixin> get mixins => $_getList(5);
 
   @$pb.TagNumber(7)
-  $4.Syntax get syntax => $_getN(6);
+  $6.Syntax get syntax => $_getN(6);
   @$pb.TagNumber(7)
-  set syntax($4.Syntax v) { setField(7, v); }
+  set syntax($6.Syntax v) { setField(7, v); }
   @$pb.TagNumber(7)
   $core.bool hasSyntax() => $_has(6);
   @$pb.TagNumber(7)
@@ -136,8 +136,8 @@ class Method extends $pb.GeneratedMessage {
     ..aOB(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'requestStreaming')
     ..aOS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'responseTypeUrl')
     ..aOB(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'responseStreaming')
-    ..pc<$4.Option>(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'options', $pb.PbFieldType.PM, subBuilder: $4.Option.create)
-    ..e<$4.Syntax>(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'syntax', $pb.PbFieldType.OE, defaultOrMaker: $4.Syntax.SYNTAX_PROTO2, valueOf: $4.Syntax.valueOf, enumValues: $4.Syntax.values)
+    ..pc<$6.Option>(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'options', $pb.PbFieldType.PM, subBuilder: $6.Option.create)
+    ..e<$6.Syntax>(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'syntax', $pb.PbFieldType.OE, defaultOrMaker: $6.Syntax.SYNTAX_PROTO2, valueOf: $6.Syntax.valueOf, enumValues: $6.Syntax.values)
     ..hasRequiredFields = false
   ;
 
@@ -148,8 +148,8 @@ class Method extends $pb.GeneratedMessage {
     $core.bool? requestStreaming,
     $core.String? responseTypeUrl,
     $core.bool? responseStreaming,
-    $core.Iterable<$4.Option>? options,
-    $4.Syntax? syntax,
+    $core.Iterable<$6.Option>? options,
+    $6.Syntax? syntax,
   }) {
     final _result = create();
     if (name != null) {
@@ -242,12 +242,12 @@ class Method extends $pb.GeneratedMessage {
   void clearResponseStreaming() => clearField(5);
 
   @$pb.TagNumber(6)
-  $core.List<$4.Option> get options => $_getList(5);
+  $core.List<$6.Option> get options => $_getList(5);
 
   @$pb.TagNumber(7)
-  $4.Syntax get syntax => $_getN(6);
+  $6.Syntax get syntax => $_getN(6);
   @$pb.TagNumber(7)
-  set syntax($4.Syntax v) { setField(7, v); }
+  set syntax($6.Syntax v) { setField(7, v); }
   @$pb.TagNumber(7)
   $core.bool hasSyntax() => $_has(6);
   @$pb.TagNumber(7)

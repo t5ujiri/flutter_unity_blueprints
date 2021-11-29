@@ -10,7 +10,6 @@ namespace FlutterUnityBlueprints.Application.Counter
         protected override void Configure(IContainerBuilder builder)
         {
             builder.RegisterEntryPoint<CounterPresenter>(Lifetime.Scoped);
-            builder.RegisterEntryPoint<CounterSceneModel>().AsSelf();
             builder.RegisterComponentInHierarchy<TMP_Text>();
         }
     }

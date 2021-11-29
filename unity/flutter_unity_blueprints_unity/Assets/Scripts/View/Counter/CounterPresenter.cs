@@ -1,5 +1,6 @@
 using System;
-using FlutterUnityBlueprints.Application.Counter;
+using Fub.Unity;
+using MessagePipe;
 using TMPro;
 using UniRx;
 using UnityEngine;
@@ -9,27 +10,26 @@ namespace FlutterUnityBlueprints.View.Counter
 {
     public class CounterPresenter : IStartable, IDisposable
     {
-        private int _count;
         private readonly TMP_Text _textMesh;
-        private readonly CounterSceneModel _sceneModel;
+        private readonly ISubscriber<CounterState> _counterStateSubscriber;
         private readonly CompositeDisposable _compositeDisposable = new CompositeDisposable();
 
-        public CounterPresenter(TMP_Text textMesh,
-            CounterSceneModel sceneModel1)
+        public CounterPresenter(TMP_Text textMesh)
         {
             _textMesh = textMesh;
-            _sceneModel = sceneModel1;
         }
 
-        private void SetCount(int count)
+        private void SetCount(long count)
         {
-            _count = count;
-            _textMesh.text = _count.ToString();
+            _textMesh.text = count.ToString();
         }
 
         public void Start()
         {
-            _sceneModel.State
+            _counterStateSubscriber.AsObservable()
+                .Where(s => s != null)
+                .Select(s => s.Count)
+                .DistinctUntilChanged()
                 .Subscribe(s =>
                 {
                     Debug.Log("Update count");

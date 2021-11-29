@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package fub.unity;
+
+import 'google/protobuf/empty.proto';
+import 'google/protobuf/timestamp.proto';
+import 'unity/counter.proto';
+import 'unity/jumper.proto';
+
+message AppState {
+  oneof state {
+    LoadAppState load_app_state = 1;
+    CounterState counter_state = 2;
+    JumperState jumper_state = 3;
+  }
+}
+
+message LoadAppState {
+  message Counter {
+
+  }
+
+  message Jumper {
+
+  }
+
+  oneof app {
+    Counter counter = 1;
+    Jumper jumper = 2;
+  }
+}
+
+message AppAction {
+  oneof action {
+    CounterAction counter_action = 1;
+    JumperAction jumper_action = 2;
+  }
+}
