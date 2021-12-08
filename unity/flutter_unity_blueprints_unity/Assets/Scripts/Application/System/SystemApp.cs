@@ -1,9 +1,10 @@
 using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using Cysharp.Threading.Tasks.Linq;
-using FlutterUnityBlueprints.Data.Repository;
 using FlutterUnityBlueprints.View.System;
+using Fub.Unity;
+using JetBrains.Annotations;
+using MessagePipe;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using VContainer.Unity;
@@ -14,14 +15,14 @@ namespace FlutterUnityBlueprints.Application.System
     public class SystemApp : IStartable, IDisposable
     {
         private readonly SystemPanel _systemPanel;
-        private readonly FlutterRepository _flutterRepository;
-        private readonly CancellationTokenSource _cts = new CancellationTokenSource();
+        private readonly IAsyncSubscriber<LoadAppState> _loadAppStateSubscriber;
 
-        public SystemApp(SystemPanel systemPanel,
-            FlutterRepository flutterRepository)
+        private readonly CancellationTokenSource _cts = new();
+
+        public SystemApp(SystemPanel systemPanel, IAsyncSubscriber<LoadAppState> loadAppStateSubscriber)
         {
             _systemPanel = systemPanel;
-            _flutterRepository = flutterRepository;
+            _loadAppStateSubscriber = loadAppStateSubscriber;
         }
 
         public void Dispose()
@@ -31,13 +32,18 @@ namespace FlutterUnityBlueprints.Application.System
 
         public void Start()
         {
-            _flutterRepository.LoadAppStream.ForEachAwaitWithCancellationAsync(async (r, ct) =>
+            _loadAppStateSubscriber.Subscribe(async (r, ct) =>
             {
                 if (r == default) return;
 
-                switch (r.AppName)
+                switch (r.AppCase)
                 {
-                    case "Counter":
+                    case LoadAppState.AppOneofCase.None:
+                    {
+                        await UnloadAllAdditiveScenes();
+                        break;
+                    }
+                    case LoadAppState.AppOneofCase.Counter:
                     {
                         if (SceneManager.GetSceneByName("Counter").isLoaded) return;
                         await UnloadAllAdditiveScenes();
@@ -47,7 +53,7 @@ namespace FlutterUnityBlueprints.Application.System
                         Debug.Log("Counter scene loaded");
                         break;
                     }
-                    case "Jumper":
+                    case LoadAppState.AppOneofCase.Jumper:
                     {
                         if (SceneManager.GetSceneByName("Jumper").isLoaded) return;
                         await UnloadAllAdditiveScenes();
@@ -63,7 +69,7 @@ namespace FlutterUnityBlueprints.Application.System
                         break;
                     }
                 }
-            }, _cts.Token).Forget();
+            }).AddTo(_cts.Token);
         }
 
         private async UniTask UnloadAllAdditiveScenes()

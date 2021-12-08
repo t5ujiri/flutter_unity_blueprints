@@ -1,7 +1,8 @@
 using System.Collections.Concurrent;
 using FlutterUnityBlueprints.Data.Repository;
 using FlutterUnityBlueprints.View.System;
-using Pbunity;
+using Fub.Unity;
+using MessagePipe;
 using VContainer;
 using VContainer.Unity;
 
@@ -12,9 +13,12 @@ namespace FlutterUnityBlueprints.Application.System
         protected override void Configure(IContainerBuilder builder)
         {
             builder.RegisterEntryPoint<FlutterRepository>().AsSelf();
-            builder.Register<ConcurrentQueue<AppResponse>>(Lifetime.Singleton);
             builder.RegisterEntryPoint<SystemApp>();
             builder.RegisterComponentInHierarchy<SystemPanel>();
+            var option = builder.RegisterMessagePipe();
+            builder.RegisterMessageBroker<LoadAppState>(option);
+            builder.RegisterMessageBroker<CounterState>(option);
+            builder.RegisterMessageBroker<JumperState>(option);
         }
     }
 }

@@ -6,7 +6,7 @@ namespace FlutterUnityBlueprints.View.Jumper
     public class JumpingCube : MonoBehaviour
     {
         private Rigidbody _rigidbody;
-        public readonly BoolReactiveProperty IsLanding = new BoolReactiveProperty();
+        public readonly BoolReactiveProperty IsLanding = new();
 
         private void OnEnable()
         {

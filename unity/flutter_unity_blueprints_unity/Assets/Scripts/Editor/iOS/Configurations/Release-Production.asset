@@ -1,0 +1,170 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87dd2d84a35740508f4166bafa8a7549, type: 3}
+  m_Name: Release-Production
+  m_EditorClassIdentifier: 
+  entries:
+  - key: ALWAYS_SEARCH_USER_PATHS
+    values:
+    - NO
+  - key: ARCHS
+    values:
+    - arm64
+  - key: CLANG_CXX_LANGUAGE_STANDARD
+    values:
+    - c++0x
+  - key: CLANG_CXX_LIBRARY
+    values:
+    - libc++
+  - key: CLANG_ENABLE_OBJC_ARC
+    values:
+    - YES
+  - key: CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS
+    values:
+    - YES
+  - key: CODE_SIGN_IDENTITY
+    values:
+    - 
+  - key: CODE_SIGN_STYLE
+    values:
+    - Automatic
+  - key: COPY_PHASE_STRIP
+    values:
+    - No
+  - key: CURRENT_PROJECT_VERSION
+    values:
+    - 1.0
+  - key: DEFINES_MODULE
+    values:
+    - YES
+  - key: DEVELOPMENT_TEAM
+    values:
+    - 
+  - key: DYLIB_INSTALL_NAME_BASE
+    values:
+    - '@rpath'
+  - key: ENABLE_BITCODE
+    values:
+    - No
+  - key: ENABLE_ON_DEMAND_RESOURCES
+    values:
+    - No
+  - key: FRAMEWORK_SEARCH_PATHS
+    values:
+    - $(inherited)
+  - key: GCC_DYNAMIC_NO_PIC
+    values:
+    - No
+  - key: GCC_ENABLE_CPP_EXCEPTIONS
+    values:
+    - YES
+  - key: GCC_OPTIMIZATION_LEVEL
+    values:
+    - 0
+  - key: GCC_PRECOMPILE_PREFIX_HEADER
+    values:
+    - YES
+  - key: GCC_PREFIX_HEADER
+    values:
+    - Classes/Prefix.pch
+  - key: GCC_SYMBOLS_PRIVATE_EXTERN
+    values:
+    - YES
+  - key: HEADER_SEARCH_PATHS
+    values:
+    - $(inherited)
+    - $(SRCROOT)/Classes
+    - $(SRCROOT)
+    - $(SRCROOT)/Classes/Native
+    - $(SRCROOT)/Libraries/bdwgc/include
+    - $(SRCROOT)/Libraries/libil2cpp/include
+    - $(SRCROOT)/Libraries/libil2cpp/include/pch
+    - $(SRCROOT)/Libraries/external/baselib/Include
+    - $(SRCROOT)/Libraries/external/baselib/Platforms/IOS/Include
+  - key: INFOPLIST_FILE
+    values:
+    - UnityFramework/Info.plist
+  - key: INSTALL_PATH
+    values:
+    - $(LOCAL_LIBRARY_DIR)/Frameworks
+  - key: IPHONEOS_DEPLOYMENT_TARGET
+    values:
+    - 11.0
+  - key: LD_GENERATE_MAP_FILE
+    values:
+    - YES
+  - key: LD_RUNPATH_SEARCH_PATHS
+    values:
+    - $(inherited) @executable_path/Frameworks
+  - key: LIBRARY_SEARCH_PATHS
+    values:
+    - $(inherited)
+    - $(PROJECT_DIR)/Libraries
+  - key: MTL_ENABLE_DEBUG_INFO
+    values:
+    - YES
+  - key: ONLY_ACTIVE_ARCH
+    values:
+    - YES
+  - key: OTHER_CFLAGS
+    values:
+    - $(inherited)
+    - -fno-strict-overflow
+    - -DNET_4_0
+    - -DRUNTIME_IL2CPP=1
+    - -DBASELIB_INLINE_NAMESPACE=il2cpp_baselib
+    - -DIL2CPP_ENABLE_WRITE_BARRIERS=1
+    - -DIL2CPP_INCREMENTAL_TIME_SLICE=3
+    - -DUNITY_VERSION_VER=2020
+    - -DUNITY_VERSION_MAJ=3
+    - -DUNITY_VERSION_MIN=17
+  - key: OTHER_LDFLAGS
+    values:
+    - $(inherited)
+    - -weak_framework
+    - CoreMotion
+    - -weak-lSystem
+    - $(OTHER_LDFLAGS_FRAMEWORK)
+    - -Wl,-U,_FlutterUnityPluginOnMessage
+  - key: PRODUCT_BUNDLE_IDENTIFIER
+    values:
+    - com.unity3d.framework
+  - key: PRODUCT_NAME
+    values:
+    - $(TARGET_NAME:c99extidentifier)
+  - key: PROVISIONING_PROFILE_SPECIFIER
+    values:
+    - 
+  - key: SDKROOT
+    values:
+    - iphoneos
+  - key: SKIP_INSTALL
+    values:
+    - YES
+  - key: STRIP_STYLE
+    values:
+    - non-global
+  - key: SUPPORTED_PLATFORMS
+    values:
+    - iphoneos
+  - key: TARGETED_DEVICE_FAMILY
+    values:
+    - 1,2
+  - key: UNITY_RUNTIME_VERSION
+    values:
+    - 2020.3.22f1
+  - key: UNITY_SCRIPTING_BACKEND
+    values:
+    - il2cpp
+  - key: WARNING_CFLAGS
+    values:
+    - -Wno-missing-declarations

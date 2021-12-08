@@ -1,26 +1,26 @@
 using System;
 using Cysharp.Threading.Tasks;
 using FlutterUnityPlugin.Runtime;
+using Fub.Unity;
 using Google.Protobuf;
-using Pbunity;
+using MessagePipe;
 using VContainer.Unity;
 
 namespace FlutterUnityBlueprints.Data.Repository
 {
     public class FlutterRepository : IStartable
     {
-        private readonly AsyncReactiveProperty<LoadAppResponse> _loadAppStream =
-            new AsyncReactiveProperty<LoadAppResponse>(default);
+        private readonly IAsyncPublisher<LoadAppState> _loadAppStatePublisher;
+        private readonly IPublisher<CounterState> _counterStatePublisher;
+        private readonly IPublisher<JumperState> _jumperStatePublisher;
 
-        private readonly AsyncReactiveProperty<JumperResponse> _jumperResponseStream =
-            new AsyncReactiveProperty<JumperResponse>(default);
-
-        private readonly AsyncReactiveProperty<CounterResponse> _counterResponseStream =
-            new AsyncReactiveProperty<CounterResponse>(default);
-
-        public IUniTaskAsyncEnumerable<LoadAppResponse> LoadAppStream => _loadAppStream;
-        public IUniTaskAsyncEnumerable<JumperResponse> JumperResponseStream => _jumperResponseStream;
-        public IUniTaskAsyncEnumerable<CounterResponse> CounterResponseStream => _counterResponseStream;
+        public FlutterRepository(IAsyncPublisher<LoadAppState> loadAppStatePublisher,
+            IPublisher<CounterState> counterStatePublisher, IPublisher<JumperState> jumperStatePublisher)
+        {
+            _loadAppStatePublisher = loadAppStatePublisher;
+            _counterStatePublisher = counterStatePublisher;
+            _jumperStatePublisher = jumperStatePublisher;
+        }
 
         public void Start()
         {
@@ -29,32 +29,32 @@ namespace FlutterUnityBlueprints.Data.Repository
 
         private void OnMessageFromFlutter(Message message)
         {
-            var appResponse = new AppResponse();
-            appResponse.MergeFrom(Convert.FromBase64String(message.data));
-            switch (appResponse.StateCase)
+            var appState = new AppState();
+            appState.MergeFrom(Convert.FromBase64String(message.data));
+            switch (appState.StateCase)
             {
-                case AppResponse.StateOneofCase.None:
+                case AppState.StateOneofCase.None:
                     break;
-                case AppResponse.StateOneofCase.LoadAppResponse:
-                    _loadAppStream.Value = appResponse.LoadAppResponse;
+                case AppState.StateOneofCase.LoadAppState:
+                    _loadAppStatePublisher.PublishAsync(appState.LoadAppState);
                     break;
-                case AppResponse.StateOneofCase.CounterResponse:
-                    _counterResponseStream.Value = appResponse.CounterResponse;
+                case AppState.StateOneofCase.CounterState:
+                    _counterStatePublisher.Publish(appState.CounterState);
                     break;
-                case AppResponse.StateOneofCase.JumperResponse:
-                    _jumperResponseStream.Value = appResponse.JumperResponse;
+                case AppState.StateOneofCase.JumperState:
+                    _jumperStatePublisher.Publish(appState.JumperState);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
         }
 
-        public static void SendRequest(AppRequest r)
+        public static void DispatchAction(AppAction action)
         {
             Messages.Send(new Message()
             {
                 id = -1,
-                data = Convert.ToBase64String(r.ToByteArray())
+                data = Convert.ToBase64String(action.ToByteArray())
             });
         }
     }

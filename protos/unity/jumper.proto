@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package fub.unity;
+
+import 'unity/domain.proto';
+
+message JumperAction {
+  message Jump {
+
+  }
+
+  message ToggleCanJump {
+    bool can_jump = 1;
+  }
+
+  oneof action {
+    Jump jump = 1;
+    ToggleCanJump toggle_can_jump = 2;
+  }
+}
+
+message JumperState {
+  // application
+  bool can_jump = 3;
+  int32 trigger_jump = 4;
+}
