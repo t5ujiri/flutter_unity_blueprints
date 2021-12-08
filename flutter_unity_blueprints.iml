@@ -25,6 +25,10 @@
       <excludeFolder url="file://$MODULE_DIR$/unity/flutter_unity_blueprints_unity/Logs" />
       <excludeFolder url="file://$MODULE_DIR$/unity/flutter_unity_blueprints_unity/obj" />
       <excludeFolder url="file://$MODULE_DIR$/unity/flutter_unity_blueprints_unity/UserSettings" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/Runner.xcodeproj/xcuserdata" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/UnityProject" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/UnityProject_BurstDebugInformation_DoNotShip" />
+      <excludeFolder url="file://$MODULE_DIR$/unity/flutter_unity_blueprints_unity/Temp" />
     </content>
     <orderEntry type="jdk" jdkName="Android API 30 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
