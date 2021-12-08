@@ -14,6 +14,14 @@ namespace FlutterUnityBlueprints.Data.Repository
         private readonly IPublisher<CounterState> _counterStatePublisher;
         private readonly IPublisher<JumperState> _jumperStatePublisher;
 
+        public FlutterRepository(IAsyncPublisher<LoadAppState> loadAppStatePublisher,
+            IPublisher<CounterState> counterStatePublisher, IPublisher<JumperState> jumperStatePublisher)
+        {
+            _loadAppStatePublisher = loadAppStatePublisher;
+            _counterStatePublisher = counterStatePublisher;
+            _jumperStatePublisher = jumperStatePublisher;
+        }
+
         public void Start()
         {
             FlutterMessageReceiver.Instance.OnMessageFromFlutter += OnMessageFromFlutter;

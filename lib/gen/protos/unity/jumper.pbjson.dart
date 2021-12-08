@@ -11,19 +11,39 @@ import 'dart:typed_data' as $typed_data;
 @$core.Deprecated('Use jumperActionDescriptor instead')
 const JumperAction$json = const {
   '1': 'JumperAction',
+  '2': const [
+    const {'1': 'jump', '3': 1, '4': 1, '5': 11, '6': '.fub.unity.JumperAction.Jump', '9': 0, '10': 'jump'},
+    const {'1': 'toggle_can_jump', '3': 2, '4': 1, '5': 11, '6': '.fub.unity.JumperAction.ToggleCanJump', '9': 0, '10': 'toggleCanJump'},
+  ],
+  '3': const [JumperAction_Jump$json, JumperAction_ToggleCanJump$json],
+  '8': const [
+    const {'1': 'action'},
+  ],
+};
+
+@$core.Deprecated('Use jumperActionDescriptor instead')
+const JumperAction_Jump$json = const {
+  '1': 'Jump',
+};
+
+@$core.Deprecated('Use jumperActionDescriptor instead')
+const JumperAction_ToggleCanJump$json = const {
+  '1': 'ToggleCanJump',
+  '2': const [
+    const {'1': 'can_jump', '3': 1, '4': 1, '5': 8, '10': 'canJump'},
+  ],
 };
 
 /// Descriptor for `JumperAction`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List jumperActionDescriptor = $convert.base64Decode('CgxKdW1wZXJBY3Rpb24=');
+final $typed_data.Uint8List jumperActionDescriptor = $convert.base64Decode('CgxKdW1wZXJBY3Rpb24SMgoEanVtcBgBIAEoCzIcLmZ1Yi51bml0eS5KdW1wZXJBY3Rpb24uSnVtcEgAUgRqdW1wEk8KD3RvZ2dsZV9jYW5fanVtcBgCIAEoCzIlLmZ1Yi51bml0eS5KdW1wZXJBY3Rpb24uVG9nZ2xlQ2FuSnVtcEgAUg10b2dnbGVDYW5KdW1wGgYKBEp1bXAaKgoNVG9nZ2xlQ2FuSnVtcBIZCghjYW5fanVtcBgBIAEoCFIHY2FuSnVtcEIICgZhY3Rpb24=');
 @$core.Deprecated('Use jumperStateDescriptor instead')
 const JumperState$json = const {
   '1': 'JumperState',
   '2': const [
-    const {'1': 'can_jump', '3': 1, '4': 1, '5': 8, '10': 'canJump'},
-    const {'1': 'position', '3': 2, '4': 1, '5': 11, '6': '.fub.unity.Vector3', '10': 'position'},
-    const {'1': 'trigger_jump', '3': 3, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'triggerJump'},
+    const {'1': 'can_jump', '3': 3, '4': 1, '5': 8, '10': 'canJump'},
+    const {'1': 'trigger_jump', '3': 4, '4': 1, '5': 5, '10': 'triggerJump'},
   ],
 };
 
 /// Descriptor for `JumperState`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List jumperStateDescriptor = $convert.base64Decode('CgtKdW1wZXJTdGF0ZRIZCghjYW5fanVtcBgBIAEoCFIHY2FuSnVtcBIuCghwb3NpdGlvbhgCIAEoCzISLmZ1Yi51bml0eS5WZWN0b3IzUghwb3NpdGlvbhI9Cgx0cmlnZ2VyX2p1bXAYAyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wUgt0cmlnZ2VySnVtcA==');
+final $typed_data.Uint8List jumperStateDescriptor = $convert.base64Decode('CgtKdW1wZXJTdGF0ZRIZCghjYW5fanVtcBgDIAEoCFIHY2FuSnVtcBIhCgx0cmlnZ2VyX2p1bXAYBCABKAVSC3RyaWdnZXJKdW1w');

@@ -1,6 +1,6 @@
+import 'package:app/ui/route/app_route.dart';
+import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:flutter/material.dart';
-import 'package:app/ui/page/counter/counter_page.dart';
-import 'package:app/ui/page/jumper/jumper_page.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class HomePage extends HookConsumerWidget {
@@ -16,19 +16,13 @@ class HomePage extends HookConsumerWidget {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) {
-                    return CounterPage();
-                  }));
+                  context.pushRoute(CounterRoute());
                 },
                 child: Text('Open Counter'),
               ),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) {
-                    return JumperPage();
-                  }));
+                  context.pushRoute(JumperRoute());
                 },
                 child: Text('Open Jumper'),
               ),

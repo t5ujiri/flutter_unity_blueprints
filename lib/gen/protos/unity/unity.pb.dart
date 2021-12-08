@@ -9,8 +9,8 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'counter.pb.dart' as $2;
-import 'jumper.pb.dart' as $3;
+import 'counter.pb.dart' as $0;
+import 'jumper.pb.dart' as $1;
 
 enum AppState_State {
   loadAppState, 
@@ -29,16 +29,16 @@ class AppState extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'AppState', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'fub.unity'), createEmptyInstance: create)
     ..oo(0, [1, 2, 3])
     ..aOM<LoadAppState>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'loadAppState', subBuilder: LoadAppState.create)
-    ..aOM<$2.CounterState>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'counterState', subBuilder: $2.CounterState.create)
-    ..aOM<$3.JumperState>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'jumperState', subBuilder: $3.JumperState.create)
+    ..aOM<$0.CounterState>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'counterState', subBuilder: $0.CounterState.create)
+    ..aOM<$1.JumperState>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'jumperState', subBuilder: $1.JumperState.create)
     ..hasRequiredFields = false
   ;
 
   AppState._() : super();
   factory AppState({
     LoadAppState? loadAppState,
-    $2.CounterState? counterState,
-    $3.JumperState? jumperState,
+    $0.CounterState? counterState,
+    $1.JumperState? jumperState,
   }) {
     final _result = create();
     if (loadAppState != null) {
@@ -88,26 +88,26 @@ class AppState extends $pb.GeneratedMessage {
   LoadAppState ensureLoadAppState() => $_ensure(0);
 
   @$pb.TagNumber(2)
-  $2.CounterState get counterState => $_getN(1);
+  $0.CounterState get counterState => $_getN(1);
   @$pb.TagNumber(2)
-  set counterState($2.CounterState v) { setField(2, v); }
+  set counterState($0.CounterState v) { setField(2, v); }
   @$pb.TagNumber(2)
   $core.bool hasCounterState() => $_has(1);
   @$pb.TagNumber(2)
   void clearCounterState() => clearField(2);
   @$pb.TagNumber(2)
-  $2.CounterState ensureCounterState() => $_ensure(1);
+  $0.CounterState ensureCounterState() => $_ensure(1);
 
   @$pb.TagNumber(3)
-  $3.JumperState get jumperState => $_getN(2);
+  $1.JumperState get jumperState => $_getN(2);
   @$pb.TagNumber(3)
-  set jumperState($3.JumperState v) { setField(3, v); }
+  set jumperState($1.JumperState v) { setField(3, v); }
   @$pb.TagNumber(3)
   $core.bool hasJumperState() => $_has(2);
   @$pb.TagNumber(3)
   void clearJumperState() => clearField(3);
   @$pb.TagNumber(3)
-  $3.JumperState ensureJumperState() => $_ensure(2);
+  $1.JumperState ensureJumperState() => $_ensure(2);
 }
 
 class LoadAppState_Counter extends $pb.GeneratedMessage {
@@ -262,15 +262,15 @@ class AppAction extends $pb.GeneratedMessage {
   };
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'AppAction', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'fub.unity'), createEmptyInstance: create)
     ..oo(0, [1, 2])
-    ..aOM<$2.CounterAction>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'counterAction', subBuilder: $2.CounterAction.create)
-    ..aOM<$3.JumperAction>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'jumperAction', subBuilder: $3.JumperAction.create)
+    ..aOM<$0.CounterAction>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'counterAction', subBuilder: $0.CounterAction.create)
+    ..aOM<$1.JumperAction>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'jumperAction', subBuilder: $1.JumperAction.create)
     ..hasRequiredFields = false
   ;
 
   AppAction._() : super();
   factory AppAction({
-    $2.CounterAction? counterAction,
-    $3.JumperAction? jumperAction,
+    $0.CounterAction? counterAction,
+    $1.JumperAction? jumperAction,
   }) {
     final _result = create();
     if (counterAction != null) {
@@ -306,25 +306,25 @@ class AppAction extends $pb.GeneratedMessage {
   void clearAction() => clearField($_whichOneof(0));
 
   @$pb.TagNumber(1)
-  $2.CounterAction get counterAction => $_getN(0);
+  $0.CounterAction get counterAction => $_getN(0);
   @$pb.TagNumber(1)
-  set counterAction($2.CounterAction v) { setField(1, v); }
+  set counterAction($0.CounterAction v) { setField(1, v); }
   @$pb.TagNumber(1)
   $core.bool hasCounterAction() => $_has(0);
   @$pb.TagNumber(1)
   void clearCounterAction() => clearField(1);
   @$pb.TagNumber(1)
-  $2.CounterAction ensureCounterAction() => $_ensure(0);
+  $0.CounterAction ensureCounterAction() => $_ensure(0);
 
   @$pb.TagNumber(2)
-  $3.JumperAction get jumperAction => $_getN(1);
+  $1.JumperAction get jumperAction => $_getN(1);
   @$pb.TagNumber(2)
-  set jumperAction($3.JumperAction v) { setField(2, v); }
+  set jumperAction($1.JumperAction v) { setField(2, v); }
   @$pb.TagNumber(2)
   $core.bool hasJumperAction() => $_has(1);
   @$pb.TagNumber(2)
   void clearJumperAction() => clearField(2);
   @$pb.TagNumber(2)
-  $3.JumperAction ensureJumperAction() => $_ensure(1);
+  $1.JumperAction ensureJumperAction() => $_ensure(1);
 }
 

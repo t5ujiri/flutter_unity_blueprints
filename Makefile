@@ -1,6 +1,7 @@
 UNITY_VERSION=2021.2.3f1
 UNITY_EXE=~/Unity/$(UNITY_VERSION)/Unity.app/Contents/MacOS/Unity
 UNITY_APP_NAME=flutter_unity_blueprints_unity
+BUILD_CONFIG=Debug-Development
 
 .PHONY: setup
 setup:
@@ -8,9 +9,9 @@ setup:
 	flutter upgrade
 	flutter pub get
 	cd ios && pod install
-	make import_protobuf
+	make import-protobuf
 
-.PHONY: import_protobuf
+.PHONY: import-protobuf
 import_protobuf:
 	./scripts/import_protobuf.sh $(UNITY_APP_NAME)
 
@@ -33,13 +34,20 @@ protoc:
 android-unity-transmogrify:
 	flutter pub run flutter_unity:unity_export_transmogrify
 
-.PHONY: build_unity_ios
+.PHONY: build-unity-ios
 build_unity_ios:
 	${Unity} -quit -batchmode -executeMethod FlutterUnityPlugin.Editor.Build.BuildIOSForRelease
 
-.PHONY: build_unity_android
+.PHONY: build-unity-android
 build_unity_android:
 	${Unity} -quit -batchmode -executeMethod FlutterUnityPlugin.Editor.Build.BuildAndroid
+
+.PHONY: build-framework
+build-framework:
+	cd ios/UnityProject; \
+	xcodebuild -project Unity-iPhone.xcodeproj \
+		-target UnityFramework \
+		-configuration $(BUILD_CONFIG)
 
 .PHONY: unity
 unity:

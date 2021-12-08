@@ -35,8 +35,12 @@ class CounterViewModel extends StateNotifier<CounterState> {
     read(unityRepository).dispatchState(AppState(counterState: state));
   }
 
-  increment(CounterAction_Increment increment) {
+  void increment(CounterAction_Increment increment) {
     state = (state.toBuilder() as CounterState)..count += 1;
+  }
+
+  void reset() {
+    state = (state.toBuilder() as CounterState)..count = Int64(0);
   }
 }
 

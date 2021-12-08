@@ -1,6 +1,6 @@
 {
     "name": "FlutterUnityBlueprints.Editor",
-    "rootNamespace": "Sample",
+    "rootNamespace": "FlutterUnityBlueprints.Editor",
     "references": [],
     "includePlatforms": [
         "Editor"

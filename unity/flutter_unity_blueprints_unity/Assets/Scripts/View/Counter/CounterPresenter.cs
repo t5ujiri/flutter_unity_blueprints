@@ -12,11 +12,12 @@ namespace FlutterUnityBlueprints.View.Counter
     {
         private readonly TMP_Text _textMesh;
         private readonly ISubscriber<CounterState> _counterStateSubscriber;
-        private readonly CompositeDisposable _compositeDisposable = new CompositeDisposable();
+        private readonly CompositeDisposable _compositeDisposable = new();
 
-        public CounterPresenter(TMP_Text textMesh)
+        public CounterPresenter(TMP_Text textMesh, ISubscriber<CounterState> counterStateSubscriber)
         {
             _textMesh = textMesh;
+            _counterStateSubscriber = counterStateSubscriber;
         }
 
         private void SetCount(long count)

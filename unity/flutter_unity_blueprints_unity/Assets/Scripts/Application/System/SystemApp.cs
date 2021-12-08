@@ -3,6 +3,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using FlutterUnityBlueprints.View.System;
 using Fub.Unity;
+using JetBrains.Annotations;
 using MessagePipe;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,12 +16,13 @@ namespace FlutterUnityBlueprints.Application.System
     {
         private readonly SystemPanel _systemPanel;
         private readonly IAsyncSubscriber<LoadAppState> _loadAppStateSubscriber;
-        
-        private readonly CancellationTokenSource _cts = new CancellationTokenSource();
 
-        public SystemApp(SystemPanel systemPanel)
+        private readonly CancellationTokenSource _cts = new();
+
+        public SystemApp(SystemPanel systemPanel, IAsyncSubscriber<LoadAppState> loadAppStateSubscriber)
         {
             _systemPanel = systemPanel;
+            _loadAppStateSubscriber = loadAppStateSubscriber;
         }
 
         public void Dispose()
@@ -67,7 +69,7 @@ namespace FlutterUnityBlueprints.Application.System
                         break;
                     }
                 }
-            });
+            }).AddTo(_cts.Token);
         }
 
         private async UniTask UnloadAllAdditiveScenes()

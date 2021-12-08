@@ -23,9 +23,22 @@ class JumperViewModel extends StateNotifier<JumperState> {
   }
 
   reduce(JumperAction action) {
+    switch (action.whichAction()) {
+      case JumperAction_Action.jump:
+        state = (state.toBuilder() as JumperState)..triggerJump += 1;
+        break;
+      case JumperAction_Action.notSet:
+        break;
+      case JumperAction_Action.toggleCanJump:
+        state = (state.toBuilder() as JumperState)
+          ..canJump = action.toggleCanJump.canJump;
+        break;
+    }
+
     read(unityRepository).dispatchState(AppState(jumperState: state));
   }
 }
 
-final jumperViewModelProvider = StateNotifierProvider<JumperViewModel, JumperState>(
-    (ref) => JumperViewModel(JumperState(), ref.read));
+final jumperViewModelProvider =
+    StateNotifierProvider<JumperViewModel, JumperState>(
+        (ref) => JumperViewModel(JumperState(), ref.read));

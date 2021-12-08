@@ -17,6 +17,8 @@ namespace FlutterUnityBlueprints.Application.System
             builder.RegisterComponentInHierarchy<SystemPanel>();
             var option = builder.RegisterMessagePipe();
             builder.RegisterMessageBroker<LoadAppState>(option);
+            builder.RegisterMessageBroker<CounterState>(option);
+            builder.RegisterMessageBroker<JumperState>(option);
         }
     }
 }

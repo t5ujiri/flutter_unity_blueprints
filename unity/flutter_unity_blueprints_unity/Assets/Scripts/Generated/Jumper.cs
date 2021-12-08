@@ -25,16 +25,18 @@ namespace Fub.Unity {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChJ1bml0eS9qdW1wZXIucHJvdG8SCWZ1Yi51bml0eRoSdW5pdHkvZG9tYWlu",
-            "LnByb3RvGh9nb29nbGUvcHJvdG9idWYvdGltZXN0YW1wLnByb3RvIg4KDEp1",
-            "bXBlckFjdGlvbiJ3CgtKdW1wZXJTdGF0ZRIQCghjYW5fanVtcBgBIAEoCBIk",
-            "Cghwb3NpdGlvbhgCIAEoCzISLmZ1Yi51bml0eS5WZWN0b3IzEjAKDHRyaWdn",
-            "ZXJfanVtcBgDIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBiBnBy",
-            "b3RvMw=="));
+            "LnByb3RvIrMBCgxKdW1wZXJBY3Rpb24SLAoEanVtcBgBIAEoCzIcLmZ1Yi51",
+            "bml0eS5KdW1wZXJBY3Rpb24uSnVtcEgAEkAKD3RvZ2dsZV9jYW5fanVtcBgC",
+            "IAEoCzIlLmZ1Yi51bml0eS5KdW1wZXJBY3Rpb24uVG9nZ2xlQ2FuSnVtcEgA",
+            "GgYKBEp1bXAaIQoNVG9nZ2xlQ2FuSnVtcBIQCghjYW5fanVtcBgBIAEoCEII",
+            "CgZhY3Rpb24iNQoLSnVtcGVyU3RhdGUSEAoIY2FuX2p1bXAYAyABKAgSFAoM",
+            "dHJpZ2dlcl9qdW1wGAQgASgFYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::Fub.Unity.DomainReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, },
+          new pbr::FileDescriptor[] { global::Fub.Unity.DomainReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Fub.Unity.JumperAction), global::Fub.Unity.JumperAction.Parser, null, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Fub.Unity.JumperState), global::Fub.Unity.JumperState.Parser, new[]{ "CanJump", "Position", "TriggerJump" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Fub.Unity.JumperAction), global::Fub.Unity.JumperAction.Parser, new[]{ "Jump", "ToggleCanJump" }, new[]{ "Action" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::Fub.Unity.JumperAction.Types.Jump), global::Fub.Unity.JumperAction.Types.Jump.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Fub.Unity.JumperAction.Types.ToggleCanJump), global::Fub.Unity.JumperAction.Types.ToggleCanJump.Parser, new[]{ "CanJump" }, null, null, null, null)}),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Fub.Unity.JumperState), global::Fub.Unity.JumperState.Parser, new[]{ "CanJump", "TriggerJump" }, null, null, null, null)
           }));
     }
     #endregion
@@ -75,6 +77,15 @@ namespace Fub.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public JumperAction(JumperAction other) : this() {
+      switch (other.ActionCase) {
+        case ActionOneofCase.Jump:
+          Jump = other.Jump.Clone();
+          break;
+        case ActionOneofCase.ToggleCanJump:
+          ToggleCanJump = other.ToggleCanJump.Clone();
+          break;
+      }
+
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -82,6 +93,51 @@ namespace Fub.Unity {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public JumperAction Clone() {
       return new JumperAction(this);
+    }
+
+    /// <summary>Field number for the "jump" field.</summary>
+    public const int JumpFieldNumber = 1;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Fub.Unity.JumperAction.Types.Jump Jump {
+      get { return actionCase_ == ActionOneofCase.Jump ? (global::Fub.Unity.JumperAction.Types.Jump) action_ : null; }
+      set {
+        action_ = value;
+        actionCase_ = value == null ? ActionOneofCase.None : ActionOneofCase.Jump;
+      }
+    }
+
+    /// <summary>Field number for the "toggle_can_jump" field.</summary>
+    public const int ToggleCanJumpFieldNumber = 2;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::Fub.Unity.JumperAction.Types.ToggleCanJump ToggleCanJump {
+      get { return actionCase_ == ActionOneofCase.ToggleCanJump ? (global::Fub.Unity.JumperAction.Types.ToggleCanJump) action_ : null; }
+      set {
+        action_ = value;
+        actionCase_ = value == null ? ActionOneofCase.None : ActionOneofCase.ToggleCanJump;
+      }
+    }
+
+    private object action_;
+    /// <summary>Enum of possible cases for the "action" oneof.</summary>
+    public enum ActionOneofCase {
+      None = 0,
+      Jump = 1,
+      ToggleCanJump = 2,
+    }
+    private ActionOneofCase actionCase_ = ActionOneofCase.None;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ActionOneofCase ActionCase {
+      get { return actionCase_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearAction() {
+      actionCase_ = ActionOneofCase.None;
+      action_ = null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -99,6 +155,9 @@ namespace Fub.Unity {
       if (ReferenceEquals(other, this)) {
         return true;
       }
+      if (!object.Equals(Jump, other.Jump)) return false;
+      if (!object.Equals(ToggleCanJump, other.ToggleCanJump)) return false;
+      if (ActionCase != other.ActionCase) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -106,6 +165,9 @@ namespace Fub.Unity {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
+      if (actionCase_ == ActionOneofCase.Jump) hash ^= Jump.GetHashCode();
+      if (actionCase_ == ActionOneofCase.ToggleCanJump) hash ^= ToggleCanJump.GetHashCode();
+      hash ^= (int) actionCase_;
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -124,6 +186,14 @@ namespace Fub.Unity {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
+      if (actionCase_ == ActionOneofCase.Jump) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Jump);
+      }
+      if (actionCase_ == ActionOneofCase.ToggleCanJump) {
+        output.WriteRawTag(18);
+        output.WriteMessage(ToggleCanJump);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -134,6 +204,14 @@ namespace Fub.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (actionCase_ == ActionOneofCase.Jump) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Jump);
+      }
+      if (actionCase_ == ActionOneofCase.ToggleCanJump) {
+        output.WriteRawTag(18);
+        output.WriteMessage(ToggleCanJump);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -144,6 +222,12 @@ namespace Fub.Unity {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
+      if (actionCase_ == ActionOneofCase.Jump) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Jump);
+      }
+      if (actionCase_ == ActionOneofCase.ToggleCanJump) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ToggleCanJump);
+      }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -156,6 +240,21 @@ namespace Fub.Unity {
       if (other == null) {
         return;
       }
+      switch (other.ActionCase) {
+        case ActionOneofCase.Jump:
+          if (Jump == null) {
+            Jump = new global::Fub.Unity.JumperAction.Types.Jump();
+          }
+          Jump.MergeFrom(other.Jump);
+          break;
+        case ActionOneofCase.ToggleCanJump:
+          if (ToggleCanJump == null) {
+            ToggleCanJump = new global::Fub.Unity.JumperAction.Types.ToggleCanJump();
+          }
+          ToggleCanJump.MergeFrom(other.ToggleCanJump);
+          break;
+      }
+
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -171,6 +270,24 @@ namespace Fub.Unity {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
+          case 10: {
+            global::Fub.Unity.JumperAction.Types.Jump subBuilder = new global::Fub.Unity.JumperAction.Types.Jump();
+            if (actionCase_ == ActionOneofCase.Jump) {
+              subBuilder.MergeFrom(Jump);
+            }
+            input.ReadMessage(subBuilder);
+            Jump = subBuilder;
+            break;
+          }
+          case 18: {
+            global::Fub.Unity.JumperAction.Types.ToggleCanJump subBuilder = new global::Fub.Unity.JumperAction.Types.ToggleCanJump();
+            if (actionCase_ == ActionOneofCase.ToggleCanJump) {
+              subBuilder.MergeFrom(ToggleCanJump);
+            }
+            input.ReadMessage(subBuilder);
+            ToggleCanJump = subBuilder;
+            break;
+          }
         }
       }
     #endif
@@ -186,10 +303,377 @@ namespace Fub.Unity {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
+          case 10: {
+            global::Fub.Unity.JumperAction.Types.Jump subBuilder = new global::Fub.Unity.JumperAction.Types.Jump();
+            if (actionCase_ == ActionOneofCase.Jump) {
+              subBuilder.MergeFrom(Jump);
+            }
+            input.ReadMessage(subBuilder);
+            Jump = subBuilder;
+            break;
+          }
+          case 18: {
+            global::Fub.Unity.JumperAction.Types.ToggleCanJump subBuilder = new global::Fub.Unity.JumperAction.Types.ToggleCanJump();
+            if (actionCase_ == ActionOneofCase.ToggleCanJump) {
+              subBuilder.MergeFrom(ToggleCanJump);
+            }
+            input.ReadMessage(subBuilder);
+            ToggleCanJump = subBuilder;
+            break;
+          }
         }
       }
     }
     #endif
+
+    #region Nested types
+    /// <summary>Container for nested types declared in the JumperAction message type.</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static partial class Types {
+      public sealed partial class Jump : pb::IMessage<Jump>
+      #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          , pb::IBufferMessage
+      #endif
+      {
+        private static readonly pb::MessageParser<Jump> _parser = new pb::MessageParser<Jump>(() => new Jump());
+        private pb::UnknownFieldSet _unknownFields;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pb::MessageParser<Jump> Parser { get { return _parser; } }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pbr::MessageDescriptor Descriptor {
+          get { return global::Fub.Unity.JumperAction.Descriptor.NestedTypes[0]; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        pbr::MessageDescriptor pb::IMessage.Descriptor {
+          get { return Descriptor; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public Jump() {
+          OnConstruction();
+        }
+
+        partial void OnConstruction();
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public Jump(Jump other) : this() {
+          _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public Jump Clone() {
+          return new Jump(this);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override bool Equals(object other) {
+          return Equals(other as Jump);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public bool Equals(Jump other) {
+          if (ReferenceEquals(other, null)) {
+            return false;
+          }
+          if (ReferenceEquals(other, this)) {
+            return true;
+          }
+          return Equals(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override int GetHashCode() {
+          int hash = 1;
+          if (_unknownFields != null) {
+            hash ^= _unknownFields.GetHashCode();
+          }
+          return hash;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override string ToString() {
+          return pb::JsonFormatter.ToDiagnosticString(this);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void WriteTo(pb::CodedOutputStream output) {
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          output.WriteRawMessage(this);
+        #else
+          if (_unknownFields != null) {
+            _unknownFields.WriteTo(output);
+          }
+        #endif
+        }
+
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+          if (_unknownFields != null) {
+            _unknownFields.WriteTo(ref output);
+          }
+        }
+        #endif
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public int CalculateSize() {
+          int size = 0;
+          if (_unknownFields != null) {
+            size += _unknownFields.CalculateSize();
+          }
+          return size;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(Jump other) {
+          if (other == null) {
+            return;
+          }
+          _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(pb::CodedInputStream input) {
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          input.ReadRawMessage(this);
+        #else
+          uint tag;
+          while ((tag = input.ReadTag()) != 0) {
+            switch(tag) {
+              default:
+                _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                break;
+            }
+          }
+        #endif
+        }
+
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+          uint tag;
+          while ((tag = input.ReadTag()) != 0) {
+            switch(tag) {
+              default:
+                _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+                break;
+            }
+          }
+        }
+        #endif
+
+      }
+
+      public sealed partial class ToggleCanJump : pb::IMessage<ToggleCanJump>
+      #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          , pb::IBufferMessage
+      #endif
+      {
+        private static readonly pb::MessageParser<ToggleCanJump> _parser = new pb::MessageParser<ToggleCanJump>(() => new ToggleCanJump());
+        private pb::UnknownFieldSet _unknownFields;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pb::MessageParser<ToggleCanJump> Parser { get { return _parser; } }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pbr::MessageDescriptor Descriptor {
+          get { return global::Fub.Unity.JumperAction.Descriptor.NestedTypes[1]; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        pbr::MessageDescriptor pb::IMessage.Descriptor {
+          get { return Descriptor; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public ToggleCanJump() {
+          OnConstruction();
+        }
+
+        partial void OnConstruction();
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public ToggleCanJump(ToggleCanJump other) : this() {
+          canJump_ = other.canJump_;
+          _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public ToggleCanJump Clone() {
+          return new ToggleCanJump(this);
+        }
+
+        /// <summary>Field number for the "can_jump" field.</summary>
+        public const int CanJumpFieldNumber = 1;
+        private bool canJump_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public bool CanJump {
+          get { return canJump_; }
+          set {
+            canJump_ = value;
+          }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override bool Equals(object other) {
+          return Equals(other as ToggleCanJump);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public bool Equals(ToggleCanJump other) {
+          if (ReferenceEquals(other, null)) {
+            return false;
+          }
+          if (ReferenceEquals(other, this)) {
+            return true;
+          }
+          if (CanJump != other.CanJump) return false;
+          return Equals(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override int GetHashCode() {
+          int hash = 1;
+          if (CanJump != false) hash ^= CanJump.GetHashCode();
+          if (_unknownFields != null) {
+            hash ^= _unknownFields.GetHashCode();
+          }
+          return hash;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override string ToString() {
+          return pb::JsonFormatter.ToDiagnosticString(this);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void WriteTo(pb::CodedOutputStream output) {
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          output.WriteRawMessage(this);
+        #else
+          if (CanJump != false) {
+            output.WriteRawTag(8);
+            output.WriteBool(CanJump);
+          }
+          if (_unknownFields != null) {
+            _unknownFields.WriteTo(output);
+          }
+        #endif
+        }
+
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+          if (CanJump != false) {
+            output.WriteRawTag(8);
+            output.WriteBool(CanJump);
+          }
+          if (_unknownFields != null) {
+            _unknownFields.WriteTo(ref output);
+          }
+        }
+        #endif
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public int CalculateSize() {
+          int size = 0;
+          if (CanJump != false) {
+            size += 1 + 1;
+          }
+          if (_unknownFields != null) {
+            size += _unknownFields.CalculateSize();
+          }
+          return size;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(ToggleCanJump other) {
+          if (other == null) {
+            return;
+          }
+          if (other.CanJump != false) {
+            CanJump = other.CanJump;
+          }
+          _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(pb::CodedInputStream input) {
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          input.ReadRawMessage(this);
+        #else
+          uint tag;
+          while ((tag = input.ReadTag()) != 0) {
+            switch(tag) {
+              default:
+                _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                break;
+              case 8: {
+                CanJump = input.ReadBool();
+                break;
+              }
+            }
+          }
+        #endif
+        }
+
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+          uint tag;
+          while ((tag = input.ReadTag()) != 0) {
+            switch(tag) {
+              default:
+                _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+                break;
+              case 8: {
+                CanJump = input.ReadBool();
+                break;
+              }
+            }
+          }
+        }
+        #endif
+
+      }
+
+    }
+    #endregion
 
   }
 
@@ -228,8 +712,7 @@ namespace Fub.Unity {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public JumperState(JumperState other) : this() {
       canJump_ = other.canJump_;
-      position_ = other.position_ != null ? other.position_.Clone() : null;
-      triggerJump_ = other.triggerJump_ != null ? other.triggerJump_.Clone() : null;
+      triggerJump_ = other.triggerJump_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -240,10 +723,10 @@ namespace Fub.Unity {
     }
 
     /// <summary>Field number for the "can_jump" field.</summary>
-    public const int CanJumpFieldNumber = 1;
+    public const int CanJumpFieldNumber = 3;
     private bool canJump_;
     /// <summary>
-    /// domain
+    /// application
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -254,27 +737,12 @@ namespace Fub.Unity {
       }
     }
 
-    /// <summary>Field number for the "position" field.</summary>
-    public const int PositionFieldNumber = 2;
-    private global::Fub.Unity.Vector3 position_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Fub.Unity.Vector3 Position {
-      get { return position_; }
-      set {
-        position_ = value;
-      }
-    }
-
     /// <summary>Field number for the "trigger_jump" field.</summary>
-    public const int TriggerJumpFieldNumber = 3;
-    private global::Google.Protobuf.WellKnownTypes.Timestamp triggerJump_;
-    /// <summary>
-    /// application
-    /// </summary>
+    public const int TriggerJumpFieldNumber = 4;
+    private int triggerJump_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Google.Protobuf.WellKnownTypes.Timestamp TriggerJump {
+    public int TriggerJump {
       get { return triggerJump_; }
       set {
         triggerJump_ = value;
@@ -297,8 +765,7 @@ namespace Fub.Unity {
         return true;
       }
       if (CanJump != other.CanJump) return false;
-      if (!object.Equals(Position, other.Position)) return false;
-      if (!object.Equals(TriggerJump, other.TriggerJump)) return false;
+      if (TriggerJump != other.TriggerJump) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -307,8 +774,7 @@ namespace Fub.Unity {
     public override int GetHashCode() {
       int hash = 1;
       if (CanJump != false) hash ^= CanJump.GetHashCode();
-      if (position_ != null) hash ^= Position.GetHashCode();
-      if (triggerJump_ != null) hash ^= TriggerJump.GetHashCode();
+      if (TriggerJump != 0) hash ^= TriggerJump.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -328,16 +794,12 @@ namespace Fub.Unity {
       output.WriteRawMessage(this);
     #else
       if (CanJump != false) {
-        output.WriteRawTag(8);
+        output.WriteRawTag(24);
         output.WriteBool(CanJump);
       }
-      if (position_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(Position);
-      }
-      if (triggerJump_ != null) {
-        output.WriteRawTag(26);
-        output.WriteMessage(TriggerJump);
+      if (TriggerJump != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(TriggerJump);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -350,16 +812,12 @@ namespace Fub.Unity {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
       if (CanJump != false) {
-        output.WriteRawTag(8);
+        output.WriteRawTag(24);
         output.WriteBool(CanJump);
       }
-      if (position_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(Position);
-      }
-      if (triggerJump_ != null) {
-        output.WriteRawTag(26);
-        output.WriteMessage(TriggerJump);
+      if (TriggerJump != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(TriggerJump);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -374,11 +832,8 @@ namespace Fub.Unity {
       if (CanJump != false) {
         size += 1 + 1;
       }
-      if (position_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Position);
-      }
-      if (triggerJump_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(TriggerJump);
+      if (TriggerJump != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(TriggerJump);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -395,17 +850,8 @@ namespace Fub.Unity {
       if (other.CanJump != false) {
         CanJump = other.CanJump;
       }
-      if (other.position_ != null) {
-        if (position_ == null) {
-          Position = new global::Fub.Unity.Vector3();
-        }
-        Position.MergeFrom(other.Position);
-      }
-      if (other.triggerJump_ != null) {
-        if (triggerJump_ == null) {
-          TriggerJump = new global::Google.Protobuf.WellKnownTypes.Timestamp();
-        }
-        TriggerJump.MergeFrom(other.TriggerJump);
+      if (other.TriggerJump != 0) {
+        TriggerJump = other.TriggerJump;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -422,22 +868,12 @@ namespace Fub.Unity {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 8: {
+          case 24: {
             CanJump = input.ReadBool();
             break;
           }
-          case 18: {
-            if (position_ == null) {
-              Position = new global::Fub.Unity.Vector3();
-            }
-            input.ReadMessage(Position);
-            break;
-          }
-          case 26: {
-            if (triggerJump_ == null) {
-              TriggerJump = new global::Google.Protobuf.WellKnownTypes.Timestamp();
-            }
-            input.ReadMessage(TriggerJump);
+          case 32: {
+            TriggerJump = input.ReadInt32();
             break;
           }
         }
@@ -455,22 +891,12 @@ namespace Fub.Unity {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
-          case 8: {
+          case 24: {
             CanJump = input.ReadBool();
             break;
           }
-          case 18: {
-            if (position_ == null) {
-              Position = new global::Fub.Unity.Vector3();
-            }
-            input.ReadMessage(Position);
-            break;
-          }
-          case 26: {
-            if (triggerJump_ == null) {
-              TriggerJump = new global::Google.Protobuf.WellKnownTypes.Timestamp();
-            }
-            input.ReadMessage(TriggerJump);
+          case 32: {
+            TriggerJump = input.ReadInt32();
             break;
           }
         }
