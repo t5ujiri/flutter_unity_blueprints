@@ -7,7 +7,7 @@ A template for flutter app with UaaL.
 ## Getting Started
 
 1. `make setup`
-1. open `unity/flutter_unity_blueprints` with Unity Editor 2019.4 or above, and `Build/Export iOS` to export Xcode project.
+1. open `unity/flutter_unity_blueprints` with Unity Editor 2019.4 or beyond, and `Build/Export iOS` to export Xcode project.
 1. Embed UnityFramework to Runner target
 1. Build Runner target
 
