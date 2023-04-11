@@ -1,4 +1,4 @@
-UNITY_VERSION=2021.2.3f1
+UNITY_VERSION=2021.3.22f1
 UNITY_EXE=~/Unity/$(UNITY_VERSION)/Unity.app/Contents/MacOS/Unity
 UNITY_APP_NAME=flutter_unity_blueprints_unity
 BUILD_CONFIG=Debug-Development
