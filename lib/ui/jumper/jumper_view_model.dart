@@ -4,12 +4,12 @@ import 'package:app/gen/protos/unity/unity.pb.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class JumperViewModel extends StateNotifier<JumperState> {
-  final Reader read;
+  final Ref ref;
 
-  JumperViewModel(JumperState state, this.read) : super(state);
+  JumperViewModel(JumperState state, this.ref) : super(state);
 
   loadJumperApp() {
-    read(unityRepository).dispatchState(AppState(
+    ref.read(unityRepository).dispatchState(AppState(
       loadAppState: LoadAppState(
         jumper: LoadAppState_Jumper(),
       ),
@@ -17,7 +17,7 @@ class JumperViewModel extends StateNotifier<JumperState> {
   }
 
   unloadApp() {
-    read(unityRepository).dispatchState(AppState(
+    ref.read(unityRepository).dispatchState(AppState(
       loadAppState: LoadAppState(),
     ));
   }
@@ -35,10 +35,10 @@ class JumperViewModel extends StateNotifier<JumperState> {
         break;
     }
 
-    read(unityRepository).dispatchState(AppState(jumperState: state));
+    ref.read(unityRepository).dispatchState(AppState(jumperState: state));
   }
 }
 
 final jumperViewModelProvider =
     StateNotifierProvider<JumperViewModel, JumperState>(
-        (ref) => JumperViewModel(JumperState(), ref.read));
+        (ref) => JumperViewModel(JumperState(), ref));

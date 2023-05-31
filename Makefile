@@ -32,7 +32,7 @@ protoc:
 
 .PHONY: android-unity-transmogrify
 android-unity-transmogrify:
-	flutter pub run flutter_unity:unity_export_transmogrify
+	if [ -d "./android/unityExport/unityLibrary" ]; then fvm flutter pub run flutter_unity:unity_export_transmogrify; fi
 
 .PHONY: build-unity-ios
 build_unity_ios:

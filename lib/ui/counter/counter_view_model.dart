@@ -5,12 +5,12 @@ import 'package:fixnum/fixnum.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class CounterViewModel extends StateNotifier<CounterState> {
-  final Reader read;
+  final Ref ref;
 
-  CounterViewModel(CounterState state, this.read) : super(state);
+  CounterViewModel(CounterState state, this.ref) : super(state);
 
   loadCounterApp() {
-    read(unityRepository).dispatchState(AppState(
+    ref.read(unityRepository).dispatchState(AppState(
       loadAppState: LoadAppState(
         counter: LoadAppState_Counter(),
       ),
@@ -18,7 +18,7 @@ class CounterViewModel extends StateNotifier<CounterState> {
   }
 
   unloadApp() {
-    read(unityRepository).dispatchState(AppState(
+    ref.read(unityRepository).dispatchState(AppState(
       loadAppState: LoadAppState(),
     ));
   }
@@ -32,7 +32,7 @@ class CounterViewModel extends StateNotifier<CounterState> {
         break;
     }
 
-    read(unityRepository).dispatchState(AppState(counterState: state));
+    ref.read(unityRepository).dispatchState(AppState(counterState: state));
   }
 
   void increment(CounterAction_Increment increment) {
@@ -45,4 +45,4 @@ class CounterViewModel extends StateNotifier<CounterState> {
 }
 
 final counterViewModel = StateNotifierProvider<CounterViewModel, CounterState>(
-    (ref) => CounterViewModel(CounterState(count: Int64(0)), ref.read));
+    (ref) => CounterViewModel(CounterState(count: Int64(0)), ref));

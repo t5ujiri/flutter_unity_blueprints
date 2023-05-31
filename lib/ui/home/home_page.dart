@@ -1,33 +1,34 @@
-import 'package:app/ui/route/app_route.dart';
-import 'package:auto_route/src/router/auto_router_x.dart';
+import 'package:app/ui/route/app_router.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+@RoutePage()
 class HomePage extends HookConsumerWidget {
+  const HomePage({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(),
-      body: Container(
-        child: Center(
-          child: Wrap(
-            direction: Axis.vertical,
-            spacing: 10,
-            children: [
-              ElevatedButton(
-                onPressed: () {
-                  context.pushRoute(CounterRoute());
-                },
-                child: Text('Open Counter'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  context.pushRoute(JumperRoute());
-                },
-                child: Text('Open Jumper'),
-              ),
-            ],
-          ),
+      body: Center(
+        child: Wrap(
+          direction: Axis.vertical,
+          spacing: 10,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                context.pushRoute(const CounterRoute());
+              },
+              child: const Text('Open Counter'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                context.pushRoute(const JumperRoute());
+              },
+              child: const Text('Open Jumper'),
+            ),
+          ],
         ),
       ),
     );

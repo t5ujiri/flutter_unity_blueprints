@@ -4,12 +4,16 @@ import 'package:app/data/repository/unity_repository.dart';
 import 'package:app/gen/protos/unity/unity.pb.dart';
 import 'package:app/ui/counter/counter_action_creator.dart';
 import 'package:app/ui/counter/counter_view_model.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_unity/flutter_unity.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+@RoutePage()
 class CounterPage extends HookConsumerWidget {
+  const CounterPage({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     useFuture(useMemoized(() async {

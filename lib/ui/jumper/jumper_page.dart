@@ -4,12 +4,15 @@ import 'package:app/data/repository/unity_repository.dart';
 import 'package:app/gen/protos/unity/unity.pb.dart';
 import 'package:app/ui/jumper/jumper_action_creator.dart';
 import 'package:app/ui/jumper/jumper_view_model.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_unity/flutter_unity.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+@RoutePage()
 class JumperPage extends HookConsumerWidget {
+  const JumperPage({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(jumperViewModelProvider);
