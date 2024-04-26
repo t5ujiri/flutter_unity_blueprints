@@ -164,7 +164,7 @@ PlayerSettings:
   applicationIdentifier:
     Android: com.DefaultCompany.flutter_unity_blueprints_unity
     Standalone: com.DefaultCompany.flutterunityblueprintsunity
-    iPhone: com.DefaultCompany.flutterunityblueprintsunity
+    iPhone: com.DefaultCompany.flutter-unity-blueprints-unity
   buildNumber:
     Standalone: 0
     VisionOS: 0
@@ -937,7 +937,7 @@ PlayerSettings:
   embeddedLinuxEnableGamepadInput: 1
   hmiLogStartupTiming: 0
   hmiCpuConfiguration: 
-  apiCompatibilityLevel: 6
+  apiCompatibilityLevel: 3
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
   cloudProjectId: 

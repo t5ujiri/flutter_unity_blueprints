@@ -5,6 +5,13 @@ UNITY_APP_NAME=flutter_unity_blueprints_unity
 
 .PHONY: build-runner watch gen unity xcode update-icon
 
+setup:
+	flutter channel stable
+	flutter upgrade
+	flutter pub get
+	cd ios && pod install
+	cd unity/$(UNITY_APP_NAME) && make setup
+
 build-runner:
 	fvm dart run build_runner build --delete-conflicting-outputs
 

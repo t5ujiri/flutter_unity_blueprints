@@ -1,7 +1,8 @@
 include .env
 
 setup:
-	dotnet tool install --global NuGetForUnity.Cli
+	dotnet new tool-manifest || true
+	dotnet tool install NuGetForUnity.Cli || true
 	dotnet nugetforunity restore .
 
 unity:

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "isRoot": true,
+  "tools": {
+    "nugetforunity.cli": {
+      "version": "4.1.0",
+      "commands": [
+        "nugetforunity"
+      ]
+    }
+  }
+}
