@@ -73,7 +73,9 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 # nugetforunity
-/[Aa]ssets/Packages*
+/[Aa]ssets/Packages
+/[Aa]ssets/Packages.meta
+!/Assets/packages.config
 
 ### https://raw.github.com/github/gitignore/218a941be92679ce67d0484547e3e142b2f5f6f0/Global/JetBrains.gitignore
 
