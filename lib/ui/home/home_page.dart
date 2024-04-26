@@ -22,12 +22,6 @@ class HomePage extends HookConsumerWidget {
               },
               child: const Text('Open Counter'),
             ),
-            ElevatedButton(
-              onPressed: () {
-                context.pushRoute(const JumperRoute());
-              },
-              child: const Text('Open Jumper'),
-            ),
           ],
         ),
       ),

@@ -1,4 +1,7 @@
 using System;
+using FlutterUnityBlueprints.Data.Domain.Impl;
+using FlutterUnityBlueprints.Data.Domain.Impl.Counter;
+using FlutterUnityBlueprints.Data.Repository;
 using Fub.Unity;
 using MessagePipe;
 using TMPro;
@@ -11,13 +14,16 @@ namespace FlutterUnityBlueprints.View.Counter
     public class CounterPresenter : IStartable, IDisposable
     {
         private readonly TMP_Text _textMesh;
-        private readonly ISubscriber<CounterState> _counterStateSubscriber;
+        private readonly ISubscriber<PCounterAction> _counterActionSubscriber;
         private readonly CompositeDisposable _compositeDisposable = new();
+        private readonly CounterStore _counterStore;
 
-        public CounterPresenter(TMP_Text textMesh, ISubscriber<CounterState> counterStateSubscriber)
+        public CounterPresenter(TMP_Text textMesh, ISubscriber<PCounterAction> counterActionSubscriber,
+            CounterStore counterStore)
         {
             _textMesh = textMesh;
-            _counterStateSubscriber = counterStateSubscriber;
+            _counterActionSubscriber = counterActionSubscriber;
+            _counterStore = counterStore;
         }
 
         private void SetCount(long count)
@@ -27,14 +33,24 @@ namespace FlutterUnityBlueprints.View.Counter
 
         public void Start()
         {
-            _counterStateSubscriber.AsObservable()
-                .Where(s => s != null)
-                .Select(s => s.Count)
-                .DistinctUntilChanged()
-                .Subscribe(s =>
+            _counterActionSubscriber
+                .Subscribe(action => _counterStore.Dispatch(action))
+                .AddTo(_compositeDisposable);
+
+            _counterStore.State.Subscribe(x =>
+            {
+                FlutterRepository.SendState(new PAppState()
+                {
+                    CounterState = x
+                });
+            }).AddTo(_compositeDisposable);
+
+            _counterStore.State
+                .Where(x => x != null)
+                .Subscribe(x =>
                 {
                     Debug.Log("Update count");
-                    SetCount(s);
+                    SetCount(x.Count);
                 })
                 .AddTo(_compositeDisposable);
         }

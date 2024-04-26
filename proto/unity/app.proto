@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package fub.unity;
+
+import 'google/protobuf/empty.proto';
+import 'google/protobuf/timestamp.proto';
+import 'unity/scenes/counter.proto';
+
+message PAppState {
+  oneof state {
+    PLoadSceneState load_app_state = 1;
+    PCounterState counter_state = 2;
+  }
+}
+
+message PLoadSceneState {
+  message System {
+
+  }
+
+  message Counter {
+
+  }
+
+  oneof app {
+    System system = 1;
+    Counter counter = 2;
+  }
+}
+
+message PLoadAppAction {
+  message Counter {
+
+  }
+
+  oneof action {
+    Counter counter = 1;
+  }
+}
+
+message PAppAction {
+  oneof action {
+    PLoadAppAction load_app_action = 1;
+    PCounterAction counter_action = 2;
+  }
+}

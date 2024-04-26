@@ -1,9 +1,9 @@
 using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using FlutterUnityBlueprints.Data.Repository;
 using FlutterUnityBlueprints.View.System;
 using Fub.Unity;
-using JetBrains.Annotations;
 using MessagePipe;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,11 +15,11 @@ namespace FlutterUnityBlueprints.Application.System
     public class SystemApp : IStartable, IDisposable
     {
         private readonly SystemPanel _systemPanel;
-        private readonly IAsyncSubscriber<LoadAppState> _loadAppStateSubscriber;
+        private readonly IAsyncSubscriber<PLoadAppAction> _loadAppStateSubscriber;
 
         private readonly CancellationTokenSource _cts = new();
 
-        public SystemApp(SystemPanel systemPanel, IAsyncSubscriber<LoadAppState> loadAppStateSubscriber)
+        public SystemApp(SystemPanel systemPanel, IAsyncSubscriber<PLoadAppAction> loadAppStateSubscriber)
         {
             _systemPanel = systemPanel;
             _loadAppStateSubscriber = loadAppStateSubscriber;
@@ -36,14 +36,14 @@ namespace FlutterUnityBlueprints.Application.System
             {
                 if (r == default) return;
 
-                switch (r.AppCase)
+                switch (r.ActionCase)
                 {
-                    case LoadAppState.AppOneofCase.None:
+                    case PLoadAppAction.ActionOneofCase.None:
                     {
                         await UnloadAllAdditiveScenes();
                         break;
                     }
-                    case LoadAppState.AppOneofCase.Counter:
+                    case PLoadAppAction.ActionOneofCase.Counter:
                     {
                         if (SceneManager.GetSceneByName("Counter").isLoaded) return;
                         await UnloadAllAdditiveScenes();
@@ -51,25 +51,34 @@ namespace FlutterUnityBlueprints.Application.System
                         await SceneManager.LoadSceneAsync("Counter", LoadSceneMode.Additive);
                         _systemPanel.gameObject.SetActive(false);
                         Debug.Log("Counter scene loaded");
-                        break;
-                    }
-                    case LoadAppState.AppOneofCase.Jumper:
-                    {
-                        if (SceneManager.GetSceneByName("Jumper").isLoaded) return;
-                        await UnloadAllAdditiveScenes();
-                        using var scope = LifetimeScope.EnqueueParent(Object.FindObjectOfType<SystemScope>());
-                        await SceneManager.LoadSceneAsync("Jumper", LoadSceneMode.Additive);
-                        _systemPanel.gameObject.SetActive(false);
-                        Debug.Log("Jumper scene loaded");
+                        FlutterRepository.SendState(new PAppState()
+                        {
+                            LoadAppState = new PLoadSceneState()
+                            {
+                                Counter = new PLoadSceneState.Types.Counter()
+                            }
+                        });
                         break;
                     }
                     default:
                     {
                         await UnloadAllAdditiveScenes();
+                        FlutterRepository.SendState(new PAppState()
+                        {
+                            LoadAppState = new PLoadSceneState()
+                        });
                         break;
                     }
                 }
             }).AddTo(_cts.Token);
+            
+            FlutterRepository.SendState(new PAppState()
+            {
+                LoadAppState = new PLoadSceneState()
+                {
+                    System = new PLoadSceneState.Types.System()
+                }
+            });
         }
 
         private async UniTask UnloadAllAdditiveScenes()

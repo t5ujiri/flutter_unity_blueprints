@@ -1,4 +1,3 @@
-using System.Collections.Concurrent;
 using FlutterUnityBlueprints.Data.Repository;
 using FlutterUnityBlueprints.View.System;
 using Fub.Unity;
@@ -16,9 +15,11 @@ namespace FlutterUnityBlueprints.Application.System
             builder.RegisterEntryPoint<SystemApp>();
             builder.RegisterComponentInHierarchy<SystemPanel>();
             var option = builder.RegisterMessagePipe();
-            builder.RegisterMessageBroker<LoadAppState>(option);
-            builder.RegisterMessageBroker<CounterState>(option);
-            builder.RegisterMessageBroker<JumperState>(option);
+
+            builder.RegisterMessageBroker<PLoadAppAction>(option);
+            builder.RegisterMessageBroker<PCounterAction>(option);
+            builder.RegisterMessageBroker<PLoadSceneState>(option);
+            builder.RegisterMessageBroker<PCounterState>(option);
         }
     }
 }

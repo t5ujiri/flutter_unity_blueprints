@@ -1,48 +1,49 @@
-import 'package:app/data/repository/unity_repository.dart';
-import 'package:app/gen/protos/unity/counter.pb.dart';
-import 'package:app/gen/protos/unity/unity.pb.dart';
-import 'package:fixnum/fixnum.dart';
+import 'package:app/foundation/unity_widget_controller_ex.dart';
+import 'package:app/gen/proto/unity/app.pb.dart';
+import 'package:app/gen/proto/unity/app.pbserver.dart';
+import 'package:app/gen/proto/unity/scenes/counter.pb.dart';
+import 'package:flutter_unity_widget/flutter_unity_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class CounterViewModel extends StateNotifier<CounterState> {
+class CounterViewModel extends StateNotifier<PCounterState> {
   final Ref ref;
 
-  CounterViewModel(CounterState state, this.ref) : super(state);
+  CounterViewModel(super.state, this.ref);
 
-  loadCounterApp() {
-    ref.read(unityRepository).dispatchState(AppState(
-      loadAppState: LoadAppState(
-        counter: LoadAppState_Counter(),
+  loadCounterApp(UnityWidgetController controller) {
+    controller.sendAction(PAppAction(
+      loadAppAction: PLoadAppAction(
+        counter: PLoadAppAction_Counter(),
       ),
     ));
   }
 
-  unloadApp() {
-    ref.read(unityRepository).dispatchState(AppState(
-      loadAppState: LoadAppState(),
+  unloadApp(UnityWidgetController controller) {
+    controller.sendAction(PAppAction(
+      loadAppAction: PLoadAppAction(),
     ));
   }
 
-  reduce(CounterAction action) {
-    switch (action.whichAction()) {
-      case CounterAction_Action.increment:
-        increment(action.increment);
-        break;
-      case CounterAction_Action.notSet:
-        break;
-    }
-
-    ref.read(unityRepository).dispatchState(AppState(counterState: state));
+  void increment(UnityWidgetController controller) {
+    controller.sendAction(PAppAction(
+      counterAction: PCounterAction(
+        increment: PCounterAction_Increment(),
+      ),
+    ));
   }
 
-  void increment(CounterAction_Increment increment) {
-    state = (state.toBuilder() as CounterState)..count += 1;
+  void reset(UnityWidgetController controller) {
+    controller.sendAction(PAppAction(
+      counterAction: PCounterAction(
+        reset: PCounterAction_Reset(),
+      ),
+    ));
   }
 
-  void reset() {
-    state = (state.toBuilder() as CounterState)..count = Int64(0);
+  void sync(PCounterState counterState) {
+    state = counterState;
   }
 }
 
-final counterViewModel = StateNotifierProvider<CounterViewModel, CounterState>(
-    (ref) => CounterViewModel(CounterState(count: Int64(0)), ref));
+final counterViewModel = StateNotifierProvider<CounterViewModel, PCounterState>(
+    (ref) => CounterViewModel(PCounterState(count: 0), ref));

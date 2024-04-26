@@ -1,13 +1,11 @@
 import 'dart:convert';
 
-import 'package:app/data/repository/unity_repository.dart';
-import 'package:app/gen/protos/unity/unity.pb.dart';
-import 'package:app/ui/counter/counter_action_creator.dart';
+import 'package:app/gen/proto/unity/app.pb.dart';
 import 'package:app/ui/counter/counter_view_model.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_unity/flutter_unity.dart';
+import 'package:flutter_unity_widget/flutter_unity_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 @RoutePage()
@@ -16,52 +14,78 @@ class CounterPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    useFuture(useMemoized(() async {
-      await Future.delayed(Duration.zero);
-      ref.read(counterViewModel.notifier).reset();
-    }));
+    final count = ref.watch(counterViewModel.select((value) => value.count));
+    final unityController = useState<UnityWidgetController?>(null);
 
-    return WillPopScope(
-      onWillPop: () {
-        ref.read(counterViewModel.notifier).unloadApp();
-        Navigator.of(context).pop();
-        return Future.value(false);
+    return PopScope(
+      onPopInvoked: (b) {
+        if (b) {
+          if (unityController.value != null) {
+            ref.read(counterViewModel.notifier).unloadApp(unityController.value!);
+          }
+        }
       },
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          actions: [
+            TextButton(
+              onPressed: () {
+                ref.read(counterViewModel.notifier).reset(unityController.value!);
+              },
+              child: const Text('Reset'),
+            ),
+          ],
+        ),
         body: Stack(
           children: [
-            UnityView(
-              onCreated: (controller) {
-                ref.read(unityRepository).controller = controller;
-                controller.resume();
-                ref.read(counterViewModel.notifier).loadCounterApp();
-              },
-              onMessage: (controller, message) {
-                var action = AppAction.fromBuffer(base64.decode(message));
-
-                switch (action.whichAction()) {
-                  case AppAction_Action.counterAction:
+            Stack(
+              children: [
+                UnityWidget(
+                  onUnityCreated: (controller) async {
+                    unityController.value = controller;
+                    controller.resume();
+                    await controller.isLoaded();
                     ref
                         .read(counterViewModel.notifier)
-                        .reduce(action.counterAction);
-                    break;
-                  case AppAction_Action.jumperAction:
-                    break;
-                  case AppAction_Action.notSet:
-                    break;
-                }
-              },
+                        .loadCounterApp(controller);
+                  },
+                  onUnityMessage: (message) {
+                    var state = PAppState.fromBuffer(base64.decode(message));
+
+                    switch (state.whichState()) {
+                      case PAppState_State.loadAppState:
+                      // TODO: Handle this case.
+                      case PAppState_State.counterState:
+                        ref
+                            .read(counterViewModel.notifier)
+                            .sync(state.counterState);
+                      case PAppState_State.notSet:
+                      // TODO: Handle this case.
+                    }
+                  },
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Center(
+                          child: Text('Count: $count'),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ],
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            ref
-                .read(counterViewModel.notifier)
-                .reduce(CounterActionCreator.increment());
+            ref.read(counterViewModel.notifier).increment(unityController.value!);
           },
-          child: Icon(Icons.add),
+          child: const Icon(Icons.add),
         ),
       ),
     );
