@@ -1,8 +1,8 @@
 using System;
-using FlutterUnityBlueprints.Data.Domain.Impl;
 using FlutterUnityBlueprints.Data.Domain.Impl.Counter;
 using FlutterUnityBlueprints.Data.Repository;
 using Fub.Unity;
+using Fub.Unity.Scenes;
 using MessagePipe;
 using TMPro;
 using UniRx;
@@ -39,7 +39,7 @@ namespace FlutterUnityBlueprints.View.Counter
 
             _counterStore.State.Subscribe(x =>
             {
-                FlutterRepository.SendState(new PAppState()
+                FlutterRepository.SendState(new PRootState()
                 {
                     CounterState = x
                 });

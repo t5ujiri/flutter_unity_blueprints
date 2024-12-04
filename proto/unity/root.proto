@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package fub.unity;
+
+import 'google/protobuf/empty.proto';
+import 'google/protobuf/timestamp.proto';
+import 'unity/scenes/counter.proto';
+import "unity/load_app.proto";
+
+message PRootState {
+  oneof state {
+    PLoadAppState load_app_state = 1;
+    fub.unity.scenes.PCounterState counter_state = 2;
+  }
+}
+
+message PRootAction {
+  oneof action {
+    PLoadAppAction load_app_action = 1;
+    fub.unity.scenes.PCounterAction counter_action = 2;
+  }
+}

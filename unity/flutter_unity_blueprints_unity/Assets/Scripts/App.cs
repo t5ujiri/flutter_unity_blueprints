@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using FlutterUnityBlueprints.Data.Installer;
 using FlutterUnityBlueprints.Data.Repository;
 using FlutterUnityBlueprints.View.System;
 using Fub.Unity;
@@ -10,16 +11,17 @@ using UnityEngine.SceneManagement;
 using VContainer.Unity;
 using Object = UnityEngine.Object;
 
-namespace FlutterUnityBlueprints.Application.System
+namespace FlutterUnityBlueprints
 {
-    public class SystemApp : IStartable, IDisposable
+    // ReSharper disable once ClassNeverInstantiated.Global
+    public class App : IStartable, IDisposable
     {
         private readonly SystemPanel _systemPanel;
         private readonly IAsyncSubscriber<PLoadAppAction> _loadAppStateSubscriber;
 
         private readonly CancellationTokenSource _cts = new();
 
-        public SystemApp(SystemPanel systemPanel, IAsyncSubscriber<PLoadAppAction> loadAppStateSubscriber)
+        public App(SystemPanel systemPanel, IAsyncSubscriber<PLoadAppAction> loadAppStateSubscriber)
         {
             _systemPanel = systemPanel;
             _loadAppStateSubscriber = loadAppStateSubscriber;
@@ -51,34 +53,27 @@ namespace FlutterUnityBlueprints.Application.System
                         await SceneManager.LoadSceneAsync("Counter", LoadSceneMode.Additive);
                         _systemPanel.gameObject.SetActive(false);
                         Debug.Log("Counter scene loaded");
-                        FlutterRepository.SendState(new PAppState()
+                        FlutterRepository.SendState(new PRootState()
                         {
-                            LoadAppState = new PLoadSceneState()
+                            LoadAppState = new PLoadAppState()
                             {
-                                Counter = new PLoadSceneState.Types.Counter()
+                                Counter = new PLoadAppState.Types.Counter()
                             }
                         });
                         break;
                     }
+                    case PLoadAppAction.ActionOneofCase.Unload:
                     default:
                     {
                         await UnloadAllAdditiveScenes();
-                        FlutterRepository.SendState(new PAppState()
+                        FlutterRepository.SendState(new PRootState()
                         {
-                            LoadAppState = new PLoadSceneState()
+                            LoadAppState = new PLoadAppState()
                         });
                         break;
                     }
                 }
             }).AddTo(_cts.Token);
-            
-            FlutterRepository.SendState(new PAppState()
-            {
-                LoadAppState = new PLoadSceneState()
-                {
-                    System = new PLoadSceneState.Types.System()
-                }
-            });
         }
 
         private async UniTask UnloadAllAdditiveScenes()

@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package fub.unity;
+
+message PLoadAppState {
+  message None {
+
+  }
+
+  message Counter {
+
+  }
+
+  oneof app {
+    None none = 1;
+    Counter counter = 2;
+  }
+}
+
+message PLoadAppAction {
+  message Unload {
+
+  }
+
+  message Counter {
+
+  }
+
+  oneof action {
+    Unload unload = 1;
+    Counter counter = 2;
+  }
+}

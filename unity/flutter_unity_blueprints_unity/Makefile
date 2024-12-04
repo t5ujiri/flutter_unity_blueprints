@@ -1,4 +1,5 @@
-include .env
+UNITY_VERSION=2022.3.53f1
+UNITY_EXE=~/Unity/$(UNITY_VERSION)/Unity.app/Contents/MacOS/Unity
 
 setup:
 	dotnet new tool-manifest || true

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace FlutterUnityIntegration
@@ -61,7 +60,6 @@ namespace FlutterUnityIntegration
 
     public class UnityMessageManager : SingletonMonoBehaviour<UnityMessageManager>
     {
-
         public const string MessagePrefix = "@UnityMessage@";
         private static int ID = 0;
 
@@ -72,9 +70,11 @@ namespace FlutterUnityIntegration
         }
 
         public delegate void MessageDelegate(string message);
+
         public event MessageDelegate OnMessage;
 
         public delegate void MessageHandlerDelegate(MessageHandler handler);
+
         public event MessageHandlerDelegate OnFlutterMessage;
 
         private readonly Dictionary<int, UnityMessage> waitCallbackMessageMap = new Dictionary<int, UnityMessage>();
@@ -87,7 +87,6 @@ namespace FlutterUnityIntegration
         void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
             NativeAPI.OnSceneLoaded(scene, mode);
-
         }
 
         public void ShowHostMainWindow()
@@ -127,7 +126,7 @@ namespace FlutterUnityIntegration
                 name = message.name,
                 data = message.data
             });
-            UnityMessageManager.Instance.SendMessageToFlutter(MessagePrefix + o.ToString());
+            Instance.SendMessageToFlutter(MessagePrefix + o.ToString());
         }
 
         void onMessage(string message)

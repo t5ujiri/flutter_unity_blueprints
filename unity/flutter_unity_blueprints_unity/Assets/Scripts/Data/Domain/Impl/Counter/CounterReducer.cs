@@ -1,6 +1,6 @@
 using System;
 using FlutterUnityBlueprints.Data.Domain.Interface;
-using Fub.Unity;
+using Fub.Unity.Scenes;
 
 namespace FlutterUnityBlueprints.Data.Domain.Impl.Counter
 {

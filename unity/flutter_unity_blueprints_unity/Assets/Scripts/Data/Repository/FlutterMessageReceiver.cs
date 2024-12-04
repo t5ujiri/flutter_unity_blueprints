@@ -8,7 +8,7 @@ namespace FlutterUnityBlueprints.Data.Repository
     [DefaultExecutionOrder(int.MaxValue)]
     public class FlutterMessageReceiver : MonoBehaviour
     {
-        public delegate void AppActionFromFlutterHandler(PAppAction message);
+        public delegate void AppActionFromFlutterHandler(PRootAction message);
 
         public AppActionFromFlutterHandler OnAppActionFromFlutter { get; set; } = default;
 
@@ -45,7 +45,7 @@ namespace FlutterUnityBlueprints.Data.Repository
         /// <param name="json"></param>
         public void OnReceive(string json)
         {
-            var message = new PAppAction();
+            var message = new PRootAction();
             message.MergeFrom(Convert.FromBase64String(json));
 
             if (OnAppActionFromFlutter.GetInvocationList().Length > 0)

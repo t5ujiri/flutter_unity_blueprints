@@ -1,5 +1,6 @@
 using System;
 using Fub.Unity;
+using Fub.Unity.Scenes;
 using MessagePipe;
 using VContainer.Unity;
 #if !UNITY_EDITOR
@@ -9,6 +10,7 @@ using Google.Protobuf;
 
 namespace FlutterUnityBlueprints.Data.Repository
 {
+    // ReSharper disable once ClassNeverInstantiated.Global
     public class FlutterRepository : IStartable
     {
         private readonly IAsyncPublisher<PLoadAppAction> _loadAppActionPublisher;
@@ -26,16 +28,16 @@ namespace FlutterUnityBlueprints.Data.Repository
             FlutterMessageReceiver.Instance.OnAppActionFromFlutter += OnMessageFromFlutter;
         }
 
-        private void OnMessageFromFlutter(PAppAction message)
+        private void OnMessageFromFlutter(PRootAction message)
         {
             switch (message.ActionCase)
             {
-                case PAppAction.ActionOneofCase.None:
+                case PRootAction.ActionOneofCase.None:
                     break;
-                case PAppAction.ActionOneofCase.CounterAction:
+                case PRootAction.ActionOneofCase.CounterAction:
                     _counterActionPublisher.Publish(message.CounterAction);
                     break;
-                case PAppAction.ActionOneofCase.LoadAppAction:
+                case PRootAction.ActionOneofCase.LoadAppAction:
                     _loadAppActionPublisher.PublishAsync(message.LoadAppAction);
                     break;
                 default:
@@ -43,7 +45,7 @@ namespace FlutterUnityBlueprints.Data.Repository
             }
         }
 
-        public static void SendState(PAppState state)
+        public static void SendState(PRootState state)
         {
 #if !UNITY_EDITOR
             UnityMessageManager.Instance.SendMessageToFlutter(Convert.ToBase64String(state.ToByteArray()));

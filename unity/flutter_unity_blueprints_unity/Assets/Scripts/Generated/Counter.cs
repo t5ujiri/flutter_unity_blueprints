@@ -9,7 +9,7 @@ using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
-namespace Fub.Unity {
+namespace Fub.Unity.Scenes {
 
   /// <summary>Holder for reflection information generated from unity/scenes/counter.proto</summary>
   public static partial class CounterReflection {
@@ -24,19 +24,20 @@ namespace Fub.Unity {
     static CounterReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "Chp1bml0eS9zY2VuZXMvY291bnRlci5wcm90bxIJZnViLnVuaXR5Ghtnb29n",
-            "bGUvcHJvdG9idWYvZW1wdHkucHJvdG8aH2dvb2dsZS9wcm90b2J1Zi90aW1l",
-            "c3RhbXAucHJvdG8iHgoNUENvdW50ZXJTdGF0ZRINCgVjb3VudBgBIAEoBSKc",
-            "AQoOUENvdW50ZXJBY3Rpb24SOAoJaW5jcmVtZW50GAEgASgLMiMuZnViLnVu",
-            "aXR5LlBDb3VudGVyQWN0aW9uLkluY3JlbWVudEgAEjAKBXJlc2V0GAIgASgL",
-            "Mh8uZnViLnVuaXR5LlBDb3VudGVyQWN0aW9uLlJlc2V0SAAaCwoJSW5jcmVt",
-            "ZW50GgcKBVJlc2V0QggKBmFjdGlvbmIGcHJvdG8z"));
+            "Chp1bml0eS9zY2VuZXMvY291bnRlci5wcm90bxIQZnViLnVuaXR5LnNjZW5l",
+            "cxobZ29vZ2xlL3Byb3RvYnVmL2VtcHR5LnByb3RvGh9nb29nbGUvcHJvdG9i",
+            "dWYvdGltZXN0YW1wLnByb3RvIh4KDVBDb3VudGVyU3RhdGUSDQoFY291bnQY",
+            "ASABKAUiqgEKDlBDb3VudGVyQWN0aW9uEj8KCWluY3JlbWVudBgBIAEoCzIq",
+            "LmZ1Yi51bml0eS5zY2VuZXMuUENvdW50ZXJBY3Rpb24uSW5jcmVtZW50SAAS",
+            "NwoFcmVzZXQYAiABKAsyJi5mdWIudW5pdHkuc2NlbmVzLlBDb3VudGVyQWN0",
+            "aW9uLlJlc2V0SAAaCwoJSW5jcmVtZW50GgcKBVJlc2V0QggKBmFjdGlvbmIG",
+            "cHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.WellKnownTypes.EmptyReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Fub.Unity.PCounterState), global::Fub.Unity.PCounterState.Parser, new[]{ "Count" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Fub.Unity.PCounterAction), global::Fub.Unity.PCounterAction.Parser, new[]{ "Increment", "Reset" }, new[]{ "Action" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::Fub.Unity.PCounterAction.Types.Increment), global::Fub.Unity.PCounterAction.Types.Increment.Parser, null, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Fub.Unity.PCounterAction.Types.Reset), global::Fub.Unity.PCounterAction.Types.Reset.Parser, null, null, null, null, null)})
+            new pbr::GeneratedClrTypeInfo(typeof(global::Fub.Unity.Scenes.PCounterState), global::Fub.Unity.Scenes.PCounterState.Parser, new[]{ "Count" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Fub.Unity.Scenes.PCounterAction), global::Fub.Unity.Scenes.PCounterAction.Parser, new[]{ "Increment", "Reset" }, new[]{ "Action" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::Fub.Unity.Scenes.PCounterAction.Types.Increment), global::Fub.Unity.Scenes.PCounterAction.Types.Increment.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Fub.Unity.Scenes.PCounterAction.Types.Reset), global::Fub.Unity.Scenes.PCounterAction.Types.Reset.Parser, null, null, null, null, null)})
           }));
     }
     #endregion
@@ -58,7 +59,7 @@ namespace Fub.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Fub.Unity.CounterReflection.Descriptor.MessageTypes[0]; }
+      get { return global::Fub.Unity.Scenes.CounterReflection.Descriptor.MessageTypes[0]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -91,9 +92,6 @@ namespace Fub.Unity {
     /// <summary>Field number for the "count" field.</summary>
     public const int CountFieldNumber = 1;
     private int count_;
-    /// <summary>
-    /// domain
-    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int Count {
@@ -202,7 +200,11 @@ namespace Fub.Unity {
     #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
@@ -221,7 +223,11 @@ namespace Fub.Unity {
     void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
@@ -251,7 +257,7 @@ namespace Fub.Unity {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Fub.Unity.CounterReflection.Descriptor.MessageTypes[1]; }
+      get { return global::Fub.Unity.Scenes.CounterReflection.Descriptor.MessageTypes[1]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -293,8 +299,8 @@ namespace Fub.Unity {
     public const int IncrementFieldNumber = 1;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Fub.Unity.PCounterAction.Types.Increment Increment {
-      get { return actionCase_ == ActionOneofCase.Increment ? (global::Fub.Unity.PCounterAction.Types.Increment) action_ : null; }
+    public global::Fub.Unity.Scenes.PCounterAction.Types.Increment Increment {
+      get { return actionCase_ == ActionOneofCase.Increment ? (global::Fub.Unity.Scenes.PCounterAction.Types.Increment) action_ : null; }
       set {
         action_ = value;
         actionCase_ = value == null ? ActionOneofCase.None : ActionOneofCase.Increment;
@@ -305,8 +311,8 @@ namespace Fub.Unity {
     public const int ResetFieldNumber = 2;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Fub.Unity.PCounterAction.Types.Reset Reset {
-      get { return actionCase_ == ActionOneofCase.Reset ? (global::Fub.Unity.PCounterAction.Types.Reset) action_ : null; }
+    public global::Fub.Unity.Scenes.PCounterAction.Types.Reset Reset {
+      get { return actionCase_ == ActionOneofCase.Reset ? (global::Fub.Unity.Scenes.PCounterAction.Types.Reset) action_ : null; }
       set {
         action_ = value;
         actionCase_ = value == null ? ActionOneofCase.None : ActionOneofCase.Reset;
@@ -437,13 +443,13 @@ namespace Fub.Unity {
       switch (other.ActionCase) {
         case ActionOneofCase.Increment:
           if (Increment == null) {
-            Increment = new global::Fub.Unity.PCounterAction.Types.Increment();
+            Increment = new global::Fub.Unity.Scenes.PCounterAction.Types.Increment();
           }
           Increment.MergeFrom(other.Increment);
           break;
         case ActionOneofCase.Reset:
           if (Reset == null) {
-            Reset = new global::Fub.Unity.PCounterAction.Types.Reset();
+            Reset = new global::Fub.Unity.Scenes.PCounterAction.Types.Reset();
           }
           Reset.MergeFrom(other.Reset);
           break;
@@ -460,12 +466,16 @@ namespace Fub.Unity {
     #else
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            global::Fub.Unity.PCounterAction.Types.Increment subBuilder = new global::Fub.Unity.PCounterAction.Types.Increment();
+            global::Fub.Unity.Scenes.PCounterAction.Types.Increment subBuilder = new global::Fub.Unity.Scenes.PCounterAction.Types.Increment();
             if (actionCase_ == ActionOneofCase.Increment) {
               subBuilder.MergeFrom(Increment);
             }
@@ -474,7 +484,7 @@ namespace Fub.Unity {
             break;
           }
           case 18: {
-            global::Fub.Unity.PCounterAction.Types.Reset subBuilder = new global::Fub.Unity.PCounterAction.Types.Reset();
+            global::Fub.Unity.Scenes.PCounterAction.Types.Reset subBuilder = new global::Fub.Unity.Scenes.PCounterAction.Types.Reset();
             if (actionCase_ == ActionOneofCase.Reset) {
               subBuilder.MergeFrom(Reset);
             }
@@ -493,12 +503,16 @@ namespace Fub.Unity {
     void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
+      if ((tag & 7) == 4) {
+        // Abort on any end group tag.
+        return;
+      }
+      switch(tag) {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 10: {
-            global::Fub.Unity.PCounterAction.Types.Increment subBuilder = new global::Fub.Unity.PCounterAction.Types.Increment();
+            global::Fub.Unity.Scenes.PCounterAction.Types.Increment subBuilder = new global::Fub.Unity.Scenes.PCounterAction.Types.Increment();
             if (actionCase_ == ActionOneofCase.Increment) {
               subBuilder.MergeFrom(Increment);
             }
@@ -507,7 +521,7 @@ namespace Fub.Unity {
             break;
           }
           case 18: {
-            global::Fub.Unity.PCounterAction.Types.Reset subBuilder = new global::Fub.Unity.PCounterAction.Types.Reset();
+            global::Fub.Unity.Scenes.PCounterAction.Types.Reset subBuilder = new global::Fub.Unity.Scenes.PCounterAction.Types.Reset();
             if (actionCase_ == ActionOneofCase.Reset) {
               subBuilder.MergeFrom(Reset);
             }
@@ -540,7 +554,7 @@ namespace Fub.Unity {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
         public static pbr::MessageDescriptor Descriptor {
-          get { return global::Fub.Unity.PCounterAction.Descriptor.NestedTypes[0]; }
+          get { return global::Fub.Unity.Scenes.PCounterAction.Descriptor.NestedTypes[0]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -652,7 +666,11 @@ namespace Fub.Unity {
         #else
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
                 break;
@@ -667,7 +685,11 @@ namespace Fub.Unity {
         void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
                 break;
@@ -693,7 +715,7 @@ namespace Fub.Unity {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
         public static pbr::MessageDescriptor Descriptor {
-          get { return global::Fub.Unity.PCounterAction.Descriptor.NestedTypes[1]; }
+          get { return global::Fub.Unity.Scenes.PCounterAction.Descriptor.NestedTypes[1]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -805,7 +827,11 @@ namespace Fub.Unity {
         #else
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
                 break;
@@ -820,7 +846,11 @@ namespace Fub.Unity {
         void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
           uint tag;
           while ((tag = input.ReadTag()) != 0) {
-            switch(tag) {
+          if ((tag & 7) == 4) {
+            // Abort on any end group tag.
+            return;
+          }
+          switch(tag) {
               default:
                 _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
                 break;

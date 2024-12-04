@@ -1,11 +1,11 @@
 using FlutterUnityBlueprints.Data.Domain.Impl.Counter;
 using FlutterUnityBlueprints.View.Counter;
-using Fub.Unity;
+using Fub.Unity.Scenes;
 using TMPro;
 using VContainer;
 using VContainer.Unity;
 
-namespace FlutterUnityBlueprints.Application.Counter
+namespace FlutterUnityBlueprints.Data.Installer
 {
     public class CounterScope : LifetimeScope
     {

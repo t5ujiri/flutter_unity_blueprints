@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:app/gen/proto/unity/app.pb.dart';
+import 'package:app/gen/proto/unity/root.pb.dart';
 import 'package:app/ui/counter/counter_view_model.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -18,10 +18,12 @@ class CounterPage extends HookConsumerWidget {
     final unityController = useState<UnityWidgetController?>(null);
 
     return PopScope(
-      onPopInvoked: (b) {
+      onPopInvokedWithResult: (b, result) {
         if (b) {
           if (unityController.value != null) {
-            ref.read(counterViewModel.notifier).unloadApp(unityController.value!);
+            ref
+                .read(counterViewModel.notifier)
+                .unloadApp(unityController.value!);
           }
         }
       },
@@ -30,7 +32,9 @@ class CounterPage extends HookConsumerWidget {
           actions: [
             TextButton(
               onPressed: () {
-                ref.read(counterViewModel.notifier).reset(unityController.value!);
+                ref
+                    .read(counterViewModel.notifier)
+                    .reset(unityController.value!);
               },
               child: const Text('Reset'),
             ),
@@ -50,16 +54,16 @@ class CounterPage extends HookConsumerWidget {
                         .loadCounterApp(controller);
                   },
                   onUnityMessage: (message) {
-                    var state = PAppState.fromBuffer(base64.decode(message));
+                    var state = PRootState.fromBuffer(base64.decode(message));
 
                     switch (state.whichState()) {
-                      case PAppState_State.loadAppState:
+                      case PRootState_State.loadAppState:
                       // TODO: Handle this case.
-                      case PAppState_State.counterState:
+                      case PRootState_State.counterState:
                         ref
                             .read(counterViewModel.notifier)
                             .sync(state.counterState);
-                      case PAppState_State.notSet:
+                      case PRootState_State.notSet:
                       // TODO: Handle this case.
                     }
                   },
@@ -83,7 +87,9 @@ class CounterPage extends HookConsumerWidget {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            ref.read(counterViewModel.notifier).increment(unityController.value!);
+            ref
+                .read(counterViewModel.notifier)
+                .increment(unityController.value!);
           },
           child: const Icon(Icons.add),
         ),

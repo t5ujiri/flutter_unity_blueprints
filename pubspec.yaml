@@ -10,36 +10,27 @@ dependencies:
   flutter:
     sdk: flutter
 
-  flutter_unity_widget:
-    git:
-      url: git@github.com:timbotimbo/flutter-unity-view-widget.git
-      ref: android_java_proxy_2
-
-  protobuf: ^3.1.0
-
-  # For Architecture
-  flutter_hooks: ^0.20.5
-  hooks_riverpod: ^2.3.6
-
-  # For model
-  freezed_annotation: ^2.2.0
-
-  # UI
+  auto_route: ^9.2.2
   cupertino_icons: ^1.0.2
-  auto_route: any
+  flutter_hooks: ^0.20.5
+  flutter_unity_widget: ^2022.2.1
+  freezed_annotation: ^2.2.0
+  hooks_riverpod: ^2.6.1
+  protobuf: ^3.1.0
+  riverpod_annotation: ^2.6.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  auto_route_generator: ^9.0.0
+  build_runner: ^2.4.13
+  custom_lint: ^0.7.0
+  flutter_launcher_icons: ^0.14.1
+  flutter_lints: ^5.0.0
   freezed: ^2.3.4
-  build_runner: ^2.1.0
-  flutter_launcher_icons: ^0.13.1
-  auto_route_generator: any
-  flutter_lints:
-
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
+  riverpod_generator: ^2.6.3
+  riverpod_lint: ^2.6.3
 
 # The following section is specific to Flutter.
 flutter:
